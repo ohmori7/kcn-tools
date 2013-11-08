@@ -8202,7 +8202,7 @@ fi
 
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_gc" >&5
 $as_echo "$with_gc" >&6; }
- test x"$with_gc" = xyes && with_gc="/usr /usr/local ${HOME}"
+ test x"$with_gc" = xyes && with_gc="/usr /usr/pkg /usr/local ${HOME}"
  unset ac_cv_header_gc_h
  ac_fn_c_check_header_mongrel "$LINENO" "gc.h" "ac_cv_header_gc_h" "$ac_includes_default"
 if test "x$ac_cv_header_gc_h" = xyes; then :

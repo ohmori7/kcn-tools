@@ -420,7 +420,7 @@ AC_ARG_WITH(gc,
  [test x"$with_gc" = xno && AC_MSG_ERROR([You can not build w3m without gc])],
  [with_gc="yes"])
  AC_MSG_RESULT($with_gc)
- test x"$with_gc" = xyes && with_gc="/usr /usr/local ${HOME}"
+ test x"$with_gc" = xyes && with_gc="/usr /usr/pkg /usr/local ${HOME}"
  unset ac_cv_header_gc_h
  AC_CHECK_HEADER(gc.h)
  if test x"$ac_cv_header_gc_h" = xno; then
