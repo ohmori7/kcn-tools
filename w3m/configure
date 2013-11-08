@@ -633,6 +633,7 @@ RETSIGTYPE
 HAVE_SIGSETJMP
 HAVE_SYS_ERRLIST
 USE_BINMODE_STREAM
+USE_KCN
 LIBGC
 AUXBIN_TARGETS
 USE_SYSMOUSE
@@ -836,6 +837,7 @@ enable_sslverify
 enable_digest_auth
 with_termlib
 with_gc
+with_kcn
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1518,6 +1520,7 @@ Optional Packages:
 				LIBS is space separated list of:
 				  terminfo mytinfo termcap ncurses curses
   --with-gc=PREFIX	  	libgc PREFIX
+  --with-kcn=PREFIX		support KCN
 
 Some influential environment variables:
   CXX         C++ compiler command
@@ -8331,6 +8334,47 @@ fi
       as_fn_error $? "libgc not found" "$LINENO" 5
     fi
  fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for KCN library" >&5
+$as_echo_n "checking for KCN library... " >&6; }
+
+# Check whether --with-kcn was given.
+if test "${with_kcn+set}" = set; then :
+  withval=$with_kcn;
+else
+  with_kcn="yes"
+fi
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $with_kcn" >&5
+$as_echo "$with_kcn" >&6; }
+
+if test x"$with_kcn" != xno; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if KCN API is available" >&5
+$as_echo_n "checking if KCN API is available... " >&6; }
+
+  if test x"$with_kcn" = xyes; then
+    with_kcn='/usr/local /usr/pkg /usr'
+  fi
+  kcndir=''
+  for dir in $with_kcn
+  do
+    if test -f $dir/include/kcn_info.h; then
+      kcndir=$dir
+      break
+    fi
+  done
+  if test x"$kcndir" = x; then
+    as_fn_error $? "KCN directory not found." "$LINENO" 5
+  fi
+  if test $kcndir != '/usr'; then
+    CPPFLAGS="$CPPFLAGS -I$kcndir/include"
+    W3M_LIBS="$W3M_LIBS -L$dir/lib"
+  fi
+  W3M_LIBS="$W3M_LIBS -lkcn"
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+  $as_echo "#define USE_KCN 1" >>confdefs.h
+
+fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for zError in -lz" >&5
 $as_echo_n "checking for zError in -lz... " >&6; }
 if ${ac_cv_lib_z_zError+:} false; then :

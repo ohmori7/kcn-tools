@@ -898,3 +898,39 @@ AC_DEFUN([AC_W3M_SIGNAL],
  else
   AC_DEFINE(SIGNAL_RETURN,return 0)
  fi])
+#
+# ----------------------------------------------------------------
+# AC_W3M_KCN
+# ----------------------------------------------------------------
+AC_DEFUN([AC_W3M_KCN],
+[AC_MSG_CHECKING(for KCN library)
+AC_ARG_WITH(kcn,
+ [  --with-kcn[=PREFIX]		support KCN],,
+ [with_kcn="yes"])
+AC_MSG_RESULT($with_kcn)
+
+if test x"$with_kcn" != xno; then
+  AC_MSG_CHECKING(if KCN API is available)
+  AC_SUBST(USE_KCN)
+  if test x"$with_kcn" = xyes; then
+    with_kcn='/usr/local /usr/pkg /usr'
+  fi
+  kcndir=''
+  for dir in $with_kcn
+  do
+    if test -f $dir/include/kcn_info.h; then
+      kcndir=$dir
+      break
+    fi
+  done
+  if test x"$kcndir" = x; then
+    AC_MSG_ERROR([KCN directory not found.])
+  fi
+  if test $kcndir != '/usr'; then
+    CPPFLAGS="$CPPFLAGS -I$kcndir/include"
+    W3M_LIBS="$W3M_LIBS -L$dir/lib"
+  fi
+  W3M_LIBS="$W3M_LIBS -lkcn"
+  AC_MSG_RESULT(yes, $kcndir)
+  AC_DEFINE(USE_KCN)
+fi])
