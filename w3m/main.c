@@ -83,6 +83,13 @@ JMP_BUF IntReturn;
 _JBTYPE IntReturn[_JBLEN];
 #endif /* __MINGW32_VERSION */
 
+#ifdef USE_KCN
+#include <assert.h>
+#include <stdbool.h>
+#include "kcn_info.h"
+#include "kcn_search.h"
+#endif /* USE_KCN */
+
 static void delBuffer(Buffer *buf);
 static void cmd_loadfile(char *path);
 static void cmd_loadURL(char *url, ParsedURL *current, char *referer,
@@ -185,6 +192,9 @@ fversion(FILE * f)
 #ifdef USE_MIGEMO
 	    ",migemo"
 #endif
+#ifdef USE_KCN
+	    ",kcn"
+#endif /* USE_KCN */
 	);
 }
 
@@ -204,6 +214,9 @@ fusage(FILE * f, int err)
     fprintf(f, "    -s               Shift_JIS\n");
     fprintf(f, "    -j               JIS\n");
 #endif
+#ifdef USE_KCN
+    fprintf(f, "    -k keywords      specify keywords for KCN\n");
+#endif /* USE_KCN */
     fprintf(f, "    -B               load bookmark\n");
     fprintf(f, "    -bookmark file   specify bookmark file\n");
     fprintf(f, "    -T type          specify content-type\n");
@@ -397,6 +410,10 @@ main(int argc, char **argv, char **envp)
     wc_ces CodePage;
 #endif
 #endif
+#ifdef USE_KCN
+    Str kcn_url = NULL;
+#endif /* USE_KCN */
+
     GC_INIT();
 #if defined(ENABLE_NLS) || (defined(USE_M17N) && defined(HAVE_LANGINFO_CODESET))
     setlocale(LC_ALL, "");
@@ -559,6 +576,34 @@ main(int argc, char **argv, char **envp)
 		DisplayCharset = wc_guess_charset_short(p, DisplayCharset);
 	    }
 #endif
+#ifdef USE_KCN
+	    else if (strcmp("-k", argv[i]) == 0) {
+		struct kcn_info *ki;
+		const char *url;
+
+		if (++i >= argc || kcn_url != NULL)
+			usage();
+		ki = kcn_info_new(KCN_TYPE_GOOGLE, KCN_LOC_TYPE_URI, 1,
+		    NULL , NULL);
+		if (ki == NULL) {
+		    fprintf(stderr, "cannot allocate memory for KCN.\n");
+		    exit(0);
+		}
+		if (! kcn_search(ki, argv[i])) {
+		    fprintf(stderr, "cannot resolve URL.\n");
+		    exit(0);
+		}
+		url = kcn_info_loc(ki, 0);
+		assert(url != NULL);
+		kcn_url = Strnew_charp((char */*CONSTCAST*/)url);
+		kcn_info_destroy(ki);
+		if (kcn_url == NULL) {
+		    fprintf(stderr, "cannot allocate memory for KCN URL.\n");
+		    exit(0);
+		}
+		load_argv[load_argc++] = kcn_url->ptr;
+	    }
+#endif /* USE_KCN */
 	    else if (!strcmp("-graph", argv[i]))
 		UseGraphicChar = GRAPHIC_CHAR_DEC;
 	    else if (!strcmp("-no-graph", argv[i]))
@@ -989,6 +1034,12 @@ main(int argc, char **argv, char **envp)
 #endif
 	}
     }
+#ifdef USE_KCN
+    if (kcn_url != NULL) {
+	Strfree(kcn_url);
+	kcn_url = NULL;
+    }
+#endif /* USE_KCN */
     if (w3m_dump) {
 	if (err_msg->length)
 	    fprintf(stderr, "%s", err_msg->ptr);
