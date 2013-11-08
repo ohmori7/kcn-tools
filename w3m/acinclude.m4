@@ -928,7 +928,7 @@ if test x"$with_kcn" != xno; then
   fi
   if test $kcndir != '/usr'; then
     CPPFLAGS="$CPPFLAGS -I$kcndir/include"
-    W3M_LIBS="$W3M_LIBS -L$kcndir/lib"
+    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$kcndir/lib -L$kcndir/lib"
   fi
   W3M_LIBS="$W3M_LIBS -lkcn"
   AC_MSG_RESULT(yes, $kcndir)
@@ -960,7 +960,7 @@ if test x"$with_curl" != xno; then
     AC_MSG_ERROR([curl library not found.])
   fi
   if test $curldir != '/usr'; then
-    W3M_LIBS="$W3M_LIBS -L$curldir/lib"
+    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$curldir/lib -L$curldir/lib"
   fi
   W3M_LIBS="$W3M_LIBS -lcurl"
   AC_MSG_RESULT(yes, $curldir)
@@ -991,7 +991,7 @@ if test x"$with_jansson" != xno; then
     AC_MSG_ERROR([jansson library not found.])
   fi
   if test $janssondir != '/usr'; then
-    W3M_LIBS="$W3M_LIBS -L$janssondir/lib"
+    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$janssondir/lib -L$janssondir/lib"
   fi
   W3M_LIBS="$W3M_LIBS -ljansson"
   AC_MSG_RESULT(yes, $janssondir)

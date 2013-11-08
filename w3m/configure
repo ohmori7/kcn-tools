@@ -8371,7 +8371,7 @@ $as_echo_n "checking if KCN API is available... " >&6; }
   fi
   if test $kcndir != '/usr'; then
     CPPFLAGS="$CPPFLAGS -I$kcndir/include"
-    W3M_LIBS="$W3M_LIBS -L$kcndir/lib"
+    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$kcndir/lib -L$kcndir/lib"
   fi
   W3M_LIBS="$W3M_LIBS -lkcn"
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
@@ -8407,7 +8407,7 @@ $as_echo_n "checking if curl library is available... " >&6; }
     as_fn_error $? "curl library not found." "$LINENO" 5
   fi
   if test $curldir != '/usr'; then
-    W3M_LIBS="$W3M_LIBS -L$curldir/lib"
+    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$curldir/lib -L$curldir/lib"
   fi
   W3M_LIBS="$W3M_LIBS -lcurl"
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
@@ -8440,7 +8440,7 @@ $as_echo_n "checking if jansson library is available... " >&6; }
     as_fn_error $? "jansson library not found." "$LINENO" 5
   fi
   if test $janssondir != '/usr'; then
-    W3M_LIBS="$W3M_LIBS -L$janssondir/lib"
+    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$janssondir/lib -L$janssondir/lib"
   fi
   W3M_LIBS="$W3M_LIBS -ljansson"
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
