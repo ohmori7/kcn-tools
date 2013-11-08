@@ -92,6 +92,7 @@
 #undef TABLE_NO_COMPACT
 #define NOWRAP
 #define MATRIX
+#undef USE_KCN
 
 #define DEF_EDITOR "@DEF_EDITOR@"
 #define DEF_MAILER "@DEF_MAILER@
