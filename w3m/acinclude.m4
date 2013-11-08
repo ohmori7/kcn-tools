@@ -455,7 +455,7 @@ AC_ARG_WITH(gc,
       LDFLAGS="$LDFLAGS -L$dir/lib"
       AC_MSG_CHECKING($dir)
       unset ac_cv_lib_gc_GC_init
-      AC_CHECK_LIB(gc, GC_init, [gclibdir="$dir/lib"; LIBGC="-L$dir/lib -lgc"; break])
+      AC_CHECK_LIB(gc, GC_init, [gclibdir="$dir/lib"; LIBGC="-Wl,-rpath=$dir/lib -lgc"; break])
       LDFLAGS="$ldflags"
     done
     if test x"$gclibdir" = xno; then
