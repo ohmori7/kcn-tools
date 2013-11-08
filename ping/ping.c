@@ -92,6 +92,12 @@ __RCSID("$NetBSD: ping.c,v 1.106 2013/03/06 11:33:08 yamt Exp $");
 #include <netipsec/ipsec.h>
 #endif /*IPSEC*/
 
+#ifdef HAVE_KCN
+#include "kcn.h"
+#include "kcn_info.h"
+#include "kcn_search.h"
+#endif /* HAVE_KCN */
+
 #include "prog_ops.h"
 
 #define FLOOD_INTVL	0.01		/* default flood output interval */
@@ -122,6 +128,9 @@ __RCSID("$NetBSD: ping.c,v 1.106 2013/03/06 11:33:08 yamt Exp $");
 #define	F_ENCRYPT	0x40000
 #endif /*IPSEC_POLICY_IPSEC*/
 #endif /*IPSEC*/
+#ifdef HAVE_KCN
+#define F_KCN		0x80000000
+#endif /* HAVE_KCN */
 
 
 /* MAX_DUP_CHK is the number of bits in received table, the
@@ -281,7 +290,7 @@ main(int argc, char *argv[])
 #endif /*IPSEC_POLICY_IPSEC*/
 #endif
 	while ((c = getopt(argc, argv,
-			   "ac:CdDfg:h:i:I:l:Lnop:PqQrRs:t:T:vw:" IPSECOPT)) != -1) {
+			   "ac:CdDfg:h:i:I:kl:Lnop:PqQrRs:t:T:vw:" IPSECOPT)) != -1) {
 #undef IPSECOPT
 		switch (c) {
 		case 'a':
@@ -409,6 +418,11 @@ main(int argc, char *argv[])
 			break;
 #endif /*IPSEC_POLICY_IPSEC*/
 #endif /*IPSEC*/
+#ifdef HAVE_KCN
+		case 'k':
+			pingflags |= F_KCN;
+			break;
+#endif /* HAVE_KCN */
 		default:
 			usage();
 			break;
@@ -436,6 +450,33 @@ main(int argc, char *argv[])
 		npackets = INT_MAX;
 	}
 
+#ifdef HAVE_KCN
+	if (pingflags & F_KCN) {
+		char *keys, *fqdn;
+		struct kcn_info *ki;
+
+		if (hostind != 0)
+			usage();
+		if (optind >= argc)
+			usage();
+		hostind = optind;
+		keys = kcn_key_concat(argc - optind, argv + optind);
+		if (keys == NULL)
+			err(1, "Out of memory for KCN keywords");
+		ki = kcn_info_new(KCN_TYPE_GOOGLE, KCN_LOC_TYPE_DOMAINNAME, 1,
+		    NULL, NULL);
+		if (ki == NULL)
+			err(1, "Out of memory for KCN information");
+		if (! kcn_search(ki, keys))
+			err(1, "Cannot resolve FQDN on KCN");
+		free(keys);
+		argv[hostind] = strdup(kcn_info_loc(ki, 0));
+		if (argv[hostind] == NULL)
+			err(1, "Out of memory for KCN information");
+		kcn_info_destroy(ki);
+		/* be lazy here not to free URL :-P */
+	} else
+#endif /* HAVE_KCN */
 	if (hostind == 0) {
 		if (optind != argc-1)
 			usage();
