@@ -1,0 +1,5 @@
+*.o
+.gdbinit
+ping
+ping.html8
+rump.ping
