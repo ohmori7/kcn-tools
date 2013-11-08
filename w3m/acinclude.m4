@@ -934,3 +934,65 @@ if test x"$with_kcn" != xno; then
   AC_MSG_RESULT(yes, $kcndir)
   AC_DEFINE(USE_KCN)
 fi])
+#
+# ----------------------------------------------------------------
+# AC_W3M_CURL
+# ----------------------------------------------------------------
+AC_DEFUN([AC_W3M_CURL],
+[AC_ARG_WITH(curl,
+ [  --with-curl=PREFIX	curl library],,
+ [with_curl="yes"])
+
+if test x"$with_curl" != xno; then
+  AC_MSG_CHECKING(if curl library is available)
+  if test x"$with_curl" = xyes; then
+    with_curl='/usr/local /usr/pkg /usr'
+  fi
+  curldir=''
+  for dir in $with_curl
+  do
+    if test -f $dir/lib/libcurl.a; then
+      curldir=$dir
+      break
+    fi
+  done
+  if test x"$curldir" = x; then
+    AC_MSG_ERROR([curl library not found.])
+  fi
+  if test $curldir != '/usr'; then
+    W3M_LIBS="$W3M_LIBS -L$curldir/lib"
+  fi
+  W3M_LIBS="$W3M_LIBS -lcurl"
+  AC_MSG_RESULT(yes, $curldir)
+fi])
+#
+# ----------------------------------------------------------------
+# AC_W3M_JANSSON
+# ----------------------------------------------------------------
+AC_DEFUN([AC_W3M_JANSSON],
+[AC_ARG_WITH(jansson,
+ [  --with-jansson=PREFIX	jansson library],,
+ [with_jansson="yes"])
+
+if test x"$with_jansson" != xno; then
+  AC_MSG_CHECKING(if jansson library is available)
+  if test x"$with_jansson" = xyes; then
+    with_jansson='/usr/local /usr/pkg /usr'
+  fi
+  janssondir=''
+  for dir in $with_jansson
+  do
+    if test -f $dir/lib/libjansson.a; then
+      janssondir=$dir
+      break
+    fi
+  done
+  if test x"$janssondir" = x; then
+    AC_MSG_ERROR([jansson library not found.])
+  fi
+  if test $janssondir != '/usr'; then
+    W3M_LIBS="$W3M_LIBS -L$janssondir/lib"
+  fi
+  W3M_LIBS="$W3M_LIBS -ljansson"
+  AC_MSG_RESULT(yes, $janssondir)
+fi])

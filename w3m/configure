@@ -838,6 +838,8 @@ enable_digest_auth
 with_termlib
 with_gc
 with_kcn
+with_curl
+with_jansson
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1521,6 +1523,8 @@ Optional Packages:
 				  terminfo mytinfo termcap ncurses curses
   --with-gc=PREFIX	  	libgc PREFIX
   --with-kcn=PREFIX		support KCN
+  --with-curl=PREFIX	curl library
+  --with-jansson=PREFIX	jansson library
 
 Some influential environment variables:
   CXX         C++ compiler command
@@ -8374,6 +8378,74 @@ $as_echo_n "checking if KCN API is available... " >&6; }
 $as_echo "yes" >&6; }
   $as_echo "#define USE_KCN 1" >>confdefs.h
 
+fi
+if test x"$with_kcn" != xno; then
+
+# Check whether --with-curl was given.
+if test "${with_curl+set}" = set; then :
+  withval=$with_curl;
+else
+  with_curl="yes"
+fi
+
+
+if test x"$with_curl" != xno; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if curl library is available" >&5
+$as_echo_n "checking if curl library is available... " >&6; }
+  if test x"$with_curl" = xyes; then
+    with_curl='/usr/local /usr/pkg /usr'
+  fi
+  curldir=''
+  for dir in $with_curl
+  do
+    if test -f $dir/lib/libcurl.a; then
+      curldir=$dir
+      break
+    fi
+  done
+  if test x"$curldir" = x; then
+    as_fn_error $? "curl library not found." "$LINENO" 5
+  fi
+  if test $curldir != '/usr'; then
+    W3M_LIBS="$W3M_LIBS -L$curldir/lib"
+  fi
+  W3M_LIBS="$W3M_LIBS -lcurl"
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+fi
+
+# Check whether --with-jansson was given.
+if test "${with_jansson+set}" = set; then :
+  withval=$with_jansson;
+else
+  with_jansson="yes"
+fi
+
+
+if test x"$with_jansson" != xno; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if jansson library is available" >&5
+$as_echo_n "checking if jansson library is available... " >&6; }
+  if test x"$with_jansson" = xyes; then
+    with_jansson='/usr/local /usr/pkg /usr'
+  fi
+  janssondir=''
+  for dir in $with_jansson
+  do
+    if test -f $dir/lib/libjansson.a; then
+      janssondir=$dir
+      break
+    fi
+  done
+  if test x"$janssondir" = x; then
+    as_fn_error $? "jansson library not found." "$LINENO" 5
+  fi
+  if test $janssondir != '/usr'; then
+    W3M_LIBS="$W3M_LIBS -L$janssondir/lib"
+  fi
+  W3M_LIBS="$W3M_LIBS -ljansson"
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+fi
 fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for zError in -lz" >&5
 $as_echo_n "checking for zError in -lz... " >&6; }
