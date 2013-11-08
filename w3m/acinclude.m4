@@ -928,7 +928,7 @@ if test x"$with_kcn" != xno; then
   fi
   if test $kcndir != '/usr'; then
     CPPFLAGS="$CPPFLAGS -I$kcndir/include"
-    W3M_LIBS="$W3M_LIBS -L$dir/lib"
+    W3M_LIBS="$W3M_LIBS -L$kcndir/lib"
   fi
   W3M_LIBS="$W3M_LIBS -lkcn"
   AC_MSG_RESULT(yes, $kcndir)

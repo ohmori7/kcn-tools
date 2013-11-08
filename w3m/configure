@@ -8371,7 +8371,7 @@ $as_echo_n "checking if KCN API is available... " >&6; }
   fi
   if test $kcndir != '/usr'; then
     CPPFLAGS="$CPPFLAGS -I$kcndir/include"
-    W3M_LIBS="$W3M_LIBS -L$dir/lib"
+    W3M_LIBS="$W3M_LIBS -L$kcndir/lib"
   fi
   W3M_LIBS="$W3M_LIBS -lkcn"
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
