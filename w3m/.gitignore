@@ -25,3 +25,4 @@ w3mhelp-w3m_ja.html
 posubst
 *.o
 *.a
+autom4te.cache
