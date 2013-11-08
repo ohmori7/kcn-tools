@@ -7,15 +7,23 @@ build on NetBSD
 
     % cd /usr/pkg/devel/boehm-gc && sudo make update
 
-You then run *configure* script as follows:
+You can now build and install as follows:
 
     % ./configure --with-gc=/usr/pkg
+    % make
+    % sudo make install
 
-build on Linux
+build on CentOS
 --------------------------------------------------------------------------------
-  You need to install libgc, libtermcap and gettext.
+  You need to install libgc, libtermcap and gettext as follows:
 
     % sudo yum install libgc-devel (CentOS 5.x)
-    % sudo yum install gc (CentOS 6.x)
-    % sudo yum install libtermcap-devel.i386
+    % sudo yum install gc-devel (CentOS 6.x)
+    % sudo yum install libtermcap-devel
     % sudo yum install gettext
+
+You can now build and install as follows:
+
+    % ./configure
+    % make
+    % sudo make install
