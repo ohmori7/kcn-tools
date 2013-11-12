@@ -39,6 +39,12 @@ AC_CHECK_HEADERS([netinet/ip_var.h rump/rump.h])
 AC_CHECK_MEMBERS([struct sockaddr_in.sin_len],[],[],[#include <netinet/in.h>])
 
 #
+AC_CHECK_LIB(rt, clock_gettime)
+
+#
+AC_CHECK_FUNC(clock_gettime, [], [AC_MSG_ERROR(clock_gettime() not found.)])
+
+#
 PKG_CHECK_MODULES(CURL, libcurl)
 AC_SUBST(CURL_CFLAGS)
 AC_SUBST(CURL_LIBS)
