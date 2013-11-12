@@ -6,6 +6,12 @@
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
 
+/* Define to 1 if you have the <netinet/ip_var.h> header file. */
+#undef HAVE_NETINET_IP_VAR_H
+
+/* Define to 1 if you have the <rump/rump.h> header file. */
+#undef HAVE_RUMP_RUMP_H
+
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
 

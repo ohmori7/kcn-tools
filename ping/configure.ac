@@ -33,7 +33,7 @@ AC_CHECK_TOOL(AR, ar)
 AC_CHECK_TOOL(RANLIB, ranlib, :)
 
 #
-AC_CHECK_HEADER(rump/rump.h)
+AC_CHECK_HEADERS([netinet/ip_var.h rump/rump.h])
 
 #
 PKG_CHECK_MODULES(CURL, libcurl)
