@@ -276,12 +276,15 @@ main(int argc, char *argv[])
 	if ((sloop = prog_socket(AF_INET, SOCK_RAW, IPPROTO_ICMP)) < 0)
 		err(1, "Cannot create socket");
 
+#ifdef BSD
+	/* linux does not support shutdown on non-connected socket. */
 	/*
 	 * sloop is never read on.  This prevents packets from
 	 * queueing in its recv buffer.
 	 */
 	if (prog_shutdown(sloop, SHUT_RD) == -1)
 		warn("Cannot shutdown for read");
+#endif /* BSD */
 
 	if (prog_setuid(prog_getuid()) == -1)
 		err(1, "setuid");
