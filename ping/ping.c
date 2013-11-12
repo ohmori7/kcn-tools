@@ -1896,7 +1896,9 @@ gethost(const char *arg,
 
 	(void)memset(sa, 0, sizeof(*sa));
 	sa->sin_family = AF_INET;
+#ifdef HAVE_STRUCT_SOCKADDR_IN_SIN_LEN
 	sa->sin_len = sizeof(struct sockaddr_in);
+#endif /* HAVE_STRUCT_SOCKADDR_IN_SIN_LEN */
 
 	/* If it is an IP address, try to convert it to a name to
 	 * have something nice to display.
