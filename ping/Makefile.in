@@ -56,7 +56,8 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_ping_OBJECTS = main.$(OBJEXT)
+am_ping_OBJECTS = ping.$(OBJEXT) ping_hostops.$(OBJEXT) \
+	ping_rumpops.$(OBJEXT)
 ping_OBJECTS = $(am_ping_OBJECTS)
 am__DEPENDENCIES_1 =
 ping_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -181,7 +182,7 @@ target_alias = @target_alias@
 target_cpu = @target_cpu@
 target_os = @target_os@
 target_vendor = @target_vendor@
-ping_SOURCES = main.c
+ping_SOURCES = ping.c ping_hostops.c ping_rumpops.c
 ping_LDADD = $(KCN_LIBS) $(CURL_LIBS) $(JANSSON_LIBS)
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -271,7 +272,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ping.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ping_hostops.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ping_rumpops.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
