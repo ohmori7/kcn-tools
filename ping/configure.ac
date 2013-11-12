@@ -37,7 +37,7 @@ AC_CHECK_HEADERS([stdbool.h netinet/in.h rump/rump.h])
 AC_CHECK_HEADERS([netinet/ip_var.h], [], [], [
 	#ifdef HAVE_NETINET_IN_H
 	#include <netinet/in.h>
-	#endif /* HAVE_NETINET_IN_H
+	#endif /* HAVE_NETINET_IN_H */
 	])
 
 #
