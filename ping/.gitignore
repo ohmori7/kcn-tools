@@ -1,6 +1,12 @@
 *.o
 .gdbinit
+.deps
 ping
 ping.html8
 rump.ping
 autom4te.cache
+Makefile
+config.h
+config.log
+config.status
+stamp-h1
