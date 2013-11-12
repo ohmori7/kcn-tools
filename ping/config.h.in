@@ -18,6 +18,9 @@
 /* Define to 1 if you have the <rump/rump.h> header file. */
 #undef HAVE_RUMP_RUMP_H
 
+/* Define to 1 if you have the <stdbool.h> header file. */
+#undef HAVE_STDBOOL_H
+
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
 

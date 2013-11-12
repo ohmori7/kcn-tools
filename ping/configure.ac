@@ -33,7 +33,7 @@ AC_CHECK_TOOL(AR, ar)
 AC_CHECK_TOOL(RANLIB, ranlib, :)
 
 #
-AC_CHECK_HEADERS([netinet/ip_var.h rump/rump.h])
+AC_CHECK_HEADERS([stdbool.h netinet/ip_var.h rump/rump.h])
 
 #
 AC_CHECK_MEMBERS([struct sockaddr_in.sin_len],[],[],[#include <netinet/in.h>])
