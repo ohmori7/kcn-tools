@@ -36,6 +36,9 @@ AC_CHECK_TOOL(RANLIB, ranlib, :)
 AC_CHECK_HEADERS([netinet/ip_var.h rump/rump.h])
 
 #
+AC_CHECK_MEMBERS([struct sockaddr_in.sin_len],[],[],[#include <netinet/in.h>])
+
+#
 PKG_CHECK_MODULES(CURL, libcurl)
 AC_SUBST(CURL_CFLAGS)
 AC_SUBST(CURL_LIBS)
