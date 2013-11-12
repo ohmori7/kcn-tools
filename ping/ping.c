@@ -67,7 +67,7 @@ __RCSID("$NetBSD: ping.c,v 1.106 2013/03/06 11:33:08 yamt Exp $");
 #include <stddef.h>
 #include <errno.h>
 #include <signal.h>
-#include <sys/time.h>
+#include <time.h>
 #include <sys/types.h>
 #include <sys/param.h>
 #include <sys/socket.h>
