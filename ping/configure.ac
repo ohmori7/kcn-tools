@@ -43,6 +43,7 @@ AC_CHECK_LIB(rt, clock_gettime)
 
 #
 AC_CHECK_FUNC(clock_gettime, [], [AC_MSG_ERROR(clock_gettime() not found.)])
+AC_CHECK_FUNC(arc4random)
 
 #
 PKG_CHECK_MODULES(CURL, libcurl)
