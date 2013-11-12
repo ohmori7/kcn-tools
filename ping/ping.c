@@ -85,7 +85,10 @@ __RCSID("$NetBSD: ping.c,v 1.106 2013/03/06 11:33:08 yamt Exp $");
 #include <netinet/in.h>
 #include <netinet/ip.h>
 #include <netinet/ip_icmp.h>
+
+#ifdef HAVE_NETINET_IP_VAR_H
 #include <netinet/ip_var.h>
+#endif /* HAVE_NETINET_IP_VAR_H */
 #include <arpa/inet.h>
 #include <ctype.h>
 #include <netdb.h>
