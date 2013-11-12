@@ -41,7 +41,7 @@ bin_PROGRAMS = ping$(EXEEXT)
 DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/config.h.in \
 	$(top_srcdir)/configure AUTHORS COPYING ChangeLog INSTALL NEWS \
-	config.guess config.sub depcomp install-sh missing
+	compile config.guess config.sub depcomp install-sh missing
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
@@ -56,8 +56,8 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_ping_OBJECTS = ping.$(OBJEXT) ping_hostops.$(OBJEXT) \
-	ping_rumpops.$(OBJEXT)
+am_ping_OBJECTS = ping-ping.$(OBJEXT) ping-ping_hostops.$(OBJEXT) \
+	ping-ping_rumpops.$(OBJEXT)
 ping_OBJECTS = $(am_ping_OBJECTS)
 am__DEPENDENCIES_1 =
 ping_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -183,6 +183,7 @@ target_cpu = @target_cpu@
 target_os = @target_os@
 target_vendor = @target_vendor@
 ping_SOURCES = ping.c ping_hostops.c ping_rumpops.c
+ping_CFLAGS = $(KCN_CFLAGS) $(CURL_CFLAGS) $(JANSSON_CFLAGS)
 ping_LDADD = $(KCN_LIBS) $(CURL_LIBS) $(JANSSON_LIBS)
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -272,9 +273,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ping.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ping_hostops.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ping_rumpops.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ping-ping.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ping-ping_hostops.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ping-ping_rumpops.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -289,6 +290,48 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+
+ping-ping.o: ping.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -MT ping-ping.o -MD -MP -MF "$(DEPDIR)/ping-ping.Tpo" -c -o ping-ping.o `test -f 'ping.c' || echo '$(srcdir)/'`ping.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/ping-ping.Tpo" "$(DEPDIR)/ping-ping.Po"; else rm -f "$(DEPDIR)/ping-ping.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ping.c' object='ping-ping.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -c -o ping-ping.o `test -f 'ping.c' || echo '$(srcdir)/'`ping.c
+
+ping-ping.obj: ping.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -MT ping-ping.obj -MD -MP -MF "$(DEPDIR)/ping-ping.Tpo" -c -o ping-ping.obj `if test -f 'ping.c'; then $(CYGPATH_W) 'ping.c'; else $(CYGPATH_W) '$(srcdir)/ping.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/ping-ping.Tpo" "$(DEPDIR)/ping-ping.Po"; else rm -f "$(DEPDIR)/ping-ping.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ping.c' object='ping-ping.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -c -o ping-ping.obj `if test -f 'ping.c'; then $(CYGPATH_W) 'ping.c'; else $(CYGPATH_W) '$(srcdir)/ping.c'; fi`
+
+ping-ping_hostops.o: ping_hostops.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -MT ping-ping_hostops.o -MD -MP -MF "$(DEPDIR)/ping-ping_hostops.Tpo" -c -o ping-ping_hostops.o `test -f 'ping_hostops.c' || echo '$(srcdir)/'`ping_hostops.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/ping-ping_hostops.Tpo" "$(DEPDIR)/ping-ping_hostops.Po"; else rm -f "$(DEPDIR)/ping-ping_hostops.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ping_hostops.c' object='ping-ping_hostops.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -c -o ping-ping_hostops.o `test -f 'ping_hostops.c' || echo '$(srcdir)/'`ping_hostops.c
+
+ping-ping_hostops.obj: ping_hostops.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -MT ping-ping_hostops.obj -MD -MP -MF "$(DEPDIR)/ping-ping_hostops.Tpo" -c -o ping-ping_hostops.obj `if test -f 'ping_hostops.c'; then $(CYGPATH_W) 'ping_hostops.c'; else $(CYGPATH_W) '$(srcdir)/ping_hostops.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/ping-ping_hostops.Tpo" "$(DEPDIR)/ping-ping_hostops.Po"; else rm -f "$(DEPDIR)/ping-ping_hostops.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ping_hostops.c' object='ping-ping_hostops.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -c -o ping-ping_hostops.obj `if test -f 'ping_hostops.c'; then $(CYGPATH_W) 'ping_hostops.c'; else $(CYGPATH_W) '$(srcdir)/ping_hostops.c'; fi`
+
+ping-ping_rumpops.o: ping_rumpops.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -MT ping-ping_rumpops.o -MD -MP -MF "$(DEPDIR)/ping-ping_rumpops.Tpo" -c -o ping-ping_rumpops.o `test -f 'ping_rumpops.c' || echo '$(srcdir)/'`ping_rumpops.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/ping-ping_rumpops.Tpo" "$(DEPDIR)/ping-ping_rumpops.Po"; else rm -f "$(DEPDIR)/ping-ping_rumpops.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ping_rumpops.c' object='ping-ping_rumpops.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -c -o ping-ping_rumpops.o `test -f 'ping_rumpops.c' || echo '$(srcdir)/'`ping_rumpops.c
+
+ping-ping_rumpops.obj: ping_rumpops.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -MT ping-ping_rumpops.obj -MD -MP -MF "$(DEPDIR)/ping-ping_rumpops.Tpo" -c -o ping-ping_rumpops.obj `if test -f 'ping_rumpops.c'; then $(CYGPATH_W) 'ping_rumpops.c'; else $(CYGPATH_W) '$(srcdir)/ping_rumpops.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/ping-ping_rumpops.Tpo" "$(DEPDIR)/ping-ping_rumpops.Po"; else rm -f "$(DEPDIR)/ping-ping_rumpops.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ping_rumpops.c' object='ping-ping_rumpops.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ping_CFLAGS) $(CFLAGS) -c -o ping-ping_rumpops.obj `if test -f 'ping_rumpops.c'; then $(CYGPATH_W) 'ping_rumpops.c'; else $(CYGPATH_W) '$(srcdir)/ping_rumpops.c'; fi`
 uninstall-info-am:
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
