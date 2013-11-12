@@ -1,3 +1,3 @@
 bin_PROGRAMS = ping
-ping_SOURCES = main.c
+ping_SOURCES = ping.c ping_hostops.c ping_rumpops.c
 ping_LDADD = $(KCN_LIBS) $(CURL_LIBS) $(JANSSON_LIBS)
