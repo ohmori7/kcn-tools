@@ -32,4 +32,6 @@ AC_DEFUN([AC_CHECK_KCN],
 		fi
 		KCN_LIBS="$KCN_LIBS -lkcn"
 		AC_MSG_RESULT(yes, $kcndir)
+		AC_DEFINE([HAVE_KCN], [1],
+		    [Define to 1 if you have a KCN support.])
 	fi])
