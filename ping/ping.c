@@ -498,7 +498,9 @@ main(int argc, char *argv[])
 		(void) memcpy(&send_addr, &whereto, sizeof(send_addr));
 
 	loc_addr.sin_family = AF_INET;
+#ifdef HAVE_STRUCT_SOCKADDR_IN_SIN_LEN
 	loc_addr.sin_len = sizeof(struct sockaddr_in);
+#endif /* HAVE_STRUCT_SOCKADDR_IN_SIN_LEN */
 	loc_addr.sin_addr.s_addr = htonl((127 << 24) + 1);
 
 	if (len != -1)
