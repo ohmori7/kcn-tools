@@ -56,6 +56,10 @@
  *	This program has to run SUID to ROOT to access the ICMP socket.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif /* HAVE_CONFIG_H */
+
 #include <sys/cdefs.h>
 #ifndef lint
 __RCSID("$NetBSD: ping.c,v 1.106 2013/03/06 11:33:08 yamt Exp $");
