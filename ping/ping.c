@@ -460,7 +460,7 @@ main(int argc, char *argv[])
 
 #ifdef HAVE_KCN
 	if (pingflags & F_KCN) {
-		char *keys, *fqdn;
+		char *keys;
 		struct kcn_info *ki;
 
 		if (hostind != 0)
