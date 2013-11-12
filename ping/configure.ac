@@ -39,6 +39,7 @@ AC_CHECK_HEADERS([stdbool.h netinet/ip_var.h rump/rump.h])
 AC_CHECK_MEMBERS([struct sockaddr_in.sin_len],[],[],[#include <netinet/in.h>])
 
 #
+AC_CHECK_LIB(m, sqrt)
 AC_CHECK_LIB(rt, clock_gettime)
 AC_CHECK_LIB(rump, rumpclient_init)
 
