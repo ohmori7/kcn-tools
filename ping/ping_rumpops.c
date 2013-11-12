@@ -28,6 +28,8 @@
 
 #include "ping.h"
 
+#ifdef HAVE_LIBRUMP
+
 #include <sys/cdefs.h>
 #ifndef lint
 __RCSID("$NetBSD: ping_rumpops.c,v 1.2 2011/03/11 09:59:56 pooka Exp $");
@@ -58,3 +60,5 @@ const struct prog_ops prog_ops = {
 	.op_getuid =	rump_sys_getuid,
 	.op_setuid =	rump_sys_setuid,
 };
+
+#endif /* HAVE_LIBRUMP */
