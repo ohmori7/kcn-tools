@@ -5,3 +5,9 @@
 #ifndef __RCSID
 #define __RCSID(a)
 #endif /* ! __RCSID */
+
+#if defined(__GNUC__)
+#define __dead		__attribute__((__noreturn__))
+#else /* __GNUC__ */
+#define __dead
+#endif /* ! __GNUC__ */
