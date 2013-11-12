@@ -18,3 +18,14 @@
 #define __unused
 #endif /* ! __GNUC__ */
 
+#ifndef timespecadd
+#define timespecadd(t, u, v)						\
+do {									\
+	(v)->tv_sec = (t)->tv_sec + (u)->tv_sec;			\
+	(v)->tv_nsec = (t)->tv_nsec + (u)->tv_nsec;			\
+	if ((v)->tv_nsec >= 1000000000L) {				\
+		(v)->tv_sec++;						\
+		(v)->tv_nsec -= 1000000000L;				\
+	}								\
+} while (/*CONSTCOND*/0)
+#endif /*! timespecadd */
