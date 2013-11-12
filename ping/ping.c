@@ -533,7 +533,11 @@ main(int argc, char *argv[])
 			opack_icmp.icmp_data[i] = i;
 	}
 
+#ifdef HAVE_ARC4RANDOM
 	ident = arc4random() & 0xFFFF;
+#else /* HAVE_ARC4RANDOM */
+	ident = random() & 0xFFFF;
+#endif /* ! HAVE_ARC4RANDOM */
 
 	if (options & SO_DEBUG) {
 		if (prog_setsockopt(s, SOL_SOCKET, SO_DEBUG,
