@@ -5907,7 +5907,7 @@ done
 
 
 
-for ac_header in netinet/ip_var.h netinet/udp_var
+for ac_header in netinet/ip_var.h netinet/udp_var.h
 do
 as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
 { $as_echo "$as_me:$LINENO: checking for $ac_header" >&5
