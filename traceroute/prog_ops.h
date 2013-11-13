@@ -52,8 +52,14 @@ struct prog_ops {
 	int (*op_connect)(int, const struct sockaddr *, socklen_t);
 	int (*op_getsockname)(int, struct sockaddr *, socklen_t *);
 
+#ifdef HAVE_BSD_SYSCTL
 	int (*op_sysctl)(const int *, u_int, void *, size_t *,
 			 const void *, size_t);
+#elif defined(HAVE_LINUX_SYSCTL) /* HAVE_BSD_SYSCTL */
+	int (*op_sysctl)(int *, int, void *, size_t *, void *, size_t);
+#else /* HAVE_LINUX_SYSCTL */
+#error unknown sysctl type
+#endif /* ! HAVE_BSD_SYSCTL && ! HAVE_LINUX_SYSCTL */
 };
 extern const struct prog_ops prog_ops;
 

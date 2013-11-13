@@ -3,6 +3,9 @@
 /* Define to 1 if you have the `arc4random' function. */
 #undef HAVE_ARC4RANDOM
 
+/* Define if BSD-style sysctl exists */
+#undef HAVE_BSD_SYSCTL
+
 /* Define to 1 if you have the `getprogname' function. */
 #undef HAVE_GETPROGNAME
 
@@ -14,6 +17,9 @@
 
 /* Define to 1 if you have the `rump' library (-lrump). */
 #undef HAVE_LIBRUMP
+
+/* Define if Linux-style sysctl exists */
+#undef HAVE_LINUX_SYSCTL
 
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H

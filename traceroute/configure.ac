@@ -55,6 +55,9 @@ AC_CHECK_LIB(rump, rumpclient_init)
 AC_CHECK_FUNCS([arc4random getprogname setprogname])
 
 #
+AC_CHECK_SYSCTL
+
+#
 PKG_CHECK_MODULES(CURL, libcurl)
 AC_SUBST(CURL_CFLAGS)
 AC_SUBST(CURL_LIBS)
