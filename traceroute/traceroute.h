@@ -21,3 +21,5 @@
 #else /* __GNUC__ */
 #define __unused
 #endif /* ! __GNUC__ */
+
+#define __FAVOR_BSD
