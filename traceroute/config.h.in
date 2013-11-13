@@ -18,6 +18,9 @@
 /* Define to 1 if you have the <netinet/ip_var.h> header file. */
 #undef HAVE_NETINET_IP_VAR_H
 
+/* Define to 1 if you have the <netinet/udp_var> header file. */
+#undef HAVE_NETINET_UDP_VAR
+
 /* Define to 1 if you have the <rump/rump.h> header file. */
 #undef HAVE_RUMP_RUMP_H
 

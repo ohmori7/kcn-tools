@@ -216,10 +216,14 @@ __RCSID("$NetBSD: traceroute.c,v 1.81 2012/08/16 00:40:28 zafer Exp $");
 #include <netinet/in_systm.h>
 #include <netinet/in.h>
 #include <netinet/ip.h>
+#ifdef HAVE_NETINET_IP_VAR_H
 #include <netinet/ip_var.h>
+#endif /* HAVE_NETINET_IP_VAR_H */
 #include <netinet/ip_icmp.h>
 #include <netinet/udp.h>
+#ifdef HAVE_NETINET_UDP_VAR_H
 #include <netinet/udp_var.h>
+#endif /* HAVE_NETINET_UDP_VAR_H */
 
 #include <arpa/inet.h>
 
