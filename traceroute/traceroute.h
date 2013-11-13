@@ -12,8 +12,10 @@
 
 #ifdef __GNUC__
 #define __dead		__attribute__((__noreturn__))
+#define __packed	__attribute__((__packed__))
 #else /* __GNUC__ */
 #define __dead
+#define __packed
 #endif /* ! __GNUC__ */
 
 #define __FAVOR_BSD
