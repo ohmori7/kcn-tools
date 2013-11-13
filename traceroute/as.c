@@ -42,6 +42,7 @@
 #include <err.h>
 #include <stdio.h>
 
+#include "traceroute.h"
 #include "as.h"
 
 #define DEFAULT_AS_SERVER "whois.radb.net"

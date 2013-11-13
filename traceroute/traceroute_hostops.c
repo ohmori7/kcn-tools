@@ -27,6 +27,7 @@
  */
 
 #include <sys/cdefs.h>
+#include "traceroute.h"
 #ifndef lint
 __RCSID("$NetBSD: traceroute_hostops.c,v 1.1 2010/12/15 00:09:41 pooka Exp $");
 #endif /* !lint */

@@ -22,6 +22,7 @@
  */
 
 #include <sys/cdefs.h>
+#include "traceroute.h"
 #ifndef lint
 #if 0
 static const char rcsid[] =
