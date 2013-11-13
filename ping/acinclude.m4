@@ -11,27 +11,27 @@ AC_DEFUN([AC_CHECK_KCN],
 	AC_MSG_RESULT($with_kcn)
 
 	if test x"$with_kcn" != xno; then
-		AC_MSG_CHECKING(if KCN API is available)
 		if test x"$with_kcn" = xyes; then
 			with_kcn='/usr/local /usr/pkg /usr'
 		fi
 		kcndir=''
+		ldflags="$LDFLAGS"
 		for dir in $with_kcn; do
-			if test -f $dir/include/kcn_info.h; then
-				kcndir=$dir
-				break
-			fi
+			LDFLAGS="$LDFLAGS -L$dir/lib"
+			unset ac_cv_lib_kcn_kcn_info_new
+			AC_CHECK_LIB(kcn, kcn_info_new,
+			    [kcndir="$dir/lib"; break])
 		done
 		if test x"$kcndir" = x; then
 			AC_MSG_ERROR([KCN library not found.])
 		fi
+		LDFLAGS="$ldflags"
 		KCN_LIBS=""
 		if test $kcndir != '/usr'; then
 			KCN_CFLAGS="-I$kcndir/include"
 			KCN_LIBS="-Wl,-rpath=$kcndir/lib -L$kcndir/lib"
 		fi
 		KCN_LIBS="$KCN_LIBS -lkcn"
-		AC_MSG_RESULT(yes, $kcndir)
 		AC_DEFINE([HAVE_KCN], [1],
 		    [Define to 1 if you have a KCN support.])
 	fi])
