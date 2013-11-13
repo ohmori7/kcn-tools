@@ -910,19 +910,19 @@ AC_ARG_WITH(kcn,
 AC_MSG_RESULT($with_kcn)
 
 if test x"$with_kcn" != xno; then
-  AC_MSG_CHECKING(if KCN API is available)
   AC_SUBST(USE_KCN)
   if test x"$with_kcn" = xyes; then
     with_kcn='/usr/local /usr/pkg /usr'
   fi
   kcndir=''
+  ldflags="$LDFLAGS"
   for dir in $with_kcn
   do
-    if test -f $dir/include/kcn_info.h; then
-      kcndir=$dir
-      break
-    fi
+    LDFLAGS="$LDFLAGS -L$dir/lib"
+    unset ac_cv_lib_kcn_kcn_info_new
+    AC_CHECK_LIB(kcn, kcn_info_new, [kcndir="$dir/lib"; break])
   done
+  LDFLAGS="$ldflags"
   if test x"$kcndir" = x; then
     AC_MSG_ERROR([KCN directory not found.])
   fi
@@ -931,7 +931,6 @@ if test x"$with_kcn" != xno; then
     W3M_LIBS="$W3M_LIBS -Wl,-rpath=$kcndir/lib -L$kcndir/lib"
   fi
   W3M_LIBS="$W3M_LIBS -lkcn"
-  AC_MSG_RESULT(yes, $kcndir)
   AC_DEFINE(USE_KCN)
 fi])
 #
@@ -939,23 +938,25 @@ fi])
 # AC_W3M_CURL
 # ----------------------------------------------------------------
 AC_DEFUN([AC_W3M_CURL],
-[AC_ARG_WITH(curl,
+[AC_MSG_CHECKING(for curl library)
+AC_ARG_WITH(curl,
  [  --with-curl=PREFIX	curl library],,
  [with_curl="yes"])
+AC_MSG_RESULT($with_curl)
 
 if test x"$with_curl" != xno; then
-  AC_MSG_CHECKING(if curl library is available)
   if test x"$with_curl" = xyes; then
     with_curl='/usr/local /usr/pkg /usr'
   fi
   curldir=''
+  ldflags="$LDFLAGS"
   for dir in $with_curl
   do
-    if test -f $dir/lib/libcurl.a; then
-      curldir=$dir
-      break
-    fi
+    LDFLAGS="$LDFLAGS -L$dir/lib"
+    unset ac_cv_lib_curl_curl_easy_init
+    AC_CHECK_LIB(curl, curl_easy_init, [curldir="$dir/lib"; break])
   done
+  LDFLAGS="$ldflags"
   if test x"$curldir" = x; then
     AC_MSG_ERROR([curl library not found.])
   fi
@@ -963,30 +964,31 @@ if test x"$with_curl" != xno; then
     W3M_LIBS="$W3M_LIBS -Wl,-rpath=$curldir/lib -L$curldir/lib"
   fi
   W3M_LIBS="$W3M_LIBS -lcurl"
-  AC_MSG_RESULT(yes, $curldir)
 fi])
 #
 # ----------------------------------------------------------------
 # AC_W3M_JANSSON
 # ----------------------------------------------------------------
 AC_DEFUN([AC_W3M_JANSSON],
-[AC_ARG_WITH(jansson,
+[AC_MSG_CHECKING(for jansson library)
+AC_ARG_WITH(jansson,
  [  --with-jansson=PREFIX	jansson library],,
  [with_jansson="yes"])
+AC_MSG_RESULT($with_jansson)
 
 if test x"$with_jansson" != xno; then
-  AC_MSG_CHECKING(if jansson library is available)
   if test x"$with_jansson" = xyes; then
     with_jansson='/usr/local /usr/pkg /usr'
   fi
   janssondir=''
+  ldflags="$LDFLAGS"
   for dir in $with_jansson
   do
-    if test -f $dir/lib/libjansson.a; then
-      janssondir=$dir
-      break
-    fi
+    LDFLAGS="$LDFLAGS -L$dir/lib"
+    unset ac_cv_lib_jansson_json_object
+    AC_CHECK_LIB(jansson, json_object, [janssondir="$dir/lib"; break])
   done
+  LDFLAGS="$ldflags"
   if test x"$janssondir" = x; then
     AC_MSG_ERROR([jansson library not found.])
   fi
@@ -994,5 +996,4 @@ if test x"$with_jansson" != xno; then
     W3M_LIBS="$W3M_LIBS -Wl,-rpath=$janssondir/lib -L$janssondir/lib"
   fi
   W3M_LIBS="$W3M_LIBS -ljansson"
-  AC_MSG_RESULT(yes, $janssondir)
 fi])
