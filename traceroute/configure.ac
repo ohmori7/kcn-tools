@@ -42,6 +42,8 @@ AC_CHECK_HEADERS([netinet/ip_var.h netinet/udp_var], [], [], [
 
 #
 AC_CHECK_MEMBERS([struct sockaddr_in.sin_len],[],[],[#include <netinet/in.h>])
+AC_CHECK_MEMBERS([struct icmp.icmp_nextmtu],[],[],
+    [#include <netinet/ip_icmp.h>])
 
 #
 AC_CHECK_LIB(rump, rumpclient_init)
