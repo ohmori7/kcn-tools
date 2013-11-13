@@ -26,11 +26,13 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "ping.h"
-
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif /* HAVE_CONFIG_H */
 #ifdef HAVE_LIBRUMP
 
 #include <sys/cdefs.h>
+#include "ping.h"
 #ifndef lint
 __RCSID("$NetBSD: ping_rumpops.c,v 1.2 2011/03/11 09:59:56 pooka Exp $");
 #endif /* !lint */

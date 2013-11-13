@@ -26,9 +26,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "ping.h"
-
 #include <sys/cdefs.h>
+#include "ping.h"
 #ifndef lint
 __RCSID("$NetBSD: ping_hostops.c,v 1.2 2011/03/11 09:59:56 pooka Exp $");
 #endif /* !lint */
