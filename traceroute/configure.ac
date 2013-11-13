@@ -47,6 +47,9 @@ AC_CHECK_MEMBERS([struct sockaddr_in.sin_len],[],[],[#include <netinet/in.h>])
 AC_CHECK_LIB(rump, rumpclient_init)
 
 #
+AC_CHECK_FUNCS([arc4random getprogname setprogname])
+
+#
 PKG_CHECK_MODULES(CURL, libcurl)
 AC_SUBST(CURL_CFLAGS)
 AC_SUBST(CURL_LIBS)

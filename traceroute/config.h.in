@@ -1,5 +1,11 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* Define to 1 if you have the `arc4random' function. */
+#undef HAVE_ARC4RANDOM
+
+/* Define to 1 if you have the `getprogname' function. */
+#undef HAVE_GETPROGNAME
+
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
@@ -23,6 +29,9 @@
 
 /* Define to 1 if you have the <rump/rump.h> header file. */
 #undef HAVE_RUMP_RUMP_H
+
+/* Define to 1 if you have the `setprogname' function. */
+#undef HAVE_SETPROGNAME
 
 /* Define to 1 if you have the <stdbool.h> header file. */
 #undef HAVE_STDBOOL_H

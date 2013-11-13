@@ -456,6 +456,15 @@ static int find_local_ip(struct sockaddr_in *, struct sockaddr_in *);
 static int setpolicy(int, const char *);
 #endif
 #endif
+#if ! defined(HAVE_SETPROGNAME) || ! defined(HAVE_GETPROGNAME)
+static const char *progname;
+#endif /* ! HAVE_SETPROGNAME || ! HAVE_GETPROGNAME */
+#ifndef HAVE_SETPROGNAME
+static void setprogname(const char *);
+#endif /* ! HAVE_SETPROGNAME */
+#ifndef HAVE_GETPROGNAME
+static const char *getprogname(void);
+#endif /* ! HAVE_GETPROGNAME */
 
 int
 main(int argc, char **argv)
@@ -713,7 +722,11 @@ main(int argc, char **argv)
 		outip->ip_dst = to->sin_addr;
 
 	outip->ip_hl = (outp - (u_char *)outip) >> 2;
+#ifdef HAVE_ARC4RANDOM
 	ident = htons(arc4random() & 0xffff) | 0x8000;
+#else /* HAVE_ARC4RANDOM */
+	ident = htons(random() & 0xffff) | 0x8000;
+#endif /* ! HAVE_ARC4RANDOM */
 	if (useicmp) {
 		outip->ip_p = IPPROTO_ICMP;
 
@@ -1876,3 +1889,20 @@ setpolicy(int so, const char *policy)
 #endif
 #endif
 
+#ifndef HAVE_SETPROGNAME
+static void
+setprogname(const char *name)
+{
+
+	progname = name;
+}
+#endif /* ! HAVE_SETPROGNAME */
+
+#ifndef HAVE_GETPROGNAME
+static const char *
+getprogname(void)
+{
+
+	return progname;
+}
+#endif /* ! HAVE_GETPROGNAME */
