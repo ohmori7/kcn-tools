@@ -16,10 +16,4 @@
 #define __dead
 #endif /* ! __GNUC__ */
 
-#ifdef __GNUC__
-#define __unused	__attribute__((__unused__))
-#else /* __GNUC__ */
-#define __unused
-#endif /* ! __GNUC__ */
-
 #define __FAVOR_BSD
