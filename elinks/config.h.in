@@ -372,6 +372,9 @@
 /* Define to 1 if you have the `isdigit' function. */
 #undef HAVE_ISDIGIT
 
+/* Define to 1 if you have a KCN support. */
+#undef HAVE_KCN
+
 /* Define to 1 if you have the `kill' function. */
 #undef HAVE_KILL
 
