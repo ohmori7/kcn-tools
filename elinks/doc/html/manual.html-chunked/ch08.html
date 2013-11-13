@@ -1,0 +1,83 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Chapter 8. The Terminal Setup</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="index.html" title="The ELinks Manual"><link rel="prev" href="ch07s03.html" title="Alternative URI rewriting mechanisms"><link rel="next" href="ch08s02.html" title="Terminal Configurations"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 8. The Terminal Setup</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07s03.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch08s02.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="id2601861"></a>Chapter 8. The Terminal Setup</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="ch08.html#id2601924">Options</a></span></dt><dd><dl><dt><span class="section"><a href="ch08.html#id2601940">Terminal type</a></span></dt><dt><span class="section"><a href="ch08.html#id2602071">Color mode</a></span></dt><dt><span class="section"><a href="ch08.html#id2602182">Switch fonts for line drawing (aka 11m hack)</a></span></dt><dt><span class="section"><a href="ch08.html#id2602203">Restrict frames in cp850/852</a></span></dt><dt><span class="section"><a href="ch08.html#id2602226">Block cursor</a></span></dt><dt><span class="section"><a href="ch08.html#id2602252">Transparency</a></span></dt><dt><span class="section"><a href="ch08.html#id2602274">Text underlining capability</a></span></dt><dt><span class="section"><a href="ch08.html#id2602291">UTF-8 I/O</a></span></dt><dt><span class="section"><a href="ch08.html#id2602309">Character Set</a></span></dt></dl></dd><dt><span class="section"><a href="ch08s02.html">Terminal Configurations</a></span></dt></dl></div><p>ELinks uses neither (n)curses nor termcap/terminfo, so unless you are using
+a terminal that is known by ELinks and have a built-in configuration (see below
+for a list), it might be required that you do a little configuring of how your
+terminal should be handled.  The easiest way to do this is by using the Terminal
+Options dialog located in the Setup submenu of the Main menu.</p><p>It is possible to have configurations for multiple terminals as long as the TERM
+environment variable — used to distinguish terminals from one another — is set
+to something different for each terminal.  So be sure to set TERM to different
+values for two terminals that cannot share the same configuration.  For example,
+always setting TERM to xterm-color can lead to problems if you run ELinks under
+the Linux console.  This is because the Linux console does not support
+underlining and ELinks will not know that underlined characters will have to be
+color highlighted so they stand out.</p><p>In short, ELinks does not use termcap or terminfo.  ELinks uses $TERM, but only
+to distinguish between terminals in its own configuration.  That is, you need
+only configure your terminal within ELinks: Go to the Setup menu and select
+Terminal Options.  If $TERM is set to <span class="emphasis"><em>screen</em></span> when you configure ELinks'
+terminal settings, ELinks will remember to use those settings when $TERM is
+<span class="emphasis"><em>screen</em></span>.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2601924"></a>Options</h2></div></div></div><p>Apart from the last charset option configurable through the Setup -&gt; Character
+Set submenu in the Main menu, the rest can be configured using the Terminal
+Options dialog.</p><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2601940"></a>Terminal type</h3></div></div></div><p>It maps roughly to the terminal type, such as Linux console, XTerm, VT100 etc.
+It matters mostly when drawing frames and borders around dialog windows.  As
+already mentioned, it also turns on certain features which try to compensate for
+“missing” terminal capabilities when drawing.  Special highlighting of
+underlined text if underlining is not supported is one such thing.</p><div class="informaltable"><table border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+    Type
+    </th><th align="left">
+    Notes
+    </th></tr></thead><tbody><tr><td align="left">
+    No frames
+    </td><td align="left">
+    Dumb terminal type / ASCII art
+    </td></tr><tr><td align="left">
+    VT 100 frames
+    </td><td align="left">
+    Works in most terminals
+    </td></tr><tr><td align="left">
+    Linux or OS/2 frames
+    </td><td align="left">
+    Linux console / you get double frames and other goodies
+    </td></tr><tr><td align="left">
+    KOI-8
+    </td><td align="left">
+    
+    </td></tr><tr><td align="left">
+    FreeBSD
+    </td><td align="left">
+    FreeBSD console
+    </td></tr></tbody></table></div><p>The default is to assume dumb terminal/ASCII art.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602071"></a>Color mode</h3></div></div></div><p>The color mode controls what colors are used and how they are output to the
+terminal.  The available color modes are:</p><div class="informaltable"><table border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+    Mode
+    </th><th align="left">
+    Color codes
+    </th></tr></thead><tbody><tr><td align="left">
+    Mono mode
+    </td><td align="left">
+    Only 2 colors are used
+    </td></tr><tr><td align="left">
+    16 color mode
+    </td><td align="left">
+    Uses the common ANSI colors
+    </td></tr><tr><td align="left">
+    88 color mode
+    </td><td align="left">
+    Uses XTerm RGB codes (if compiled in)
+    </td></tr><tr><td align="left">
+    256 color mode
+    </td><td align="left">
+    Uses XTerm RGB codes (if compiled in)
+    </td></tr></tbody></table></div><p>The default is to use mono mode.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602182"></a>Switch fonts for line drawing (aka 11m hack)</h3></div></div></div><p>This is related to the drawing of frames and window borders controlled by the
+option above.  It controls whether to switch fonts when drawing lines, enabling
+both local characters and lines working at the same time.</p><p>This boolean option only makes sense with the Linux console.  Off by default.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602203"></a>Restrict frames in cp850/852</h3></div></div></div><p>This is related to the drawing of frames and window borders controlled by the
+option above.  If enabled, it restricts the characters used when drawing lines.</p><p>This boolean option only makes sense with the Linux console using the cp850/852
+character sets.  Off by default.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602226"></a>Block cursor</h3></div></div></div><p>Move cursor to the bottom right corner when done drawing, if possible.  This is
+particularly useful when we have a block cursor, so that text colors are
+displayed correctly.  If you are using a screen reader you do not want to enable
+this since the cursor is strategically positioned near relevant text of selected
+dialog elements.</p><p>This boolean option is off by default.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602252"></a>Transparency</h3></div></div></div><p>Determines whether or not to set the background to black.  This is particularly
+useful when using a terminal (typically in some windowing environment) with
+a background image or a transparent background.  If this option is enabled the
+background will be visible in ELinks as well.</p><p>Note that this boolean option makes sense only when colors are enabled.  On by
+default.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602274"></a>Text underlining capability</h3></div></div></div><p>This boolean option controls whether to underline text or instead, enhance the
+color.</p><p>Note: not all terminals support text underlining, so it is off by default.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602291"></a>UTF-8 I/O</h3></div></div></div><p>This boolean option controls outputting of I/O in UTF-8 for Unicode terminals.</p><p>Note that currently, only a subset of UTF-8 according to the terminal
+codepage is used.  This is off by default.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602309"></a>Character Set</h3></div></div></div><p>Codepage of the charset used for displaying content on terminal.</p><p>The value <span class="emphasis"><em>System</em></span> (which is the default) will set the charset according to the
+current locale.  The default is to use the charset of the current locale.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch07s03.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch08s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Alternative URI rewriting mechanisms </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Terminal Configurations</td></tr></table></div></body></html>

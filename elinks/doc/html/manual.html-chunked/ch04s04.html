@@ -1,0 +1,95 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>File formats</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="ch04.html" title="Chapter 4. The Ultimate Bookmarks Guide"><link rel="prev" href="ch04s03.html" title="Searching for a needle in the haystack"><link rel="next" href="ch05.html" title="Chapter 5. The Wonders of Tabbed Browsing"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">File formats</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s03.html">Prev</a> </td><th width="60%" align="center">Chapter 4. The Ultimate Bookmarks Guide</th><td width="20%" align="right"> <a accesskey="n" href="ch05.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2600635"></a>File formats</h2></div></div></div><p>ELinks supports two bookmark formats: the native format and a generic bookmark
+exchange format called XBEL. Each of those formats has its pros and cons,
+which we shall discuss below. You can switch between then by changing the
+option <span class="emphasis"><em>bookmarks.file_format</em></span>.</p><p>However, first please note that ELinks <span class="emphasis"><em>CANNOT</em></span> read Links bookmarks directly.
+Importing Links-0.9x (or Links-1.x) bookmarks is easy - it is just matter of
+changing all the <span class="emphasis"><em>|</em></span> (pipe) characters to tabs.  There is a script for that in
+the contrib/conv/ directory. Importing Links-2.xx bookmarks is not so easy; in
+fact, the scribe knows of no way of doing that at the time of writing this, so
+this is up to you to figure out (if you do, please tell us so that we can add
+it here).  Perhaps you might find a way to convert Links2 bookmarks to the
+XBEL format, which can then be loaded in ELinks.</p><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2600678"></a>Native file format</h3></div></div></div><p>This is the preferred bookmarks format, which is also used by default.  The
+bookmarks file is <code class="literal">~/.elinks/bookmarks</code>, in a simple format:</p><pre class="literallayout">&lt;name&gt; '\t' &lt;url&gt; [ '\t' &lt;depth&gt; ['\t' &lt;flags&gt;] ] '\n'</pre><p><span class="emphasis"><em>\t</em></span> represents a tab character, <span class="emphasis"><em>\n</em></span> represents a newline character.  [Square
+brackets] denote optional parts. The <span class="emphasis"><em>&lt;name&gt;</em></span> and <span class="emphasis"><em>&lt;url&gt;</em></span> fields should be
+obvious.  <span class="emphasis"><em>&lt;depth&gt;</em></span> contains the depth level of the entry - by that, ELinks
+can unambiguously figure out the bookmarks hierarchy:</p><pre class="literallayout">Bookmarks structure:                                Depth:
+ ,-- The Pasky's C Bestiary                         0
+[-]- Wonderful things                               0
+ |    |-- Christmas Carol in l33tsp34k by L.M.      1
+ |   [-]- Beautiful Potato Camera Shots             1
+ |   [-]- Gallery of Scary Images of Jonas Fonseca  1
+ |         |-- Jonas torturing gdb                  2
+ |        [-]- Urgh                                 2
+ |         |    `-- Jonas consuming Tofu            3
+ |         `-- Jonas with crashed ELinks            2
+ |-- Slides from Witek's hack-patch show            0
+ `-- Miciah's English Grammar Spellbook             0</pre><p><span class="emphasis"><em>&lt;flags&gt;</em></span> is a string of characters. Currently, two flags are supported:</p><div class="informaltable"><table border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+    Flag
+    </th><th align="left">
+    Description
+    </th></tr></thead><tbody><tr><td align="left">
+    E
+    </td><td align="left">
+    This folder is currently expanded. (No effect for non-folders.)
+    </td></tr><tr><td align="left">
+    F
+    </td><td align="left">
+    This entry is a folder. The &lt;url&gt; part is usually empty.
+    </td></tr></tbody></table></div><p>Separators: these are special bookmarks with "-" as title and no url.</p><div class="variablelist"><dl><dt><span class="term">
+Pros
+</span></dt><dd>
+        Naturally, ELinks handles the native format the best, easiest and most
+        reliably.
+</dd><dt><span class="term">
+Cons
+</span></dt><dd>
+        It is unlikely that you could use the native format anywhere else than
+        in ELinks.
+</dd></dl></div><p>To use the native format, set <span class="emphasis"><em>bookmarks.file_format</em></span> = 0.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2600882"></a>XBEL file format</h3></div></div></div><p>The XBEL file format support was added at some point during the 0.4
+development by Fabio Boneli. It has never been complete and has plenty of
+troubles, but generally, it works at the basic level. The bookmarks file is
+<code class="literal">~/.elinks/bookmarks.xbel</code> (thanks to a different filename, you can have both
+XBEL and native bookmarks saved in your <code class="literal">~/.elinks</code> directory).</p><p>We shall not describe the XBEL file format here,</p><pre class="literallayout">http://pyxml.sourceforge.net/topics/xbel/</pre><p>is the authoritative resource on that. It also contains list of some of the
+applications supporting the format.  Basically, you will be probably able to
+convert from/to the XBEL format to/from most of the other widely used formats,
+so this way you can import your bookmarks to ELinks from basically anything.</p><div class="variablelist"><dl><dt><span class="term">
+Pros
+</span></dt><dd>
+        XBEL is the gateway to the rest of the bookmarks world.
+</dd><dt><span class="term">
+Cons
+</span></dt><dd>
+        The support for XBEL is incomplete and there are known bugs.
+        Especially, national character sets are basically not supported, so
+        ELinks will most likely get it wrong if you have any non-ASCII
+        characters in your bookmarks.  Generally, the XBEL support should be
+        considered experimental and you shouldn't rely on it. It <span class="strong"><strong>could</strong></span> trash
+        your XBEL bookmarks file so make regular backups.
+</dd></dl></div><p>To use the XBEL format, set <span class="emphasis"><em>bookmarks.file_format</em></span> to 1.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2600996"></a>Usage hints</h3></div></div></div><p>As already noted above, probably the best usage pattern is to use XBEL for
+importing/exporting your bookmarks to/from ELinks and the native format for
+regular operation. Of course, if you want to synchronize your bookmarks in
+ELinks and some other XBEL-supporting gadget and you are brave, you can use
+XBEL as your exclusive bookmark format - the choice is upon you.</p><p>Regarding the bookmarks synchronization, there is one important note. ELinks
+saves your bookmarks each time you added one through the <span class="emphasis"><em>a</em></span> shortcut
+(add-bookmark action) or when closing the bookmarks manager if you made any
+changes or when quitting ELinks. However, ELinks reads your bookmarks only
+<span class="strong"><strong>ONCE</strong></span>, during the startup. This behaviour may change in the future (tell us
+if you need a way for ELinks to re-read the bookmarks file), but this is how
+it is done now.</p><p>Actually, you may now ask "So how do I convert bookmarks between the two
+formats?".  It is quite easy.  ELinks simply follows the current value of
+<span class="emphasis"><em>bookmarks.file_format</em></span> whenever loading/saving the bookmarks.</p><p>So, e.g. if you normally use the native format but you want the bookmarks to
+be saved in the XBEL format once, change <span class="emphasis"><em>bookmarks.file_format</em></span> to 1, then
+cause the bookmarks to be resaved (e.g. by doing some simple change, like
+adding a trailing space to some bookmark's title or so), then change the
+<span class="emphasis"><em>bookmarks.file_format</em></span> value back to 0.</p><p>It is a little more complicated if you normally use the native format but you
+want to import bookmarks from the XBEL format once. You again change
+<span class="emphasis"><em>bookmarks.file_format</em></span> to 1, then cause the bookmarks to be reloaded.  That
+involves saving the configuration, quitting ELinks _completely_ (that means
+closing/killing all instances of it you have running), then restarting it and
+changing <span class="emphasis"><em>bookmarks.file_format</em></span> to 0. Then save the configuration again and
+cause ELinks to resave the bookmarks.</p><p>Agreed, this all strange dances are quite clumsy, likely some simple
+wizard-like interface for switching the bookmarks formats will be introduced
+in the future. So far, we have had no reports from our users that anyone wants
+to switch their bookmarks format frequently, so this is not too high on our
+TODO list. So be sure to tell us if you would like this process to be
+simplified rather sooner than later.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch04.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Searching for a needle in the haystack </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 5. The Wonders of Tabbed Browsing</td></tr></table></div></body></html>

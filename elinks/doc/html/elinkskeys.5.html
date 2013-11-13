@@ -1,0 +1,2975 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.2.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock {
+  margin-right: 0%;
+}
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+
+div.attribution {
+  text-align: right;
+}
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hlist td {
+  padding-bottom: 5px;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+
+div#toctitle {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+include1::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+
+/* IE6 sets dynamically generated links as visited. */
+div#toc a:visited { color: blue; }
+</style>
+<title>elinkskeys(5)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+elinkskeys(5) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>elinkskeys -
+   keybindings for ELinks
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<p>Information on how to configure keybinding and overview of the default
+keybindings.</p>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>Key binding for elinks should be placed in the file <tt>~/.elinks/elinks.conf</tt>.
+Note that any information regarding their format/structure may not be
+up-to-date. If you will discover that, please feed us with a patch.</p>
+<p>Key binding statements are of the form:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>bind &lt;keymap&gt; &lt;keystroke&gt; = &lt;action&gt;</tt></pre>
+</div></div>
+<p>where:</p>
+<dl>
+<dt>
+&lt;keymap&gt;
+</dt>
+<dd>
+<p>
+        is <em>main</em>, <em>edit</em>, or <em>menu</em>.  The main keymap is used for general
+        browsing.  The edit keymap is used for editing text fields.  The menu
+        keymap is used for navigating menus.
+</p>
+</dd>
+<dt>
+&lt;keystroke&gt;
+</dt>
+<dd>
+<p>
+        is a case sensitive key, which you can prefix with <em>Ctrl-</em> or <em>Alt-</em>.
+        <em>Ctrl-</em> must be followed by an uppercase key. See below for a list of
+        valid keys.
+</p>
+</dd>
+<dt>
+&lt;action&gt;
+</dt>
+<dd>
+<p>
+        is what the key should do. The actions available are dependent on the
+        keymap, and are listed separately below.
+</p>
+</dd>
+</dl>
+<p>All words/strings may all be quoted "like so". Backslashes are escape
+characters, even if not between quotes. Lines beginning with a hash character
+(<tt>#</tt>) are comments.</p>
+<p>Keys can be unbound just by binding them to the special <em>none</em> action. It may
+be of use if you accidentally type a key often.</p>
+</div>
+<h2>EXAMPLE BINDINGS</h2>
+<div class="sectionbody">
+<p>Some sample keybindings:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt>bind "main" "v" = "view-image"
+bind "main" "l" = "jump-to-link"
+bind "main" "L" = "link-menu"
+bind "main" "F10" = "file-menu"
+bind "main" "F9" = "menu"
+bind "main" "Escape" = "menu"
+bind "edit" "Ctrl-R" = "auto-complete-unambiguous"
+bind "edit" "Ctrl-W" = "auto-complete"
+bind "edit" "Ctrl-K" = "kill-to-eol"
+bind "menu" "Ctrl-B" = "page-up"
+bind "menu" "PageUp" = "page-up"
+bind "menu" "Ctrl-F" = "page-down"
+bind "menu" "PageDown" = "page-down"
+# ELinks with Lua support
+bind "main" "," = "lua-console"</tt></pre>
+</div></div>
+</div>
+<h2>KEYS</h2>
+<div class="sectionbody">
+<p>Valid keys are: alphanumeric characters, punctuation, <em>Enter</em>, <em>Backspace</em>,
+<em>Tab</em>, <em>Escape</em>, <em>Left</em>, <em>Right</em>, <em>Up</em>, <em>Down</em>, <em>Insert</em>, <em>Delete</em>, <em>Home</em>,
+<em>End</em>, <em>PageUp</em>, <em>PageDown</em>, <em>F1</em> to <em>F12</em>.</p>
+<p>Some keys will need to be quoted or escaped. For example, space can be written
+as  <tt>" "</tt> (quote space quote), and the quote itself as <tt>\"</tt> (backslash quote).
+Backslash can be written as <tt>\\</tt> (double backslash).</p>
+</div>
+<h2>KEYMAP ACTIONS</h2>
+<div class="sectionbody">
+<h3>MAIN ACTIONS</h3>
+<div class="tableblock">
+<table rules="none"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="400" />
+<col width="880" />
+<thead>
+  <tr>
+    <th align="left">
+    Action
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    abort-connection
+    </td>
+    <td align="left">
+    Abort connection
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    add-bookmark
+    </td>
+    <td align="left">
+    Add a new bookmark
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    add-bookmark-link
+    </td>
+    <td align="left">
+    Add a new bookmark using current link
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    add-bookmark-tabs
+    </td>
+    <td align="left">
+    Bookmark all open tabs
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    auth-manager
+    </td>
+    <td align="left">
+    Open authentication manager
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    bookmark-manager
+    </td>
+    <td align="left">
+    Open bookmark manager
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    cache-manager
+    </td>
+    <td align="left">
+    Open cache manager
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    cache-minimize
+    </td>
+    <td align="left">
+    Free unused cache entries
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    cookie-manager
+    </td>
+    <td align="left">
+    Open cookie manager
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    cookies-load
+    </td>
+    <td align="left">
+    Reload cookies file
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    copy-clipboard
+    </td>
+    <td align="left">
+    Copy text to clipboard
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    document-info
+    </td>
+    <td align="left">
+    Show information about the current page
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    download-manager
+    </td>
+    <td align="left">
+    Open download manager
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    exmode
+    </td>
+    <td align="left">
+    Enter ex-mode (command line)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    file-menu
+    </td>
+    <td align="left">
+    Open the File menu
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    find-next
+    </td>
+    <td align="left">
+    Find the next occurrence of the current search text
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    find-next-back
+    </td>
+    <td align="left">
+    Find the previous occurrence of the current search text
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    forget-credentials
+    </td>
+    <td align="left">
+    Forget authentication credentials
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    formhist-manager
+    </td>
+    <td align="left">
+    Open form history manager
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    frame-external-command
+    </td>
+    <td align="left">
+    Pass URI of current frame to external command
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    frame-maximize
+    </td>
+    <td align="left">
+    Maximize the current frame
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    frame-next
+    </td>
+    <td align="left">
+    Move to the next frame
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    frame-prev
+    </td>
+    <td align="left">
+    Move to the previous frame
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    goto-url
+    </td>
+    <td align="left">
+    Open "Go to URL" dialog box
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    goto-url-current
+    </td>
+    <td align="left">
+    Open "Go to URL" dialog box containing the current URL
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    goto-url-current-link
+    </td>
+    <td align="left">
+    Open "Go to URL" dialog box containing the current link URL
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    goto-url-home
+    </td>
+    <td align="left">
+    Go to the homepage
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    header-info
+    </td>
+    <td align="left">
+    Show information about the current page protocol headers
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    history-manager
+    </td>
+    <td align="left">
+    Open history manager
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    history-move-back
+    </td>
+    <td align="left">
+    Return to the previous document in history
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    history-move-forward
+    </td>
+    <td align="left">
+    Go forward in history
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    jump-to-link
+    </td>
+    <td align="left">
+    Jump to link
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    keybinding-manager
+    </td>
+    <td align="left">
+    Open keybinding manager
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    kill-backgrounded-connections
+    </td>
+    <td align="left">
+    Kill all backgrounded connections
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    link-download
+    </td>
+    <td align="left">
+    Download the current link
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    link-download-image
+    </td>
+    <td align="left">
+    Download the current image
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    link-download-resume
+    </td>
+    <td align="left">
+    Attempt to resume download of the current link
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    link-external-command
+    </td>
+    <td align="left">
+    Pass URI of current link to external command
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    link-follow
+    </td>
+    <td align="left">
+    Follow the current link
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    link-follow-reload
+    </td>
+    <td align="left">
+    Follow the current link, forcing reload of the target
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    link-menu
+    </td>
+    <td align="left">
+    Open the link context menu
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    link-form-menu
+    </td>
+    <td align="left">
+    Open the form fields menu
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    lua-console
+    </td>
+    <td align="left">
+    Open a Lua console
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    mark-goto
+    </td>
+    <td align="left">
+    Go at a specified mark
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    mark-set
+    </td>
+    <td align="left">
+    Set a mark
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    menu
+    </td>
+    <td align="left">
+    Activate the menu
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-cursor-down
+    </td>
+    <td align="left">
+    Move cursor down
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-cursor-left
+    </td>
+    <td align="left">
+    Move cursor left
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-cursor-right
+    </td>
+    <td align="left">
+    Move cursor right
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-cursor-up
+    </td>
+    <td align="left">
+    Move cursor up
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-document-end
+    </td>
+    <td align="left">
+    Move to the end of the document
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-document-start
+    </td>
+    <td align="left">
+    Move to the start of the document
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-link-down
+    </td>
+    <td align="left">
+    Move one link down
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-link-left
+    </td>
+    <td align="left">
+    Move one link left
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-link-next
+    </td>
+    <td align="left">
+    Move to the next link
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-link-prev
+    </td>
+    <td align="left">
+    Move to the previous link
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-link-right
+    </td>
+    <td align="left">
+    Move one link right
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-link-up
+    </td>
+    <td align="left">
+    Move one link up
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-page-down
+    </td>
+    <td align="left">
+    Move downwards by a page
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    move-page-up
+    </td>
+    <td align="left">
+    Move upwards by a page
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    open-link-in-new-tab
+    </td>
+    <td align="left">
+    Open the current link in a new tab
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    open-link-in-new-tab-in-background
+    </td>
+    <td align="left">
+    Open the current link in a new tab in the background
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    open-link-in-new-window
+    </td>
+    <td align="left">
+    Open the current link in a new window
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    open-new-tab
+    </td>
+    <td align="left">
+    Open a new tab
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    open-new-tab-in-background
+    </td>
+    <td align="left">
+    Open a new tab in the background
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    open-new-window
+    </td>
+    <td align="left">
+    Open a new window
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    open-os-shell
+    </td>
+    <td align="left">
+    Open an OS shell
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    options-manager
+    </td>
+    <td align="left">
+    Open options manager
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    quit
+    </td>
+    <td align="left">
+    Open a quit confirmation dialog box
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    really-quit
+    </td>
+    <td align="left">
+    Quit without confirmation
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    redraw
+    </td>
+    <td align="left">
+    Redraw the terminal
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    reload
+    </td>
+    <td align="left">
+    Reload the current page
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    rerender
+    </td>
+    <td align="left">
+    Re-render the current page
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    reset-form
+    </td>
+    <td align="left">
+    Reset form items to their initial values
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    resource-info
+    </td>
+    <td align="left">
+    Show information about the currently used resources
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    save-as
+    </td>
+    <td align="left">
+    Save the current document in source form
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    save-formatted
+    </td>
+    <td align="left">
+    Save the current document in formatted form
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    save-options
+    </td>
+    <td align="left">
+    Save options
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    save-url-as
+    </td>
+    <td align="left">
+    Save URL as
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    scroll-down
+    </td>
+    <td align="left">
+    Scroll down
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    scroll-left
+    </td>
+    <td align="left">
+    Scroll left
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    scroll-right
+    </td>
+    <td align="left">
+    Scroll right
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    scroll-up
+    </td>
+    <td align="left">
+    Scroll up
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    search
+    </td>
+    <td align="left">
+    Search for a text pattern
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    search-back
+    </td>
+    <td align="left">
+    Search backwards for a text pattern
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    search-typeahead
+    </td>
+    <td align="left">
+    Search link text by typing ahead
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    search-typeahead-link
+    </td>
+    <td align="left">
+    Search link text by typing ahead
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    search-typeahead-text
+    </td>
+    <td align="left">
+    Search document text by typing ahead
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    search-typeahead-text-back
+    </td>
+    <td align="left">
+    Search document text backwards by typing ahead
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    show-term-options
+    </td>
+    <td align="left">
+    Show terminal options dialog
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    submit-form
+    </td>
+    <td align="left">
+    Submit form
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    submit-form-reload
+    </td>
+    <td align="left">
+    Submit form and reload
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    tab-close
+    </td>
+    <td align="left">
+    Close tab
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    tab-close-all-but-current
+    </td>
+    <td align="left">
+    Close all tabs but the current one
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    tab-external-command
+    </td>
+    <td align="left">
+    Pass URI of current tab to external command
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    tab-menu
+    </td>
+    <td align="left">
+    Open the tab menu
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    tab-move-left
+    </td>
+    <td align="left">
+    Move the current tab to the left
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    tab-move-right
+    </td>
+    <td align="left">
+    Move the current tab to the right
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    tab-next
+    </td>
+    <td align="left">
+    Next tab
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    tab-prev
+    </td>
+    <td align="left">
+    Previous tab
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    terminal-resize
+    </td>
+    <td align="left">
+    Open the terminal resize dialog
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    toggle-css
+    </td>
+    <td align="left">
+    Toggle rendering of page using CSS
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    toggle-display-images
+    </td>
+    <td align="left">
+    Toggle displaying of links to images
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    toggle-display-tables
+    </td>
+    <td align="left">
+    Toggle rendering of tables
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    toggle-document-colors
+    </td>
+    <td align="left">
+    Toggle usage of document specific colors
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    toggle-html-plain
+    </td>
+    <td align="left">
+    Toggle rendering page as HTML / plain text
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    toggle-mouse
+    </td>
+    <td align="left">
+    Toggle mouse handling
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    toggle-numbered-links
+    </td>
+    <td align="left">
+    Toggle displaying of links numbers
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    toggle-plain-compress-empty-lines
+    </td>
+    <td align="left">
+    Toggle plain renderer compression of empty lines
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    toggle-wrap-text
+    </td>
+    <td align="left">
+    Toggle wrapping of text
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    view-image
+    </td>
+    <td align="left">
+    View the current image
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<h3>EDIT ACTIONS</h3>
+<div class="tableblock">
+<table rules="none"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="400" />
+<col width="880" />
+<thead>
+  <tr>
+    <th align="left">
+    Action
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    auto-complete
+    </td>
+    <td align="left">
+    Attempt to auto-complete the input
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    auto-complete-file
+    </td>
+    <td align="left">
+    Attempt to auto-complete a local file
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    auto-complete-unambiguous
+    </td>
+    <td align="left">
+    Attempt to unambiguously auto-complete the input
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    backspace
+    </td>
+    <td align="left">
+    Delete character in front of the cursor
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    beginning-of-buffer
+    </td>
+    <td align="left">
+    Go to the first line of the buffer
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    cancel
+    </td>
+    <td align="left">
+    Cancel current state
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    copy-clipboard
+    </td>
+    <td align="left">
+    Copy text to clipboard
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    cut-clipboard
+    </td>
+    <td align="left">
+    Cut text to clipboard
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    delete
+    </td>
+    <td align="left">
+    Delete character under cursor
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    down
+    </td>
+    <td align="left">
+    Move cursor downwards
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    end
+    </td>
+    <td align="left">
+    Go to the end of the page/line
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    end-of-buffer
+    </td>
+    <td align="left">
+    Go to the last line of the buffer
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    enter
+    </td>
+    <td align="left">
+    Follow the current link
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    home
+    </td>
+    <td align="left">
+    Go to the start of the page/line
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    kill-to-bol
+    </td>
+    <td align="left">
+    Delete to beginning of line
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    kill-to-eol
+    </td>
+    <td align="left">
+    Delete to end of line
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    left
+    </td>
+    <td align="left">
+    Move the cursor left
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    next-item
+    </td>
+    <td align="left">
+    Move to the next item
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    open-external
+    </td>
+    <td align="left">
+    Open in external editor
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    paste-clipboard
+    </td>
+    <td align="left">
+    Paste text from the clipboard
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    previous-item
+    </td>
+    <td align="left">
+    Move to the previous item
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    redraw
+    </td>
+    <td align="left">
+    Redraw the terminal
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    right
+    </td>
+    <td align="left">
+    Move the cursor right
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    search-toggle-regex
+    </td>
+    <td align="left">
+    Toggle regex matching (type-ahead searching)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    up
+    </td>
+    <td align="left">
+    Move cursor upwards
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<h3>MENU ACTIONS</h3>
+<div class="tableblock">
+<table rules="none"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="400" />
+<col width="880" />
+<thead>
+  <tr>
+    <th align="left">
+    Action
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    cancel
+    </td>
+    <td align="left">
+    Cancel current state
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    delete
+    </td>
+    <td align="left">
+    Delete character under cursor
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    down
+    </td>
+    <td align="left">
+    Move cursor downwards
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    end
+    </td>
+    <td align="left">
+    Go to the end of the page/line
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    enter
+    </td>
+    <td align="left">
+    Follow the current link
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    expand
+    </td>
+    <td align="left">
+    Expand item
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    home
+    </td>
+    <td align="left">
+    Go to the start of the page/line
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    left
+    </td>
+    <td align="left">
+    Move the cursor left
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    mark-item
+    </td>
+    <td align="left">
+    Mark item
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    next-item
+    </td>
+    <td align="left">
+    Move to the next item
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    page-down
+    </td>
+    <td align="left">
+    Move downwards by a page
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    page-up
+    </td>
+    <td align="left">
+    Move upwards by a page
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    previous-item
+    </td>
+    <td align="left">
+    Move to the previous item
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    redraw
+    </td>
+    <td align="left">
+    Redraw the terminal
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    right
+    </td>
+    <td align="left">
+    Move the cursor right
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    search
+    </td>
+    <td align="left">
+    Search for a text pattern
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    select
+    </td>
+    <td align="left">
+    Select current highlighted item
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    unexpand
+    </td>
+    <td align="left">
+    Collapse item
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    up
+    </td>
+    <td align="left">
+    Move cursor upwards
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2>DEFAULT BINDINGS</h2>
+<div class="sectionbody">
+<p>The default bindings are shown below. Any bindings in <tt>~/.elinks/elinks.conf</tt>
+will override these.</p>
+<h3>MAIN KEYS</h3>
+<div class="tableblock">
+<table rules="none"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="137" />
+<col width="914" />
+<thead>
+  <tr>
+    <th align="left">
+    Key
+    </th>
+    <th align="left">
+    Description (Action)
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    Space
+    </td>
+    <td align="left">
+    Move downwards by a page (<em>move-page-down</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    #
+    </td>
+    <td align="left">
+    Search link text by typing ahead (<em>search-typeahead</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    %
+    </td>
+    <td align="left">
+    Toggle usage of document specific colors (<em>toggle-document-colors</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    *
+    </td>
+    <td align="left">
+    Toggle displaying of links to images (<em>toggle-display-images</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    ,
+    </td>
+    <td align="left">
+    Open a Lua console (<em>lua-console</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    .
+    </td>
+    <td align="left">
+    Toggle displaying of links numbers (<em>toggle-numbered-links</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    /
+    </td>
+    <td align="left">
+    Search for a text pattern (<em>search</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    :
+    </td>
+    <td align="left">
+    Enter ex-mode (command line) (<em>exmode</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    &lt;
+    </td>
+    <td align="left">
+    Previous tab (<em>tab-prev</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Alt-&lt;
+    </td>
+    <td align="left">
+    Move the current tab to the left (<em>tab-move-left</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    =
+    </td>
+    <td align="left">
+    Show information about the current page (<em>document-info</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    &gt;
+    </td>
+    <td align="left">
+    Next tab (<em>tab-next</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Alt-&gt;
+    </td>
+    <td align="left">
+    Move the current tab to the right (<em>tab-move-right</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    ?
+    </td>
+    <td align="left">
+    Search backwards for a text pattern (<em>search-back</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    A
+    </td>
+    <td align="left">
+    Add a new bookmark using current link (<em>add-bookmark-link</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-A
+    </td>
+    <td align="left">
+    Move to the start of the document (<em>move-document-start</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-B
+    </td>
+    <td align="left">
+    Move upwards by a page (<em>move-page-up</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    C
+    </td>
+    <td align="left">
+    Open cache manager (<em>cache-manager</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    D
+    </td>
+    <td align="left">
+    Open download manager (<em>download-manager</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    E
+    </td>
+    <td align="left">
+    Open "Go to URL" dialog box containing the current link URL (<em>goto-url-current-link</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-E
+    </td>
+    <td align="left">
+    Move to the end of the document (<em>move-document-end</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    F
+    </td>
+    <td align="left">
+    Open form history manager (<em>formhist-manager</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-F
+    </td>
+    <td align="left">
+    Move downwards by a page (<em>move-page-down</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    G
+    </td>
+    <td align="left">
+    Open "Go to URL" dialog box containing the current URL (<em>goto-url-current</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    H
+    </td>
+    <td align="left">
+    Go to the homepage (<em>goto-url-home</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    K
+    </td>
+    <td align="left">
+    Open cookie manager (<em>cookie-manager</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-K
+    </td>
+    <td align="left">
+    Reload cookies file (<em>cookies-load</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    L
+    </td>
+    <td align="left">
+    Open the link context menu (<em>link-menu</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-L
+    </td>
+    <td align="left">
+    Redraw the terminal (<em>redraw</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    N
+    </td>
+    <td align="left">
+    Find the previous occurrence of the current search text (<em>find-next-back</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-N
+    </td>
+    <td align="left">
+    Scroll down (<em>scroll-down</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-P
+    </td>
+    <td align="left">
+    Scroll up (<em>scroll-up</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Q
+    </td>
+    <td align="left">
+    Quit without confirmation (<em>really-quit</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-R
+    </td>
+    <td align="left">
+    Reload the current page (<em>reload</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    T
+    </td>
+    <td align="left">
+    Open the current link in a new tab in the background (<em>open-link-in-new-tab-in-background</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    W
+    </td>
+    <td align="left">
+    Toggle wrapping of text (<em>toggle-wrap-text</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    [
+    </td>
+    <td align="left">
+    Scroll left (<em>scroll-left</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    '
+    </td>
+    <td align="left">
+    Go at a specified mark (<em>mark-goto</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    \
+    </td>
+    <td align="left">
+    Toggle rendering page as HTML / plain text (<em>toggle-html-plain</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    ]
+    </td>
+    <td align="left">
+    Scroll right (<em>scroll-right</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    a
+    </td>
+    <td align="left">
+    Add a new bookmark (<em>add-bookmark</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    b
+    </td>
+    <td align="left">
+    Move upwards by a page (<em>move-page-up</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    c
+    </td>
+    <td align="left">
+    Close tab (<em>tab-close</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    d
+    </td>
+    <td align="left">
+    Download the current link (<em>link-download</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    e
+    </td>
+    <td align="left">
+    Open the tab menu (<em>tab-menu</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    f
+    </td>
+    <td align="left">
+    Maximize the current frame (<em>frame-maximize</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    g
+    </td>
+    <td align="left">
+    Open "Go to URL" dialog box (<em>goto-url</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    h
+    </td>
+    <td align="left">
+    Open history manager (<em>history-manager</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    k
+    </td>
+    <td align="left">
+    Open keybinding manager (<em>keybinding-manager</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    l
+    </td>
+    <td align="left">
+    Jump to link (<em>jump-to-link</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    m
+    </td>
+    <td align="left">
+    Set a mark (<em>mark-set</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    n
+    </td>
+    <td align="left">
+    Find the next occurrence of the current search text (<em>find-next</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    o
+    </td>
+    <td align="left">
+    Open options manager (<em>options-manager</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    q
+    </td>
+    <td align="left">
+    Open a quit confirmation dialog box (<em>quit</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    r
+    </td>
+    <td align="left">
+    Attempt to resume download of the current link (<em>link-download-resume</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    s
+    </td>
+    <td align="left">
+    Open bookmark manager (<em>bookmark-manager</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    t
+    </td>
+    <td align="left">
+    Open a new tab (<em>open-new-tab</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    u
+    </td>
+    <td align="left">
+    Go forward in history (<em>history-move-forward</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    v
+    </td>
+    <td align="left">
+    View the current image (<em>view-image</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    x
+    </td>
+    <td align="left">
+    Follow the current link, forcing reload of the target (<em>link-follow-reload</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    z
+    </td>
+    <td align="left">
+    Abort connection (<em>abort-connection</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    {
+    </td>
+    <td align="left">
+    Scroll left (<em>scroll-left</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    |
+    </td>
+    <td align="left">
+    Show information about the current page protocol headers (<em>header-info</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    }
+    </td>
+    <td align="left">
+    Scroll right (<em>scroll-right</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Delete
+    </td>
+    <td align="left">
+    Scroll down (<em>scroll-down</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Down
+    </td>
+    <td align="left">
+    Move to the next link (<em>move-link-next</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    End
+    </td>
+    <td align="left">
+    Move to the end of the document (<em>move-document-end</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Enter
+    </td>
+    <td align="left">
+    Follow the current link (<em>link-follow</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-Enter
+    </td>
+    <td align="left">
+    Follow the current link, forcing reload of the target (<em>link-follow-reload</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Escape
+    </td>
+    <td align="left">
+    Activate the menu (<em>menu</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    F10
+    </td>
+    <td align="left">
+    Open the File menu (<em>file-menu</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    F9
+    </td>
+    <td align="left">
+    Activate the menu (<em>menu</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Home
+    </td>
+    <td align="left">
+    Move to the start of the document (<em>move-document-start</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Insert
+    </td>
+    <td align="left">
+    Scroll up (<em>scroll-up</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-Insert
+    </td>
+    <td align="left">
+    Copy text to clipboard (<em>copy-clipboard</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Left
+    </td>
+    <td align="left">
+    Return to the previous document in history (<em>history-move-back</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    PageDown
+    </td>
+    <td align="left">
+    Move downwards by a page (<em>move-page-down</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    PageUp
+    </td>
+    <td align="left">
+    Move upwards by a page (<em>move-page-up</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Right
+    </td>
+    <td align="left">
+    Follow the current link (<em>link-follow</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-Right
+    </td>
+    <td align="left">
+    Follow the current link, forcing reload of the target (<em>link-follow-reload</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Tab
+    </td>
+    <td align="left">
+    Move to the next frame (<em>frame-next</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Alt-Tab
+    </td>
+    <td align="left">
+    Move to the previous frame (<em>frame-prev</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Shift-Tab
+    </td>
+    <td align="left">
+    Move to the previous frame (<em>frame-prev</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Up
+    </td>
+    <td align="left">
+    Move to the previous link (<em>move-link-prev</em>)
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<h3>EDIT KEYS</h3>
+<div class="tableblock">
+<table rules="none"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="137" />
+<col width="914" />
+<thead>
+  <tr>
+    <th align="left">
+    Key
+    </th>
+    <th align="left">
+    Description (Action)
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    Alt-&lt;
+    </td>
+    <td align="left">
+    Go to the first line of the buffer (<em>beginning-of-buffer</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Alt-&gt;
+    </td>
+    <td align="left">
+    Go to the last line of the buffer (<em>end-of-buffer</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-A
+    </td>
+    <td align="left">
+    Go to the start of the page/line (<em>home</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-D
+    </td>
+    <td align="left">
+    Delete character under cursor (<em>delete</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-E
+    </td>
+    <td align="left">
+    Go to the end of the page/line (<em>end</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-H
+    </td>
+    <td align="left">
+    Delete character in front of the cursor (<em>backspace</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-K
+    </td>
+    <td align="left">
+    Delete to end of line (<em>kill-to-eol</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-L
+    </td>
+    <td align="left">
+    Redraw the terminal (<em>redraw</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Alt-r
+    </td>
+    <td align="left">
+    Toggle regex matching (type-ahead searching) (<em>search-toggle-regex</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-F
+    </td>
+    <td align="left">
+    Attempt to auto-complete a local file (<em>auto-complete-file</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-R
+    </td>
+    <td align="left">
+    Attempt to unambiguously auto-complete the input (<em>auto-complete-unambiguous</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-T
+    </td>
+    <td align="left">
+    Open in external editor (<em>open-external</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-U
+    </td>
+    <td align="left">
+    Delete to beginning of line (<em>kill-to-bol</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-V
+    </td>
+    <td align="left">
+    Paste text from the clipboard (<em>paste-clipboard</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-W
+    </td>
+    <td align="left">
+    Attempt to auto-complete the input (<em>auto-complete</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-X
+    </td>
+    <td align="left">
+    Cut text to clipboard (<em>cut-clipboard</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Backspace
+    </td>
+    <td align="left">
+    Delete character in front of the cursor (<em>backspace</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Delete
+    </td>
+    <td align="left">
+    Delete character under cursor (<em>delete</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Down
+    </td>
+    <td align="left">
+    Move cursor downwards (<em>down</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    End
+    </td>
+    <td align="left">
+    Go to the end of the page/line (<em>end</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Enter
+    </td>
+    <td align="left">
+    Follow the current link (<em>enter</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Escape
+    </td>
+    <td align="left">
+    Cancel current state (<em>cancel</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    F4
+    </td>
+    <td align="left">
+    Open in external editor (<em>open-external</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Home
+    </td>
+    <td align="left">
+    Go to the start of the page/line (<em>home</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-Insert
+    </td>
+    <td align="left">
+    Copy text to clipboard (<em>copy-clipboard</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Left
+    </td>
+    <td align="left">
+    Move the cursor left (<em>left</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Right
+    </td>
+    <td align="left">
+    Move the cursor right (<em>right</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Tab
+    </td>
+    <td align="left">
+    Move to the next item (<em>next-item</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Alt-Tab
+    </td>
+    <td align="left">
+    Move to the previous item (<em>previous-item</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Shift-Tab
+    </td>
+    <td align="left">
+    Move to the previous item (<em>previous-item</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Up
+    </td>
+    <td align="left">
+    Move cursor upwards (<em>up</em>)
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<h3>MENU KEYS</h3>
+<div class="tableblock">
+<table rules="none"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="137" />
+<col width="914" />
+<thead>
+  <tr>
+    <th align="left">
+    Key
+    </th>
+    <th align="left">
+    Description (Action)
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    Space
+    </td>
+    <td align="left">
+    Select current highlighted item (<em>select</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    *
+    </td>
+    <td align="left">
+    Mark item (<em>mark-item</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    +
+    </td>
+    <td align="left">
+    Expand item (<em>expand</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    -
+    </td>
+    <td align="left">
+    Collapse item (<em>unexpand</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    /
+    </td>
+    <td align="left">
+    Search for a text pattern (<em>search</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    =
+    </td>
+    <td align="left">
+    Expand item (<em>expand</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-A
+    </td>
+    <td align="left">
+    Go to the start of the page/line (<em>home</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-B
+    </td>
+    <td align="left">
+    Move upwards by a page (<em>page-up</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-E
+    </td>
+    <td align="left">
+    Go to the end of the page/line (<em>end</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-F
+    </td>
+    <td align="left">
+    Move downwards by a page (<em>page-down</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-L
+    </td>
+    <td align="left">
+    Redraw the terminal (<em>redraw</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-N
+    </td>
+    <td align="left">
+    Move cursor downwards (<em>down</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-P
+    </td>
+    <td align="left">
+    Move cursor upwards (<em>up</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Alt-V
+    </td>
+    <td align="left">
+    Move upwards by a page (<em>page-up</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Ctrl-V
+    </td>
+    <td align="left">
+    Move downwards by a page (<em>page-down</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    [
+    </td>
+    <td align="left">
+    Expand item (<em>expand</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    ]
+    </td>
+    <td align="left">
+    Collapse item (<em>unexpand</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    _
+    </td>
+    <td align="left">
+    Collapse item (<em>unexpand</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Delete
+    </td>
+    <td align="left">
+    Delete character under cursor (<em>delete</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Down
+    </td>
+    <td align="left">
+    Move cursor downwards (<em>down</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    End
+    </td>
+    <td align="left">
+    Go to the end of the page/line (<em>end</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Enter
+    </td>
+    <td align="left">
+    Follow the current link (<em>enter</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Escape
+    </td>
+    <td align="left">
+    Cancel current state (<em>cancel</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Home
+    </td>
+    <td align="left">
+    Go to the start of the page/line (<em>home</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Insert
+    </td>
+    <td align="left">
+    Mark item (<em>mark-item</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Left
+    </td>
+    <td align="left">
+    Move the cursor left (<em>left</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    PageDown
+    </td>
+    <td align="left">
+    Move downwards by a page (<em>page-down</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    PageUp
+    </td>
+    <td align="left">
+    Move upwards by a page (<em>page-up</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Right
+    </td>
+    <td align="left">
+    Move the cursor right (<em>right</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Tab
+    </td>
+    <td align="left">
+    Move to the next item (<em>next-item</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Alt-Tab
+    </td>
+    <td align="left">
+    Move to the previous item (<em>previous-item</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Shift-Tab
+    </td>
+    <td align="left">
+    Move to the previous item (<em>previous-item</em>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    Up
+    </td>
+    <td align="left">
+    Move cursor upwards (<em>up</em>)
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2>AUTHOR</h2>
+<div class="sectionbody">
+<p>This manual page was finally written by Peter Wang (one and a half years after
+writing the binding code), using excerpts by David Mediavilla. You can thank
+Petr Baudis for the subtle requests for documentation. Updated by Zas.  Moved
+to asciidoc format and cleaned up by Jonas Fonseca.</p>
+</div>
+<h2>SEE ALSO</h2>
+<div class="sectionbody">
+<p><a href="elinks.1.html">elinks(1)</a>, <a href="elinks.conf.5.html">elinks.conf(5)</a></p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 22-Aug-2009 14:32:19 EEST
+</div>
+</div>
+</body>
+</html>

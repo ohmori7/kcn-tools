@@ -1,0 +1,308 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>No Title</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#introduction">INTRODUCTION</a></li>
+	<li><a href="#about_this_document">ABOUT THIS DOCUMENT</a></li>
+	<li><a href="#general_usage">GENERAL USAGE</a></li>
+	<li><a href="#configuration_subsystem">CONFIGURATION SUBSYSTEM</a></li>
+	<li><a href="#simple_dialogs">SIMPLE DIALOGS</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>ELinks Perl Interface</p>
+<p>
+</p>
+<hr />
+<h1><a name="introduction">INTRODUCTION</a></h1>
+<p>This document aims to describe the ELinks (powerful text WWW browser) interface
+for Perl (powerful and enchanting programming language). This interface falls
+to the ``internal scripting'' domain of ELinks, therefore it concerns scripts
+which affect ELinks general behaviour, <em>not</em> scripts embedded in the WWW
+documents.</p>
+<p>The interface consists of two largely separate and independent parts. The first
+one is where ELinks is the active party, calling Perl <em>hooks</em> upon certain
+events (going to a URL, about to render an HTML document, exiting) and
+conniving the hook results. This part of the interface is not subject of this
+document, however. There is no document dedicated to this so far, however the
+example Perl hooks file (<em>contrib/perl/hooks.pl</em> in the source distribution)
+has some plentiful POD documentation embedded, which lists the currently
+implemented hooks exhaustively, along with <em>Developer's usage</em> sections which
+describe the Perl side of the hooks interface. If you are also at least mildly
+capable C programmer, you might consider contributing Perl interface for some
+other hooks which are supported by the rest of ELinks; see <em>doc/events.txt</em>
+for detailed listing of these.</p>
+<p>The other part of the interface, which is also the main subject of this
+document, are functions and data structures provided by ELinks for the Perl
+scripts. Here, the Perl script is the active party, accessing ELinks data
+structures and functions.</p>
+<p>While the event hooks are already pretty standardized and settled down, each
+internal scripting language has a very different Perl-&gt;ELinks interface; well,
+each of the two who actually provide any interface of this kind.  The other
+language having this is Lua, but the author of this document chose to
+completely ignore its interface since he believes it needs a radical redesign
+anyway.  It is currently result of some historical features gluing, is pretty
+clumsy, ugly and ad hoc built together. So the author took this opporunity
+to think out something he believes is nice, consistent, and elegant. ;-)</p>
+<p>
+</p>
+<hr />
+<h1><a name="about_this_document">ABOUT THIS DOCUMENT</a></h1>
+<p>Please note that this is currently mostly only a design document. Nothing or
+only very little of it is already actually implemented. The unimplemented parts
+are marked by the <strong>TODO</strong> marker. The whole thing is also still subject of
+discussion and can be changed anytime without any notice or compatibility
+measures.</p>
+<p>
+</p>
+<hr />
+<h1><a name="general_usage">GENERAL USAGE</a></h1>
+<p>The data structures are generally exported to the global namespace (<strong>TODO</strong>:
+a way to prevent this) for greater convenience, while the functions provided
+are kept in the <code>ELinks</code> (or subsequent) namespace. Please note well that
+<strong>you do not need to load the ELinks package explicitly</strong>! No</p>
+<pre>
+        use ELinks;</pre>
+<p>is needed. Don't do it.</p>
+<p>ELinks exports some of its internals as Perl data structures.  Especially the
+vectors are usually generated dynamically and behave as tied vectors; therefore
+changes to them propagate as changes to their internal counterparts; e.g.
+adding an item to the array of bookmarks will reflect immediately in the ELinks
+internal bookmarks list.</p>
+<p>
+</p>
+<hr />
+<h1><a name="configuration_subsystem">CONFIGURATION SUBSYSTEM</a></h1>
+<dl>
+<dt><strong><a name="item__options">%options</a></strong></dt>
+
+<dd>
+<p>This hash is keyed by option names and contains the respective value - either
+a stringnumber or a reference to a subsequent hash. Values are automatically
+converted to the option type - e.g. if you set a boolean option to 12938
+or 'pasky' and read it back, you get just 1; if the value is bounded integer,
+you get the value modulo max.</p>
+<p>The first level of the hash is keyed by the option trees; two trees are
+present now, <em>config</em> and <em>cmdline</em>.</p>
+<p>You may not add options (set previously unset keys) through this hash
+except for the <em>autocreate</em> keys (those with a <em>_template_</em> option,
+e.g. <strong>mime.extension</strong>). Options with the <em>deleted</em> flag appear as
+unset in this hash. Deleting options from this hash merely sets the
+<em>deleted</em> flag on them.</p>
+<p><strong>Example:</strong></p>
+<pre>
+        $options{'config'}-&gt;{'document'}-&gt;{'download'}-&gt;{'notify_bell'}++;</pre>
+<p><strong>TODO</strong></p>
+</dd>
+<dt><strong><a name="item__extoptions">%extoptions</a></strong></dt>
+
+<dd>
+<p>This hash is keyed the same way as <em>%options</em>, however it contains all the
+information about the option.</p>
+<p>You may add options (set previously unset keys) through this hash only by
+setting the <em>type</em> member first. You can delete options from this hash,
+which wipes them altogether, but <strong>never do that</strong>!</p>
+<dl>
+<dt><strong><a name="item_type">type</a></strong></dt>
+
+<dd>
+<p>String containing <em>bool</em> (<strong>not</strong> considered an integer type), <em>int</em> (basic
+integer type), <em>long</em> (big integer), <em>string</em>, <em>codepage</em>, <em>language</em>,
+<em>color</em>, <em>command</em> (the <em>value</em> is undefined in this case), <em>alias</em>, or
+<em>tree</em> (the <em>value</em> member is a hash reference).</p>
+</dd>
+<dt><strong><a name="item_value">value</a></strong></dt>
+
+<dt><strong><a name="item_flags">flags</a></strong></dt>
+
+<dd>
+<p>Reference of array of strings, which can be: <em>hidden</em> (never touch those
+options), <em>autocreate</em> (the tree is magical), <em>watermark</em> (this is for
+internal options marking; you must know what are you doing if you are ever
+going to use it, and you <strong>must</strong> clear it after you are done; <strong>never touch
+this flag</strong>), <em>touched</em> (whether this option should be saved/updated in the
+configuration file), <em>sort</em> (the tree shall be kept sorted by ELinks; no
+impact on subtrees), or <em>deleted</em> (the option is already gone; this option is
+merely a shadow neccesary for appropriate edit of the configuration file).</p>
+<p>Note that ELinks internally uses some other flags too, those are of no value
+whatsoever for the Perl scripts though, so you cannot see them.</p>
+</dd>
+<dt><strong><a name="item_min">min</a></strong></dt>
+
+<dd>
+<p>Meaningful only for integer types.</p>
+</dd>
+<dt><strong><a name="item_max">max</a></strong></dt>
+
+<dd>
+<p>Meaningful only for integer types.</p>
+</dd>
+<dt><strong><a name="item_description">description</a></strong></dt>
+
+<dt><strong><a name="item_caption">caption</a></strong></dt>
+
+<dt><strong><a name="item_changehook">changehook</a></strong></dt>
+
+<dd>
+<p><strong>TODO</strong>: A way to bind Perl coderef as a changehook.</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<pre>
+        my $btree = $extoptions{'config'}-&gt;{'bookmarks'}-&gt;{'value'};
+        $btree-&gt;{'cute'} = { type =&gt; 'bool', value =&gt; 1 };</pre>
+<pre>
+        $btree-&gt;{'lovely'}-&gt;{'type'} = 'tree';
+        $btree-&gt;{'lovely'}-&gt;{'value'}-&gt;{'shiny'}-&gt;{'type'} = 'int';</pre>
+<pre>
+        $btree-&gt;{'cool'}-&gt;{'type'} = 'string';</pre>
+<pre>
+        # Equivalent:
+        $btree-&gt;{'cool'}-&gt;{'flags'} = [ 'deleted' ];
+        delete $options{'config'}-&gt;{'bookmarks'}-&gt;{'cool'};</pre>
+<p><strong>TODO</strong></p>
+</dd>
+<dt><strong><a name="item__keybindings">%keybindings</a></strong></dt>
+
+<dd>
+<p>This hash is keyed by the keymap name (<em>main</em>, <em>menu</em>, and <em>edit</em>) on the
+first level and by the key string on the second level (with the same rules
+as in the configuration file). The value is an action name string <em>or</em>
+it can be also a Perl code reference, if you want to bind your own
+subroutine.</p>
+<p>Currently the custom Perl subroutine will get only the key string as its
+first parameter. More parameters (different for each keymap) will be added
+in future as the required infrastructure for them will be added.</p>
+<p><strong>Example:</strong></p>
+<pre>
+        my $q = $keybindings{'main'}-&gt;{'q'};
+        ELinks::alert(ref $q ? 'perl hook' : $q);
+        $keybindings{'main'}-&gt;{'q'} = \&amp;quit_wrapper;</pre>
+<p><strong>TODO</strong></p>
+</dd>
+<dt><strong><a name="item__actbindings">%actbindings</a></strong></dt>
+
+<dd>
+<p>This hash is keyed by the keymap name (<em>main</em>, <em>menu</em>, and <em>edit</em>) on the
+first level and by the action string on the second level (see the configuration
+documentation for the list of actions), <em>or</em> the key can also be a Perl code
+reference (that may sound sick but it is actually cool! ;-). The value is a
+reference to an array of key strings. Therefore, it simply provides reverse
+mapping to the <em>%keybindings</em> map; you could emulate that by some Perl code
+but in this case these two mappings are both so frequently needed that it is
+practical to have both builtin.</p>
+<p>The values are unique, so adding the value at one place will make it disappear
+from another possible occurence.</p>
+<p><strong>Example:</strong></p>
+<pre>
+        ELinks::alert(join(' ', @{$keybindings{'main'}-&gt;{'quit'}});
+        push(@{$keybindings{'main'}-&gt;{\&amp;quit_wrapper}}, 'q');</pre>
+<p><strong>TODO</strong></p>
+</dd>
+<dt><strong><a name="item_conf_eval">ELinks::conf_eval($string)</a></strong></dt>
+
+<dd>
+<p>This function takes the supplied <em>$string</em> and evaluates it as a [set of]
+configuration command[s] (like the <strong>-eval</strong> commandline option). It
+returns an array of errors encountered during the evaluation; empty
+array signifies successful evaluation.</p>
+<p><strong>Example:</strong></p>
+<pre>
+        ELinks::conf_eval('set connection.async_dns = 0');
+        ELinks::conf_eval('bind &quot;main&quot; &quot;q&quot; = &quot;quit&quot;');</pre>
+<p><strong>TODO</strong></p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="simple_dialogs">SIMPLE DIALOGS</a></h1>
+<p>This chapter is concerned of using simple prefabricated dialogs.  Explicitly
+construing complex custom dialogs from widgets is described in the CUSTOM
+DIALOGS section.</p>
+<dl>
+<dt><strong><a name="item_alert">ELinks::alert(...)</a></strong></dt>
+
+<dd>
+<p>This function shows a trivial window containing only the supplied text and an
+<code>[ OK ]</code> button.</p>
+<p>The function takes either a single parameter with the text, or a hash with the
+<em>message</em> and optional <em>title</em> key. The window title defaults to ``Perl
+Alert'').</p>
+<p>The function returns nothing (or rather, anything).</p>
+<p><strong>Example:</strong></p>
+<pre>
+        ELinks::alert('They are after you!');
+        ELinks::alert(title =&gt; 'The Litany Against Fear',
+                      message =&gt; 'I must not fear. Fear is the mind-killer...');</pre>
+<p><strong>TODO</strong></p>
+</dd>
+<dt><strong><a name="item_confirm">ELinks::confirm(...)</a></strong></dt>
+
+<dd>
+<p>This function shows a simple window containing only the supplied text and two
+<code>[ Yes ]</code> and <code>[ No ]</code> buttons.</p>
+<p>The function takes either a single parameter with the text, or a hash with the
+<em>message</em> and optional <em>title</em> (window title) key, which defaults to ``Perl
+Confirmation''. You can also pass optional <em>yes</em> and <em>no</em> keys, changing the
+default button labels.</p>
+<p>The function returns true if the yes button was pressed, false otherwise.</p>
+<p><strong>Example:</strong></p>
+<pre>
+        ELinks::emit_action('quit') if Elinks::confirm('Quit ELinks?');</pre>
+<pre>
+        # Abuse example: ;-)
+        if (ELinks::confirm(title =&gt; 'Candy shop',
+                            message =&gt; 'What will you choose?'
+                            yes =&gt; 'Sweet', no =&gt; 'Lollipop')
+                { ELinks::alert('Yummy!'); }
+        else
+                { ELinks::alert('*Smack*'); }</pre>
+<p><strong>TODO</strong></p>
+</dd>
+<dt><strong><a name="item_inputbox">ELinks::inputbox(...)</a></strong></dt>
+
+<dd>
+<p>This functionn shows a simple window containing the supplied label, an input
+box, and the <code>[ OK ]</code> and <code>[ Cancel ]</code> buttons. So it will look like e.g.
+the Goto URL dialog.</p>
+<p>The function takes either a single parameter with the label, or a hash with the
+<em>label</em> and and optional <em>title</em> (window title) key, which defaults to ``Perl
+Input''.</p>
+<p>The function returns the input value if the OK button was pressed, undef
+otherwise.</p>
+<p><strong>Example:</strong></p>
+<pre>
+        ELinks::alert('I have ' . ELinks::inputbox('Amount') . ' of '
+                      . ELinks::inputbox(title =&gt; 'Curious',
+                                         label =&gt; 'Fruit sort'));</pre>
+<p><strong>TODO</strong></p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<p>This document was scribbled by Petr Baudis.</p>
+
+</body>
+
+</html>

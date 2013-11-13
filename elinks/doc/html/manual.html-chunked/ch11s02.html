@@ -1,0 +1,45 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Remote Actions</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="ch11.html" title="Chapter 11. Managing remote ELinks instances"><link rel="prev" href="ch11.html" title="Chapter 11. Managing remote ELinks instances"><link rel="next" href="ch12.html" title="Chapter 12. The tale of ex-mode"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Remote Actions</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch11.html">Prev</a> </td><th width="60%" align="center">Chapter 11. Managing remote ELinks instances</th><td width="20%" align="right"> <a accesskey="n" href="ch12.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2603345"></a>Remote Actions</h2></div></div></div><p>The command syntax is case-insensitive. For readability, we use the casing in
+the listing of supported commands.</p><div class="table"><a name="id2603357"></a><p class="title"><b>Table 11.1. Mozilla <code class="literal">-remote</code> compatible commands.</b></p><div class="table-contents"><table summary="Mozilla -remote compatible commands." border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+    Command
+    </th><th align="left">
+    Description
+    </th></tr></thead><tbody><tr><td align="left">
+    ping()
+    </td><td align="left">
+    Checks for existence of a remote instance.                                    Makes it possible for scripts to query if                                     remote controlling is possible.
+    </td></tr><tr><td align="left">
+    openURL()
+    </td><td align="left">
+    Prompts for a URL in current tab by opening                                   the Goto dialog.
+    </td></tr><tr><td align="left">
+    openURL(URL)
+    </td><td align="left">
+    Open the passed URL in current tab.
+    </td></tr><tr><td align="left">
+    openURL(URL, new-tab)
+    </td><td align="left">
+    Opens the passed URL in new tab.
+    </td></tr><tr><td align="left">
+    openURL(URL, new-window)
+    </td><td align="left">
+    Opens the passed URL in new window.
+    </td></tr><tr><td align="left">
+    xfeDoCommand(openBrowser)
+    </td><td align="left">
+    Opens an ELinks instance in a new window.                                     This ELinks instance will connect to the                                      already running one.
+    </td></tr></tbody></table></div></div><br class="table-break"><div class="table"><a name="id2603497"></a><p class="title"><b>Table 11.2. ELinks extensions.</b></p><div class="table-contents"><table summary="ELinks extensions." border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+    Command
+    </th><th align="left">
+    Description
+    </th></tr></thead><tbody><tr><td align="left">
+    addBookmark(URL)
+    </td><td align="left">
+    Bookmarks the passed URL.
+    </td></tr><tr><td align="left">
+    infoBox(text)
+    </td><td align="left">
+    Show text in a message box.
+    </td></tr></tbody></table></div></div><br class="table-break"><p><code class="literal">-remote</code> can also take a list of URLs without an explicit action, in which case
+the URL arguments will be opened in new tabs in the remote instance. For
+example, by running:</p><pre class="literallayout">$ elinks -remote slashdot.org fm g:elinks</pre><p>new tabs containing <code class="literal">slashdot.org</code>, <code class="literal">freshmeat.net</code> and a Google search of elinks
+will be opened.</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch11.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch11.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch12.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 11. Managing remote ELinks instances </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 12. The tale of ex-mode</td></tr></table></div></body></html>

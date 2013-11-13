@@ -1,0 +1,22 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Marks lifespan</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="ch06.html" title="Chapter 6. Marks (the lite edition)"><link rel="prev" href="ch06s02.html" title="Restrictions"><link rel="next" href="ch07.html" title="Chapter 7. URL Shortcuts in ELinks"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Marks lifespan</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch06s02.html">Prev</a> </td><th width="60%" align="center">Chapter 6. Marks (the lite edition)</th><td width="20%" align="right"> <a accesskey="n" href="ch07.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2601506"></a>Marks lifespan</h2></div></div></div><p>I already hinted something about another restriction regarding aimless
+browsing. The lifespan of document marks depends on rather ill-defined and
+(for an average mortal) mostly non-deterministic technical conditions.</p><p>Generally, marks _always_ survive when not moving away from the document or
+when moving only in the session history (and unhistory). That means, if you
+go back and the "unback" to the document, you will find your marks safely in
+place. If you follow a link from the document (or typed an address to the
+Goto URL dialog) and then go back (by pressing the right arrow or through
+the File menu), your marks are safe too. These are in fact by far the most
+common usage cases for the marks, so most of the time it will just work as
+you expect.  That's a good news.</p><p>The bad news is that in all other cases, nothing is guaranteed.  It might
+work if you get back to the document by any other means (by following some
+link or typing its address to the Goto URL dialog), or it might not. It
+might be possible to achieve two instances of the document inside a single
+ELinks, each with its own set of marks. However, again, generally it will
+work as expected - this paragraph serves only as a disclaimer in cases it
+doesn't.  Don't rely on it.</p><p>Marks never survive over ELinks restarts. If you quit your ELinks completely
+and run it again, the marks you placed will be no more. No exceptions. Well.
+In some cases, it <span class="strong"><strong>might</strong></span> appear that they survived, but that just means you
+did not quit your ELinks _completely_ --- if you run multiple ELinks
+instances under a single user on a single system, they "join" together and
+you must quit (or kill) them all to get rid of the damn thing.  But that's a
+different story.</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch06s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch06.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch07.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Restrictions </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 7. URL Shortcuts in ELinks</td></tr></table></div></body></html>

@@ -1,0 +1,429 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>hooks.pl -- Perl hooks for the ELinks text WWW browser</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#configuration_file">CONFIGURATION FILE</a></li>
+	<li><a href="#goto_url_hook">GOTO URL HOOK</a></li>
+	<li><a href="#follow_url_hook">FOLLOW URL HOOK</a></li>
+	<li><a href="#pre_format_html_hook">PRE FORMAT HTML HOOK</a></li>
+	<li><a href="#proxy_for_hook">PROXY FOR HOOK</a></li>
+	<li><a href="#quit_hook">QUIT HOOK</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>hooks.pl -- Perl hooks for the ELinks text WWW browser</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This file contains the Perl hooks for the ELinks text WWW browser.</p>
+<p>These hooks change the browser's behavior in various ways.  They allow
+shortcuts to be used in the Goto URL dialog, modifying the source of a page,
+proxy handling, and other things such as displaying a fortune at exit.</p>
+<p>
+</p>
+<hr />
+<h1><a name="configuration_file">CONFIGURATION FILE</a></h1>
+<p>This hooks file reads its configuration from <em>~/.elinks/config.pl</em>.
+The following is an example of the configuration file:</p>
+<pre>
+        bork:       yep       # BORKify Google?
+        collapse:   okay      # Collapse all XBEL bookmark folders on exit?
+        email:                # Set to show one's own bugs with the &quot;bug&quot; prefix.
+        external:   wget      # Send the current URL to this application.
+        fortune:    elinks    # *fortune*, *elinks* tip, or *none* on quit?
+        googlebeta: hell no   # I miss DejaNews...
+        gotosearch: why not   # Anything not a URL in the Goto URL dialog...
+        ipv6:       sure      # IPV4 or 6 address blocks with &quot;ip&quot; prefix?
+        language:   english   # &quot;bf nl en&quot; still works, but now &quot;bf nl&quot; does too
+        news:       msnbc     # Agency to use for &quot;news&quot; and &quot;n&quot; prefixes
+        search:     elgoog    # Engine for (search|find|www|web|s|f|go) prefixes
+        usenet:     google    # *google* or *standard* view for <a href="news://">news://</a> URLs
+        weather:    cnn       # Server for &quot;weather&quot; and &quot;w&quot; prefixes</pre>
+<pre>
+        # news:    bbc, msnbc, cnn, fox, google, yahoo, reuters, eff, wired,
+        #          slashdot, newsforge, usnews, newsci, discover, sciam
+        # search:  elgoog, google, yahoo, ask jeeves, a9, altavista, msn, dmoz,
+        #          dogpile, mamma, webcrawler, netscape, lycos, hotbot, excite
+        # weather: weather underground, google, yahoo, cnn, accuweather,
+        #          ask jeeves</pre>
+<p><em>Developer's usage</em>: The function <em>loadrc()</em> takes a preference name as its
+single argument and returns either an empty string if it is not specified,
+<em>yes</em> for a true value (even if specified like <em>sure</em> or <em>why not</em>), <em>no</em>
+for a false value (even if like <em>nah</em>, <em>off</em> or <em>0</em>), or the lowercased
+preference value (like <em>cnn</em> for <code>weather: CNN</code>).</p>
+<p>
+</p>
+<hr />
+<h1><a name="goto_url_hook">GOTO URL HOOK</a></h1>
+<p>This is a summary of the shortcuts defined in this file for use in the Goto URL
+dialog.  They are similar to the builtin URL prefixes, but more flexible and
+powerful.</p>
+<p><em>Developer's usage</em>: The function <em>goto_url_hook</em> is called when the hook is
+triggered, taking the target URL and current URL as its two arguments.  It
+returns the final target URL.</p>
+<p>These routines do a name-&gt;URL mapping - for example, the <em>goto_url_hook()</em>
+described above maps a certain prefix to <a href="#item_google"><code>google</code></a> and then asks the
+<em>search()</em> mapping routine described below to map the <a href="#item_google"><code>google</code></a> string to an
+appropriate URL.</p>
+<p>There are generally two URLs for each name.  One to go to the particular URL's
+main page, and another for a search on the given site (if any string is
+specified after the prefix).  A few of these prefixes will change their
+behavior depending on the URL currently beung displayed in the browser.</p>
+<dl>
+<dt><strong><a name="item_bugmenot_3a">Bugmenot:</a></strong></dt>
+
+<dd>
+<p><strong>bugmenot</strong> or <strong>bn</strong></p>
+</dd>
+<dt><strong><a name="item_web_search_3a">Web search:</a></strong></dt>
+
+<dl>
+<dt><strong><a name="item_google">Google:                 <strong>g</strong> or <strong>google</strong>  (default)</a></strong></dt>
+
+<dt><strong><a name="item_yahoo_3a_y_or_yahoo">Yahoo:                  <strong>y</strong> or <strong>yahoo</strong></a></strong></dt>
+
+<dt><strong><a name="item_ask_jeeves_3a_ask_or_jeeves">Ask Jeeves:             <strong>ask</strong> or <strong>jeeves</strong></a></strong></dt>
+
+<dt><strong><a name="item_amazon_a9_3a_a9">Amazon A9:              <strong>a9</strong></a></strong></dt>
+
+<dt><strong><a name="item_altavista_3a_av_or_altavista">Altavista:              <strong>av</strong> or <strong>altavista</strong></a></strong></dt>
+
+<dt><strong><a name="item_microsoft_3a_msn_or_microsoft">Microsoft:              <strong>msn</strong> or <strong>microsoft</strong></a></strong></dt>
+
+<dt><strong><a name="item_mozilla_open_directory_3a_dmoz_2c_odp_2c_mozilla">Mozilla Open Directory: <strong>dmoz</strong>, <strong>odp</strong>, <strong>mozilla</strong></a></strong></dt>
+
+<dt><strong><a name="item_dogpile_3a_dp_or_dogpile">Dogpile:                <strong>dp</strong> or <strong>dogpile</strong></a></strong></dt>
+
+<dt><strong><a name="item_mamma_3a_ma_or_mamma">Mamma:                  <strong>ma</strong> or <strong>mamma</strong></a></strong></dt>
+
+<dt><strong><a name="item_webcrawler_3a_wc_or_webcrawler">Webcrawler:             <strong>wc</strong> or <strong>webcrawler</strong></a></strong></dt>
+
+<dt><strong><a name="item_netscape_3a_ns_or_netscape">Netscape:               <strong>ns</strong> or <strong>netscape</strong></a></strong></dt>
+
+<dt><strong><a name="item_lycos_3a_ly_or_lycos">Lycos:                  <strong>ly</strong> or <strong>lycos</strong></a></strong></dt>
+
+<dt><strong><a name="item_hotbot_3a_hb_or_hotbot">Hotbot:                 <strong>hb</strong> or <strong>hotbot</strong></a></strong></dt>
+
+<dt><strong><a name="item_excite_3a_ex_or_excite">Excite:                 <strong>ex</strong> or <strong>excite</strong></a></strong></dt>
+
+<dt><strong><a name="item_elgoog_3a_eg_2c_elgoog_2c_hcraes_2c_dnif_2c_bew_2c">Elgoog:                 <strong>eg</strong>, <strong>elgoog</strong>, <strong>hcraes</strong>, <strong>dnif</strong>, <strong>bew</strong>, <strong>og</strong></a></strong></dt>
+
+</dl>
+<p>default engine:         <strong>search</strong>, <strong>find</strong>, <strong>www</strong>, <strong>web</strong>, <strong>s</strong>, <strong>f</strong>, <strong>go</strong></p>
+<p>The <em>%search_engines</em> hash maps each engine name to two URLs, <em>home</em> and
+<em>search</em>.  With <em>search</em>, the query is appended to the URL.</p>
+<p>The search engines mapping is done by the <em>search()</em> function, taking the
+search engine name as its first parameter and optional search string as its
+second parameter.  It returns the mapped target URL.</p>
+</dd>
+</dl>
+<dl>
+<dt><strong><a name="item_news_agencies_3a">News agencies:</a></strong></dt>
+
+<dl>
+<dt><strong><a name="item_bbc">British Broadcasting Corporation: <strong>bbc</strong>  (default)</a></strong></dt>
+
+<dt><strong><a name="item_msnbc_3a_msnbc">MSNBC:                            <strong>msnbc</strong></a></strong></dt>
+
+<dt><strong><a name="item_cable_news_network_3a_cnn">Cable News Network:               <strong>cnn</strong></a></strong></dt>
+
+<dt><strong><a name="item_foxnews_3a_fox">FOXNews:                          <strong>fox</strong></a></strong></dt>
+
+<dt><strong><a name="item_google_news_3a_gn">Google News:                      <strong>gn</strong></a></strong></dt>
+
+<dt><strong><a name="item_yahoo_news_3a_yn">Yahoo News:                       <strong>yn</strong></a></strong></dt>
+
+<dt><strong><a name="item_reuters_3a_rs_or_reuters">Reuters:                          <strong>rs</strong> or <strong>reuters</strong></a></strong></dt>
+
+<dt><strong><a name="item_electronic_frontier_foundation_3a_eff">Electronic Frontier Foundation:   <strong>eff</strong></a></strong></dt>
+
+<dt><strong><a name="item_wired_3a_wd_or_wired">Wired:                            <strong>wd</strong> or <strong>wired</strong></a></strong></dt>
+
+<dt><strong><a name="item_slashdot_3a__2f_2e_or_sd_or_slashdot">Slashdot:                         <strong>/.</strong> or <strong>sd</strong> or <strong>slashdot</strong></a></strong></dt>
+
+<dt><strong><a name="item_newsforge_3a_nf_or_newsforge">NewsForge:                        <strong>nf</strong> or <strong>newsforge</strong></a></strong></dt>
+
+<dt><strong><a name="item_u_2es_2enews__26_world_report_3a_us_or_usnews">U.S.News &amp; World Report:          <strong>us</strong> or <strong>usnews</strong></a></strong></dt>
+
+<dt><strong><a name="item_new_scientist_3a_newsci_or_nsci">New Scientist:                    <strong>newsci</strong> or <strong>nsci</strong></a></strong></dt>
+
+<dt><strong><a name="item_discover_magazine_3a_dm">Discover Magazine:                <strong>dm</strong></a></strong></dt>
+
+<dt><strong><a name="item_scientific_american_3a_sa_or_sciam">Scientific American:              <strong>sa</strong> or <strong>sciam</strong></a></strong></dt>
+
+</dl>
+<p>default agency:                   <strong>n</strong>, <strong>news</strong></p>
+<p>The <em>%news_servers</em> hash maps each engine name to two URLs, <em>home</em> and
+<em>search</em>.  With <em>search</em>, the query is appended to the mapped URL.</p>
+<p>The news servers mapping is done by the <em>news()</em> function, taking the search
+engine name as its first parameter and optional search string as its second
+parameter.  It returns the mapped target URL.</p>
+</dd>
+</dl>
+<dl>
+<dt><strong><a name="item_locators_3a">Locators:</a></strong></dt>
+
+<dl>
+<dt><strong><a name="item_internet_movie_database_3a_imdb_2c_movie_2c_or_fli">Internet Movie Database:            <strong>imdb</strong>, <strong>movie</strong>, or <strong>flick</strong></a></strong></dt>
+
+<dt><strong><a name="item_usps">US zip code search:                 <strong>zip</strong> or <strong>usps</strong> (# or address)</a></strong></dt>
+
+<dt><strong><a name="item_ip_address_locator__2f_address_space_3a_ip">IP address locator / address space: <strong>ip</strong></a></strong></dt>
+
+<dt><strong><a name="item_whois">WHOIS / TLD list:                   <strong>whois</strong> (current url or specified)</a></strong></dt>
+
+<dt><strong><a name="item_rfc">Request for Comments:               <strong>rfc</strong> (# or search)</a></strong></dt>
+
+<dt><strong><a name="item_weather_3a_w_or_weather">Weather:                            <strong>w</strong> or <strong>weather</strong></a></strong></dt>
+
+<dt><strong><a name="item_yahoo_21_finance__2f_nasd_regulation_3a_stock_2c_t">Yahoo! Finance / NASD Regulation:   <strong>stock</strong>, <strong>ticker</strong>, or <strong>quote</strong></a></strong></dt>
+
+<dt><strong><a name="item_snopes_3a_ul_2c_urban_2c_or_legend">Snopes:                             <strong>ul</strong>, <strong>urban</strong>, or <strong>legend</strong></a></strong></dt>
+
+<dt><strong><a name="item_torrent_search__2f_isohunt_3a_bt_2c_torrent_2c_or_">Torrent search / ISOHunt:           <strong>bt</strong>, <strong>torrent</strong>, or <strong>bittorrent</strong></a></strong></dt>
+
+<dt><strong><a name="item_archive">Wayback Machine:                    <strong>ia</strong>, <strong>ar</strong>, <strong>arc</strong>, or <strong>archive</strong> (current url or specified)</a></strong></dt>
+
+<dt><strong><a name="item_freshmeat_3a_fm_or_freshmeat">Freshmeat:                          <strong>fm</strong> or <strong>freshmeat</strong></a></strong></dt>
+
+<dt><strong><a name="item_sourceforge_3a_sf_or_sourceforge">SourceForge:                        <strong>sf</strong> or <strong>sourceforge</strong></a></strong></dt>
+
+<dt><strong><a name="item_savannah_3a_sv_or_savannah">Savannah:                           <strong>sv</strong> or <strong>savannah</strong></a></strong></dt>
+
+<dt><strong><a name="item_gna_21_3a_gna">Gna!:                               <strong>gna</strong></a></strong></dt>
+
+<dt><strong><a name="item_berlios_3a_bl_or_berlios">BerliOS:                            <strong>bl</strong> or <strong>berlios</strong></a></strong></dt>
+
+<dt><strong><a name="item_uptime">Netcraft Uptime Survey:             <strong>whatis</strong> or <strong>uptime</strong> (current url or specified)</a></strong></dt>
+
+<dt><strong><a name="item_who_27s_alive_and_who_27s_dead_3a_wanted_2c_dead_o">Who's Alive and Who's Dead:         Wanted, <strong>dead</strong> or <strong>alive</strong>!</a></strong></dt>
+
+<dt><strong><a name="item_google_library__2f_project_gutenberg_3a_book_or_re">Google Library / Project Gutenberg: <strong>book</strong> or <strong>read</strong></a></strong></dt>
+
+<dt><strong><a name="item_internet_public_library_3a_ipl">Internet Public Library:            <strong>ipl</strong></a></strong></dt>
+
+<dt><strong><a name="item_vt">VIM Tips:                           <strong>vt</strong> (# or search)</a></strong></dt>
+
+<dt><strong><a name="item_urban_dictionary_3a_urbandict_or_ud__3cword_3e">Urban Dictionary:                   <strong>urbandict</strong> or <strong>ud</strong> &lt;<em>word</em>&gt;</a></strong></dt>
+
+</dl>
+<p>The <em>%locators</em> hash maps each engine name to two URLs, <em>home</em> and <em>search</em>.</p>
+<p><strong>!current!</strong> string in the URL is substitued for the URL of the current
+document.</p>
+<p><strong>!query!</strong> string in the <em>search</em> URL is substitued for the search string.  If
+no <strong>!query!</strong> string is found in the URL, the query is appended to the mapped
+URL.</p>
+<p>The locators mapping is done by the <em>location()</em> function, taking the search
+engine name as its first parameter, optional search string as its second
+parameter and the current document's URL as its third parameter.  It returns
+the mapped target URL.</p>
+</dd>
+<dt><strong><a name="item_google_groups_3a">Google Groups:</a></strong></dt>
+
+<dd>
+<p><strong>deja</strong>, <strong>gg</strong>, <strong>groups</strong>, <strong>gr</strong>, <strong>nntp</strong>, <strong>usenet</strong>, <strong>nn</strong></p>
+</dd>
+<dt><strong><a name="item_mirrordot_3a">MirrorDot:</a></strong></dt>
+
+<dd>
+<p><strong>md</strong> or <strong>mirrordot</strong> &lt;<em>URL</em>&gt;</p>
+</dd>
+<dt><strong><a name="item_coral_cache_3a">Coral cache:</a></strong></dt>
+
+<dd>
+<p><strong>cc</strong>, <strong>coral</strong>, or <strong>nyud</strong> &lt;<em>URL</em>&gt;</p>
+</dd>
+<dt><strong><a name="item_altavista_babelfish_3a">AltaVista Babelfish:</a></strong></dt>
+
+<dd>
+<p><strong>babelfish</strong>, <strong>babel</strong>, <strong>bf</strong>, <strong>translate</strong>, <strong>trans</strong>, or <strong>b</strong> &lt;<em>from</em>&gt; &lt;<em>to</em>&gt;</p>
+<p>``babelfish german english'' or ``bf de en''</p>
+</dd>
+<dt><strong><a name="item_w3c_page_validators_3a">W3C page validators:</a></strong></dt>
+
+<dd>
+<p><strong>vhtml</strong> or <strong>vcss</strong> &lt;<em>URL</em>&gt; (or current url)</p>
+</dd>
+<dt><strong><a name="item_elinks_3a">ELinks:</a></strong></dt>
+
+<dl>
+<dt><strong><a name="item_home_3a_el_or_elinks">Home:                  <strong>el</strong> or <strong>elinks</strong></a></strong></dt>
+
+<dt><strong><a name="item_bug">Bugzilla:              <strong>bz</strong> or <strong>bug</strong> (# or search optional)</a></strong></dt>
+
+<dt><strong><a name="item_doc">Documentation and FAQ: <strong>doc(|s|umentation)</strong> or <strong>faq</strong></a></strong></dt>
+
+</dl>
+<p>There's no place like home...</p>
+</dd>
+<dt><strong><a name="item_the_dialectizer_3a">The Dialectizer:</a></strong></dt>
+
+<dd>
+<p><strong>dia</strong> &lt;<em>dialect</em>&gt; &lt;<em>URL</em>&gt; (or current url)</p>
+<p>Dialects: <em>redneck</em>, <em>jive</em>, <em>cockney</em>, <em>fudd</em>, <em>bork</em>, <em>moron</em>, <em>piglatin</em>, or <em>hacker</em></p>
+</dd>
+<dt><strong><a name="item_sender_3a">Sender:</a></strong></dt>
+
+<dd>
+<p><strong>send</strong></p>
+<p>Send the current URL to the application specified by the configuration variable
+'<em>external</em>'.  Optionally, override this by specifying the application as in
+'<em>send</em> &lt;<em>application</em>&gt;'.</p>
+</dd>
+<dt><strong><a name="item_dictionary_3a">Dictionary:</a></strong></dt>
+
+<dd>
+<p><strong>dict</strong>, <strong>d</strong>, <strong>def</strong>, or <strong>define</strong> &lt;<em>word</em>&gt;</p>
+</dd>
+<dt><strong><a name="item_google_site_search">Google site search</a></strong></dt>
+
+<dd>
+<p><strong>ss</strong> &lt;<em>domain</em>&gt; &lt;<em>string</em>&gt;</p>
+<p>Use Google to search the current site or a specified site.  If a domain is not
+given, use the current one.</p>
+</dd>
+<dt><strong><a name="item_anything_not_a_prefix_2c_url_2c_or_local_file_will">Anything not a prefix, URL, or local file will be treated as a search
+using the search engine defined by the 'search' configuration option if
+'gotosearch' is set to some variation of 'yes'.</a></strong></dt>
+
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="follow_url_hook">FOLLOW URL HOOK</a></h1>
+<p>These hooks effect a URL before ELinks has a chance to load it.</p>
+<p><em>Developer's usage</em>: The function <em>follow_url_hook</em> is called when the hook
+is triggered, taking the target URL as its only argument.  It returns the final
+target URL.</p>
+<dl>
+<dt><strong><a name="item_bork_21_bork_21_bork_21">Bork! Bork! Bork!</a></strong></dt>
+
+<dd>
+<p>Rewrites many <em>google.com</em> URLs.</p>
+</dd>
+<dt><strong><a name="item_nntp_over_google">NNTP over Google</a></strong></dt>
+
+<dd>
+<p>Translates any <em>nntp:</em> or <em>news:</em> URLs to Google Groups HTTP URLs.</p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="pre_format_html_hook">PRE FORMAT HTML HOOK</a></h1>
+<p>When an HTML document is downloaded and is about to undergo the final
+rendering, this hook is called.  This is frequently used to get rid of ads, but
+also various ELinks-unfriendly HTML code and HTML snippets which are irrelevant
+to ELinks but can obfuscate the rendered document.</p>
+<p>Note that these hooks are applied <strong>only</strong> before the final rendering, not
+before the gradual re-renderings which happen when only part of the document is
+available.</p>
+<p><em>Developer's usage</em>: The function <em>pre_format_html_hook</em> is called when the
+hook is triggered, taking the document's URL and the HTML source as its two
+arguments.  It returns the rewritten HTML code.</p>
+<dl>
+<dt><strong><a name="item_slashdot_sanitation">Slashdot Sanitation</a></strong></dt>
+
+<dd>
+<p>Kills Slashdot's Advertisements.  (This one is disabled due to weird behavior
+with fragments.)</p>
+</dd>
+<dt><strong><a name="item_obvious_google_tips_annihilator">Obvious Google Tips Annihilator</a></strong></dt>
+
+<dd>
+<p>Kills some irritating Google tips.</p>
+</dd>
+<dt><strong><a name="item_sourceforge_adsmasher">SourceForge AdSmasher</a></strong></dt>
+
+<dd>
+<p>Wipes out SourceForge's Ads.</p>
+</dd>
+<dt><strong><a name="item_gmail_27s_experience">Gmail's Experience</a></strong></dt>
+
+<dd>
+<p>Gmail has obviously never met ELinks...</p>
+</dd>
+<dt><strong><a name="item_source_readability_improvements">Source readability improvements</a></strong></dt>
+
+<dd>
+<p>Rewrites some evil characters to entities and vice versa.  These will be
+disabled until such time as pre_format_html_hook only gets called for
+content-type:text/html.</p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="proxy_for_hook">PROXY FOR HOOK</a></h1>
+<p>The Perl hooks are asked whether to use a proxy for a given URL (or what proxy
+to actually use).  You can use it if you don't want to use a proxy for certain
+Intranet servers but you need to use it in order to get to the Internet, or if
+you want to use some anonymizer for access to certain sites.</p>
+<p><em>Developer's usage</em>: The function <em>proxy_for_hook</em> is called when the hook is
+triggered, taking the target URL as its only argument.  It returns the proxy
+URL, empty string to use no proxy or <em>undef</em> to use the default proxy URL.</p>
+<dl>
+<dt><strong><a name="item_no_proxy_for_local_files">No proxy for local files</a></strong></dt>
+
+<dd>
+<p>Prevents proxy usage for local files and <code>http://localhost</code>.</p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="quit_hook">QUIT HOOK</a></h1>
+<p>The Perl hooks can also perform various actions when ELinks quits.  These can
+be things like retouching the just saved ``information files'', or doing some fun
+stuff.</p>
+<p><em>Developer's usage</em>: The function <em>quit_hook</em> is called when the hook is
+triggered, taking no arguments nor returning anything.  ('cause, you know, what
+would be the point?)</p>
+<dl>
+<dt><strong><a name="item_collapse_xbel_folders">Collapse XBEL Folders</a></strong></dt>
+
+<dd>
+<p>Collapses XBEL bookmark folders.  This is obsoleted by
+<em>bookmarks.folder_state</em>.</p>
+</dd>
+<dt><strong><a name="item_words_of_wisdom">Words of Wisdom</a></strong></dt>
+
+<dd>
+<p>A few words of wisdom from ELinks the Sage.</p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p>elinks(1), <code>perl(1)</code></p>
+<p>
+</p>
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<p>Russ Rowan, Petr Baudis</p>
+
+</body>
+
+</html>

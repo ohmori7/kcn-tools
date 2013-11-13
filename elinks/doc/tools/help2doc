@@ -1,0 +1,159 @@
+#!/bin/sh
+#
+#
+# Script used to generate doc/book/config/cmdoptions.xml
+# and hopefully other in the future.
+
+# Updated by option handlind via --elinks=path/to/elinks option
+elinks="$1"
+option="$2"
+
+# Option handling {{{1
+
+command=
+
+case "$option" in
+	*command*)
+	filter="sed 0,/^Options:/d"
+	option=--long-help
+	;;
+	*config*)
+	filter="sed 0,/^Configuration/d"
+	option=--config-help
+	;;
+esac
+
+print_description_line()
+{
+	line="$1"
+	number="$2"
+
+	case "$line" in
+	-eval*)
+		echo
+		;;
+	*)
+		line="$(echo $line | sed 's,\(-touch-files\|-no-connect\|-session-ring\|-dump\|-default-mime-type\|text/html\|~/\.elinks\),\`\1\`,g')"
+		line=$(echo $line | sed "s,'\([^']*\)',\\\'\1\\\',")
+		line=$(echo $line | sed "s,ELinks,'ELinks',g")
+		line=$(echo $line | sed "s,HOME,'HOME',g")
+		line="$(echo $line | sed 's/^\([a-zA-Z]*([^)]*)\).*:/- \`\1\`:/')"
+
+		if test -n "$number";
+		then
+			echo -n "	- $number:"
+		fi
+	esac
+	echo "	$line"
+}
+
+print_option_tree()
+{
+	title="$1"
+	path="$2"
+	echo "$path::"
+}
+
+print_option_type()
+{
+	path="$1"
+	typeid="$2"
+	default="$3"
+	typestring="$path"
+	if test -n "$typeid" && test "$typeid" != "$path";
+	then
+		if test "$typeid" = "(alias";
+		then
+			typestring="$typestring ($default)"
+			default=
+		else
+			typestring="$typestring $typeid"
+		fi
+	fi
+	if test -n "$default" && test "$default" != "$path";
+	then
+		typestring="$typestring ($default)"
+	fi
+	if test "$default" = "-?, -h, -help";
+	then
+		typestring="$default"
+	fi
+
+	echo "$typestring::"
+}
+
+
+# The main loop {{{1
+
+# State variables
+parse_description=
+parse_int_option=
+use_log=
+
+"$elinks" $option | $filter | while read line
+do
+	if test -n "$parse_description"
+	then
+		# If the line is empty it is our clue that
+		# the desciption is over.
+		if test -z "$line"
+		then
+			echo
+			parse_description=
+			parse_int_option=
+			continue
+		fi
+
+		line=`echo "$line" | sed -e "s/[ ]*(DISABLED)//"`
+		line=`echo "$line" | sed 's/\([{}]\)/\\\\\1/g'`
+		number=
+		if test -n "$parse_int_option";
+		then
+			case "$line" in
+				-[0-9]*)
+					number="`echo $line | sed -e 's/\(-[0-9-]*\).*/\1/'`"
+					line=`echo "$line" | sed -e "s/$number[ ]*//"`
+				;;
+
+				[0-9]*)
+					number="`echo $line | sed -e 's/\([0-9-]*\).*/\1/'`"
+					line=`echo "$line" | sed -e "s/$number[ ]*//"`
+				;;
+			esac
+		fi
+
+		print_description_line "$line" "$number"
+		continue
+	fi
+
+	case "$line" in
+		Features:*)
+		;;
+		[A-Z]*:" ("*[a-z]*)
+			parse_description=1
+			title="`echo $line | sed -e 's/\([A-Z]*\):.*/\1/'`"
+			path="`echo $line | sed -e 's/.*: (\([a-z_].*\))/\1/'`"
+			print_option_tree "$title" "$path"
+		;;
+
+		[a-z_-]*[.a-z_-]*)
+			parse_description=1
+			path="`echo $line | sed -e 's/\([a-z-][^ ]*\).*/\1/'`"
+			typeid="`echo $line | sed -e 's/[ ]*[a-z-][^ ]* \([^ ]*\).*/\1/'`"
+			default="`echo \"$line\" | sed -e 's/[^(]*(\(.*\))/\1/'`"
+			print_option_type "$path" "$typeid" "$default"
+			if test "$typeid" = "<num>";
+			then
+				parse_int_option=1
+			fi
+		;;
+
+		*)
+		;;
+	esac
+done
+
+version="`$elinks -version | head -n 1 | sed -e 's/ELinks \([0-9][^ ]*\).*/\1/'`"
+echo "Generated using output from ELinks version $version."
+
+# vim: tabstop=4 shiftwidth=4

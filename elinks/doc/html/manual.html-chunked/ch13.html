@@ -1,0 +1,36 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Chapter 13. ELinks BitTorrent Client</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="index.html" title="The ELinks Manual"><link rel="prev" href="ch12s05.html" title='The "but"s'><link rel="next" href="ch13s02.html" title="The Resume Dialog"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 13. ELinks BitTorrent Client</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch12s05.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch13s02.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="id2603863"></a>Chapter 13. ELinks BitTorrent Client</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="ch13.html#id2603904">Using the BitTorrent Client</a></span></dt><dt><span class="section"><a href="ch13s02.html">The Resume Dialog</a></span></dt><dt><span class="section"><a href="ch13s03.html">The Download Dialog</a></span></dt></dl></div><p>This chapter provides a small manual for using the implemented
+BitTorrent client. The BitTorrent client is provided as an optional
+add-on for ELinks, and needs to be enabled at compile time.  To build
+ELinks with BitTorrent support be sure to either pass
+<code class="literal">—enable-bittorrent</code> to <code class="literal">./configure</code> or change the value of
+<code class="literal">CONFIG_BITTORRENT</code> to <code class="literal">yes</code> in <code class="literal">features.conf</code>.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2603904"></a>Using the BitTorrent Client</h2></div></div></div><p>To start the client, first go to a site which offers metainfo files. In
+the following, we will use the site <a class="ulink" href="http://www.legaltorrents.com/" target="_top">http://www.legaltorrents.com/</a>.
+Direct ELinks to this site by issuing the command:</p><pre class="literallayout">$ elinks http://www.legaltorrents.com/</pre><p>Use the arrow keys to move between links on the page. Find a link,
+which points to a metainfo file (a file having the extension
+<code class="literal">.torrent</code>). This is indicated in the status bar in the bottom line.
+Once a metainfo file has been located, press the Return key. This
+should present you with the following dialog, querying whether the
+client should start to download the torrent:</p><pre class="literallayout">+--------------------------- What to do? ----------------------------+
+|                                                                    |
+|  What would you like to do with the file 'go-open-vol-2.torrent'?  |
+|  Information about the torrent:                                    |
+|  Size: 739 MiB (2959 * 262144 + 161542)                            |
+|  Info hash: d85ef7b05288dc49203a7de97545e6c132834011               |
+|  Announce URI: http://www.legaltorrents.com:7070/announce          |
+|  Creation date: Jun 26 08:04                                       |
+|  Directory: go-open-vol-2                                          |
+|                                                                    |
+|  [X] 105 MiB go-open-episode-07.mp4                                |
+|  [X] 105 MiB go-open-episode-08.mp4                                |
+|  [X] 105 MiB go-open-episode-09.mp4                                |
+|  [X] 104 MiB go-open-episode-10.mp4                                |
+|  [X] 105 MiB go-open-episode-11.mp4                                |
+|  [X] 107 MiB go-open-episode-12.mp4                                |
+|  [X] 106 MiB go-open-episode-13.mp4                                |
+|  [X]  22 KiB go-open-vol-2.txt                                     |
+|                                                                    |
+|  [ Download ]  [ Save ]  [ Display ]  [ Show header ]  [ Cancel ]  |
++--------------------------------------------------------------------+</pre><p>Press the <code class="literal">[ Download ]</code> button to open the download dialog and start
+downloading.</p><p>Downloaded files can be found in the directory specified by the option
+<code class="literal">document.download.directory</code>.  There is currently no way to change
+that.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch12s05.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch13s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">The "but"s </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> The Resume Dialog</td></tr></table></div></body></html>

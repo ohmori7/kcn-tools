@@ -1,0 +1,74 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Tips to obtain a very small static elinks binary</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="ch01.html" title="Chapter 1. Getting ELinks up and running"><link rel="prev" href="ch01s04.html" title="Further reading"><link rel="next" href="ch01s06.html" title="ECMAScript support?!"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Tips to obtain a very small static elinks binary</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch01s04.html">Prev</a> </td><th width="60%" align="center">Chapter 1. Getting ELinks up and running</th><td width="20%" align="right"> <a accesskey="n" href="ch01s06.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2546906"></a>Tips to obtain a very small static elinks binary</h2></div></div></div><p>Tips to obtain a very small static elinks binary suitable for mini
+distributions</p><p>Remove config.cache (previous CC may be cached):</p><pre class="literallayout">$ rm config.cache</pre><p>Use dietlibc (http://www.fefe.de/dietlibc/) or similar stuff (uClibc, …):</p><pre class="literallayout">$ export CC='diet -Os gcc'</pre><p>Use compilers flags to optimize for size:</p><pre class="literallayout">$ export CFLAGS='-s -fno-inline -nostdinc -fomit-frame-pointer'</pre><p>Note that if you don't use dietlibc, you definitively want to add <code class="literal">-Os</code> or
+<code class="literal">-O2</code> to <code class="literal">CFLAGS</code>; GCC 2.95 does not know <code class="literal">-Os</code>, and some say <code class="literal">-O2</code> gives
+smaller executables even for GCC 3.x.</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>If you use these <code class="literal">CFLAGS</code> on Cygwin and you get unresolved symbols (<code class="literal">htons</code> and
+suite in particular), try removing <code class="literal">-fno-inline</code> parameter.</p></div><p>Disable some compile-time options:</p><pre class="screen">$ ./configure --disable-ipv6 --disable-backtrace --disable-nls \
+  --enable-fastmem --without-zlib --without-bzlib --disable-xbel \
+  --without-lua --without-gnutls --without-openssl --without-x \
+  --enable-small --without-spidermonkey --without-gpm</pre><p>You can disable bookmarks, globhist and more, too, if you want to.</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Notes</h3><div class="itemizedlist"><ul type="disc"><li>
+—disable-backtrace disables internal backtrace code.
+</li><li>
+—disable-nls disables i18n support.
+</li><li>
+—enable-fastmem disables internal <code class="literal">malloc()</code> debugging and use <code class="literal">alloca()</code>
+   wherever possible.
+</li><li>
+—enable-small forces to remove some text descriptions in options and
+   keybind stuff (regain 30Kb).
+</li></ul></div></div><p>Dependencies over external libs must be removed using the related configure
+options:</p><div class="informaltable"><table border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+    Option
+    </th><th align="left">
+    Description
+    </th></tr></thead><tbody><tr><td align="left">
+    —without-zlib
+    </td><td align="left">
+    removes libz dependency (compression)
+    </td></tr><tr><td align="left">
+    —without-bzlib
+    </td><td align="left">
+    removes libbz2 dependency (compression)
+    </td></tr><tr><td align="left">
+    —disable-xbel
+    </td><td align="left">
+    removes expat dependency (XBEL bookmarks support)
+    </td></tr><tr><td align="left">
+    —without-lua
+    </td><td align="left">
+    removes liblua dependency (Lua scripting)
+    </td></tr><tr><td align="left">
+    —without-gnutls
+    </td><td align="left">
+    removes libtls dependency (SSL support)
+    </td></tr><tr><td align="left">
+    —without-openssl
+    </td><td align="left">
+    removes libssl dependency (SSL support)
+    </td></tr><tr><td align="left">
+    —without-x
+    </td><td align="left">
+    removes libx11 dependency (restoring terminal title)
+    </td></tr><tr><td align="left">
+    —without-spidermonkey
+    </td><td align="left">
+    removes libjs dependency (JavaScript)
+    </td></tr><tr><td align="left">
+    —without-gpm
+    </td><td align="left">
+    removes libgpm dependency (mouse/console)
+    </td></tr></tbody></table></div><p>It seems GCC 2.95.x do not generate as small binaries as GCC 3.2.x with same
+flags.</p><p>You can use an executable compressor like UPX
+<a class="ulink" href="http://upx.sourceforge.net/" target="_top">http://upx.sourceforge.net/</a>.</p><p>Here are some results using gcc 2.95.3, dietlibc-0.23, and previous flags:</p><pre class="literallayout">me$ ls -l src/elinks
+-rwxr-xr-x   1 zas      users      495100 Oct 20 15:53 src/elinks
+me$ upx --best src/elinks
+me$ ls -l src/elinks
+-rwxr-xr-x   1 zas      users      217946 Oct 20 15:53 src/elinks</pre><p>Whow ! Around 200kb :)</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Details about the <code class="literal">—enable-small</code> configure option effects:</h3><div class="itemizedlist"><ul type="disc"><li>
+it disables long descriptions of options;
+</li><li>
+it disables textual descriptions of keybinding options;
+</li><li>
+it reduces size of some HTTP errors messages;
+</li><li>
+it disables fastfind feature, reducing performance, but also reducing a lot
+  memory usage, and a bit the executable size.
+</li></ul></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch01s06.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Further reading </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> ECMAScript support?!</td></tr></table></div></body></html>

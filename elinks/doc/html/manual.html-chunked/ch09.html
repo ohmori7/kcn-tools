@@ -1,0 +1,67 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Chapter 9. Introduction to MIME handling</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="index.html" title="The ELinks Manual"><link rel="prev" href="ch08s02.html" title="Terminal Configurations"><link rel="next" href="ch09s02.html" title="Setting up elinks.conf"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 9. Introduction to MIME handling</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch08s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch09s02.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="id2602419"></a>Chapter 9. Introduction to MIME handling</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="ch09.html#id2602457">Handling MIME types, the ELinks way</a></span></dt><dd><dl><dt><span class="section"><a href="ch09.html#id2602463">What are MIME types and why may you want to use them?</a></span></dt><dt><span class="section"><a href="ch09.html#id2602502">Associating files to MIME types</a></span></dt><dt><span class="section"><a href="ch09.html#id2602534">Managing a given MIME type</a></span></dt><dt><span class="section"><a href="ch09.html#id2602579">Specifying the details for a handler</a></span></dt></dl></dd><dt><span class="section"><a href="ch09s02.html">Setting up elinks.conf</a></span></dt><dd><dl><dt><span class="section"><a href="ch09s02.html#id2602701">Associating a file extension to a MIME type</a></span></dt><dt><span class="section"><a href="ch09s02.html#id2602722">Defining a handler</a></span></dt><dt><span class="section"><a href="ch09s02.html#id2602799">Associating a MIME type to a handler</a></span></dt></dl></dd></dl></div><p>At some time along the 0.4 prereleases, ELinks replaced the old Links file
+configuration system with its own one. Now, the configuration is stored in
+elinks.conf, much more complete and featuring a new syntax. You can set most
+options from the UI (so usually there is no need to deal with elinks.conf),
+and that used to be true for setting MIME handlers and extensions as well; but
+now the associations menu is gone temporarily, forcing you to set the handlers
+from the configuration file.</p><p>The comments provided within elinks.conf for the MIME options are not much
+helpful, and those options may seem a bit obscure or confusing at first.  This
+document is a basic introduction to setting of MIME associations for ELinks.
+If you want to know how to automatically launch a program to view some kind of
+file (like images), then read on. Some basic knowledge of MIME is recommended.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2602457"></a>Handling MIME types, the ELinks way</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602463"></a>What are MIME types and why may you want to use them?</h3></div></div></div><p>If, while browsing with ELinks, you need to display files that it can't show
+(like images or PDF documents), then you will likely want to pass them to
+other programs that are suitable for this task. While you may do it manually
+(saving the file to disk, running the auxiliary program to show it and then
+removing the file when finished), ELinks provides a method to do this
+automatically using MIME types.</p><p>ELinks usually knows what the MIME type is for any file (which is a kind of
+description of its format), thus you only need to specify how to manage the
+MIME types for the files you want to open. If you don't tell ELinks how to
+manage a given MIME type then it will show you on screen the contents of the
+file (as if it was ASCII text) instead of calling an external program to show
+them.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602502"></a>Associating files to MIME types</h3></div></div></div><p>If the file is fetched from a web server then this web server should tell
+ELinks what its MIME type is, so you should have generally no need to care
+about it. However, the web server might send an incorrect type, or you may be
+retrieving it by FTP or from your local filesystem, so sometimes ELinks needs
+to guess it.</p><p>The easiest method to guess a MIME type for a file is to just look at its name
+trusting it was given the right extension.  ELinks supports this, letting you
+to specify a type for any given extension.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602534"></a>Managing a given MIME type</h3></div></div></div><p>This usually means specifying programs to open files of this type and the
+conditions in which those programs may be used. For instance, you may want to
+use zgv (a popular svgalib image viewer) when you are using the text console,
+but xli (a image viewer for X) when running the X window system.</p><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id2602548"></a>Binding it to a handler</h4></div></div></div><p>Instead of directly attaching a program to a MIME type, ELinks lets you
+associate an abstract handler to each type. Then you can specify which
+programs implement the handler and how are they used.</p><p>For instance, you may create an image_viewer handler and assign it to MIME
+types image/jpeg, image/png and image/gif. Then you would associate to
+image_viewer the programs you would like to use for viewing images and the
+details on how to use them. This is less cumbersome than repeating all these
+details for each MIME type.</p></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2602579"></a>Specifying the details for a handler</h3></div></div></div><p>There are three issues to specify for a handler: the program associated to it,
+whether you want confirmation before using it and whether you want the
+terminal to be blocked while it is being used.</p><p>When specifying any of these issues, you must tell ELinks the situation in
+which it gets applied, which is typically either the text console or the X
+window system. So you can specify that you don't want confirmation before
+running the program when running X, and that you want it otherwise.
+Similarly, when you are attaching a program (name it foo) to this handler you
+must tell if it's for X or not (you can attach a second program for the other
+choice if you want).</p><div class="variablelist"><dl><dt><span class="term">
+Attaching a program to it
+</span></dt><dd>
+        You must tell ELinks the exact command for running it (with any
+        options you wish). In place of the filename you must enter %.
+</dd><dt><span class="term">
+Choosing whether you want confirmation before applying it
+</span></dt><dd>
+        This is rather simple. If you choose not to do so, then the handler
+        will be automatically called upon when you demand ELinks to show
+        something attached to this handler. Otherwise, if you ask for
+        confirmation, you will be prompted to open it with a external program,
+        with additional choices that include cancelling the operation and
+        viewing it with ELinks. E.g: you may use this option for programs
+        written in C so that you may always choose if you want to read the
+        source with ELinks, or if you want to save it, or if you want to use
+        indent to display it with less.
+</dd><dt><span class="term">
+Choosing whether to block the terminal
+</span></dt><dd>
+        If you don't want to allow going back to ELinks (or any other program
+        from the same terminal) before the external program ends, then you
+        should ask to block the terminal.
+</dd></dl></div></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch08s02.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch09s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Terminal Configurations </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Setting up elinks.conf</td></tr></table></div></body></html>

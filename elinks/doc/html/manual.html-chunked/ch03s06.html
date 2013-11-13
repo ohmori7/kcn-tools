@@ -1,0 +1,107 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Navigation</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="ch03.html" title="Chapter 3. Introduction to the World of ELinks"><link rel="prev" href="ch03s05.html" title="LED status indicators"><link rel="next" href="ch03s07.html" title="Searching"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Navigation</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s05.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Introduction to the World of ELinks</th><td width="20%" align="right"> <a accesskey="n" href="ch03s07.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2599622"></a>Navigation</h2></div></div></div><p>ELinks provides various ways to navigate documents. Depending on how
+documents are structured, it can be a great help to change navigation style.
+The navigation styles can roughly be divided into page-oriented,
+link-oriented and screen-oriented. They overlap in many ways, so this
+separation is mostly used as a mean to present them.</p><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2599643"></a>Page-Oriented Navigation</h3></div></div></div><p>This involves scrolling documents horizontally and vertically.  Documents
+can be scrolled page-wise, where the next or previous subpage will be
+displayed. It is also possible to scroll documents in steps, either
+line-wise (vertically) or column-wise (horizontally). The step size can be
+configured and by default is 2 lines and 8 columns. Alternatively, whole
+documents can be scrolled to the start or the end.</p><p>The basic default controls:</p><div class="informaltable"><table border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+    Keys
+    </th><th align="left">
+    Action
+    </th></tr></thead><tbody><tr><td align="left">
+    Insert/Delete
+    </td><td align="left">
+    Scroll up/down line-wise. (vertically)
+    </td></tr><tr><td align="left">
+    PageUp/PageDown
+    </td><td align="left">
+    Scroll up/down page-wise.
+    </td></tr><tr><td align="left">
+    <span class="emphasis"><em>[</em></span>/<span class="emphasis"><em>]</em></span>
+    </td><td align="left">
+    Scroll left/right column-wise. (horizontally)
+    </td></tr><tr><td align="left">
+    Home/End
+    </td><td align="left">
+    Scroll to the start/end of the document.
+    </td></tr></tbody></table></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2599769"></a>Link-Oriented Navigation</h3></div></div></div><p>For hypertext documents, access to the links makes it more practical to
+navigate by jumping between links in the document. There are two ways to do
+this; either you can move between links relationally or by number. Using
+relational link navigation it is possible to focus the next/previous link or
+move in a directional manner to the link in a certain direction such as
+left/right/up/down.</p><p>In order to navigate using link numbers, you have to first toggle link
+numbering on; this will prefix all links with a number using the notation
+[number]. <code class="literal">[23]</code> indicates link number 23. When link numbering is enabled,
+pressing any number key will pop up a "Go to link"-dialog where the complete
+link number can be entered. By pressing Enter the entered link number will
+be focused, but only if it is a valid link number.</p><p>Note: it is also possible to jump to links by searching the link text; check
+the documentation on searching.</p><p>The basic default controls:</p><div class="informaltable"><table border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">
+    Keys
+    </th><th align="left">
+    Action
+    </th></tr></thead><tbody><tr><td align="left">
+    Up/Down
+    </td><td align="left">
+    Move to the previous/next link.
+    </td></tr><tr><td align="left">
+    <span class="emphasis"><em>.</em></span>
+    </td><td align="left">
+    Toggle link numbering.
+    </td></tr><tr><td align="left">
+    Enter/Right
+    </td><td align="left">
+    Follow the current focused link.
+    </td></tr></tbody></table></div><p>No keys are by default configured for directional link navigation.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2599907"></a>Position-Oriented Navigation</h3></div></div></div><p>Positional navigation (sorry, bad word) uses the either the position of the
+cursor or the mouse click to navigate the document. If you are familiar with
+the w3m text-browser you will be familiar with cursor routing. Basically,
+you move the cursor around — kind of like a mouse — in the document area
+of the user interface. When the cursor is over a link, the link is
+highlighted, and when the cursor moves outside the current document view, it
+will cause the document view to scroll.</p><p>The possibilities when using the mouse to navigate the document depend on
+what terminal you are using. In some terminals, it is possible to scroll by
+using the mouse wheel. Scrolling is however also possible by clicking in the
+edge areas of the document view. Highlighting links can be done by clicking
+on a link but waiting to release the mouse button until the link is no
+longer under the mouse pointer.</p><p>No keys are by default configured for cursor routing.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2599950"></a>Forms</h3></div></div></div><p>The status bar will indicate the type and name of the field.</p><div class="variablelist"><dl><dt><span class="term">
+Input text/Password fields
+</span></dt><dd>
+        These will be displayed as <code class="literal">________</code>.
+        Note that passwords will be obscured using <code class="literal">*</code> characters.
+        Status bar will display something like "Text field, name q",
+        or "Password field, name password" for password fields.
+</dd><dt><span class="term">
+Textarea boxes
+</span></dt><dd>
+        These will be displayed as multiple lines consisting of <code class="literal">_</code>.
+        Status bar will display something like "Text area, name comment"
+</dd><dt><span class="term">
+Buttons
+</span></dt><dd>
+        These will be displayed as <code class="literal">[ Go ]</code>.
+        Status bar will display something like "Submit form to …",
+        "Post form to …" for submit buttons.
+</dd><dt><span class="term">
+Checkboxes
+</span></dt><dd>
+        These will be displayed as <code class="literal">[ ]</code> or <code class="literal">[X]</code>.
+        Status bar will display something like "Checkbox, name c, value 1".
+        To set one just press ENTER on it.
+</dd><dt><span class="term">
+Radio buttons
+</span></dt><dd>
+        These will be displayed as <code class="literal">( )</code> or <code class="literal">(X)</code>.
+        Status bar will display something like "Radio button, name radio1".
+        To set one, you may use ENTER.
+</dd><dt><span class="term">
+Select lists
+</span></dt><dd>
+        These will be displayed as <code class="literal">[first item____]</code>.
+        Note that if multiple attribute is used, these are displayed as a
+        group of checkboxes instead.
+        Status bar will display something like "Select field, name list"
+        To select one entry, press ENTER, then navigate using UP/DOWN, then
+        press ENTER again.
+</dd></dl></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s05.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s07.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">LED status indicators </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Searching</td></tr></table></div></body></html>

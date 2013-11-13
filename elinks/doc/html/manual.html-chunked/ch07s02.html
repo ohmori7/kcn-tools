@@ -1,0 +1,26 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>How it works</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="ch07.html" title="Chapter 7. URL Shortcuts in ELinks"><link rel="prev" href="ch07.html" title="Chapter 7. URL Shortcuts in ELinks"><link rel="next" href="ch07s03.html" title="Alternative URI rewriting mechanisms"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">How it works</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07.html">Prev</a> </td><th width="60%" align="center">Chapter 7. URL Shortcuts in ELinks</th><td width="20%" align="right"> <a accesskey="n" href="ch07s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2601678"></a>How it works</h2></div></div></div><p>All the URI rewriting can be controlled by options in the <span class="emphasis"><em>protocol.rewrite</em></span>
+option tree.</p><p>In the case of <span class="emphasis"><em>sd</em></span>, a URI rewriting mechanism called <span class="emphasis"><em>dumb prefixes</em></span> is used.
+If protocol.rewrite.enable-dumb is true, ELinks looks at the contents of the
+protocol.rewrite.dumb.* tree, and if it finds option protocol.rewrite.dumb.sd,
+it will use its value as the target URI.</p><p>Therefore, more generally speaking, if ELinks looks at
+protocol.rewrite.dumb.&lt;typed_string&gt;, and if it exists, will replace the
+entered URI with it.  These dumb prefixes can be used as a kind of alternative
+bookmark systen - if you want to have fast access to a certain site and you
+don't want to spend a while navigating the bookmarks manager, you can just fire
+up the Goto URL dialog, type the shortcut and there you go.</p><p>A dumb prefix can contain <span class="emphasis"><em>%c</em></span>, which will be replaced by the URI of the current
+document.  This is used, for example, in the <span class="emphasis"><em>arc</em></span> dumb-prefix, which provides
+a shortcut to the Wayback machine at archive.org.</p><p>In the case of <span class="emphasis"><em>g</em></span>, a slightly different URI rewriting mechanism called <span class="emphasis"><em>smart
+prefixes</em></span> is used.  If protocol.rewrite.enable-smart is true, ELinks looks at
+the contents of the protocol.rewrite.smart tree and, if it finds option
+protocol.rewrite.smart.g, it will use its value as the target URI.</p><p>The difference is that the smart prefixes can take arguments and reference them
+in the target URI.  As with dumb prefixes, <span class="emphasis"><em>%c</em></span> in the URI means the current
+address.  Additionally, <span class="emphasis"><em>%s</em></span> will be substituted by the whole string following
+the prefix (<span class="emphasis"><em>elinks</em></span> in the <span class="emphasis"><em>g</em></span> example above; <span class="emphasis"><em>%s</em></span> is by far the most
+frequently used expansion), while you can reference individual space-separated
+arguments with the codes <span class="emphasis"><em>%0</em></span> thru <span class="emphasis"><em>%9</em></span>.  Finally, if you want a plain % to the
+resulting URI, use <span class="emphasis"><em>%%</em></span>.</p><p>Note that the prefix searched in the protocol.rewrite.smart tree is everything
+in the typed address up to the first space or colon (so <span class="emphasis"><em>bug:123</em></span> and <span class="emphasis"><em>bug 123</em></span>
+are identical).  These prefixes are generally useful for searching anything very
+fast - be it Google (<span class="emphasis"><em>g:foo</em></span>, <span class="emphasis"><em>gi:foo</em></span>, <span class="emphasis"><em>gr:foo</em></span>, …), ELinks Bugzilla bugs
+(<span class="emphasis"><em>bug:1234</em></span>), the RFC database (<span class="emphasis"><em>cr:foo</em></span>), or the Czech-English dictionary
+(<span class="emphasis"><em>czen:foo</em></span>).  The only limit is your imagination.</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch07.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch07.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch07s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 7. URL Shortcuts in ELinks </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Alternative URI rewriting mechanisms</td></tr></table></div></body></html>

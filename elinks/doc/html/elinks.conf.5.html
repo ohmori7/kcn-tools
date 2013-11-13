@@ -1,0 +1,5458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.2.2" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock {
+  margin-right: 0%;
+}
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+
+div.attribution {
+  text-align: right;
+}
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hlist td {
+  padding-bottom: 5px;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+
+div#toctitle {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+include1::./stylesheets/xhtml11-manpage.css[]
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+
+/* IE6 sets dynamically generated links as visited. */
+div#toc a:visited { color: blue; }
+</style>
+<title>elinks.conf(5)</title>
+</head>
+<body>
+<div id="header">
+<h1>
+elinks.conf(5) Manual Page
+</h1>
+<h2>NAME</h2>
+<div class="sectionbody">
+<p>elinks.conf -
+   ELinks configuration file
+</p>
+</div>
+</div>
+<h2>SYNOPSIS</h2>
+<div class="sectionbody">
+<div class="verseblock">
+<div class="content">set     &lt;option&gt; = &lt;value&gt;
+unset   &lt;option&gt;
+bind    "&lt;keymap&gt;" "&lt;key&gt;" = "&lt;action&gt;"
+include "&lt;file&gt;"</div></div>
+</div>
+<h2>DESCRIPTION</h2>
+<div class="sectionbody">
+<p>The <tt>elinks.conf</tt> file contains configuration information for ELinks.  It can
+be used to configure the behaviour of ELinks in a wide variety of ways:
+protocol behaviour, keybindings, colors used for rendering and for the user
+interface.</p>
+<p>It is read at startup and saved only when requested. All options described in
+this document can be fully configured from within ELinks so no editing of
+elinks.conf is needed.</p>
+<p>Note that MIME-related options used for specifying handlers of various MIME
+types are NOT described in this document. Documentation for these options can
+be found at the ELinks homepage. Keybindings can also be specified in
+elinks.conf.  This is described in <a href="elinkskeys.5.html">elinkskeys(5)</a>.</p>
+</div>
+<h2>SYNTAX</h2>
+<div class="sectionbody">
+<p>The syntax of the configuration file is very simple. The elinks.conf file is a
+free-form ASCII text file. The file may contain extra tabs and newlines for
+formatting purposes. Keywords in the file are case-sensitive. Comments may be
+placed anywhere within the file (except within quotes). Comments begin with
+the # character and end at the end of the line.</p>
+</div>
+<h2>EXAMPLES</h2>
+<div class="sectionbody">
+<p>Some sample settings:</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt># Use asynchronous DNS resolver?
+set connection.async_dns = 1
+# horizontal text margin.
+set document.browse.margin_width = 3
+# Default document codepage.
+set document.codepage.assume = "ISO-8859-1"
+# User defined protocol handlers
+set protocol.user.mailto.unix = "mutt %h -s \"%s\""</tt></pre>
+</div></div>
+</div>
+<h2>OPTIONS</h2>
+<div class="sectionbody">
+<dl>
+<dt>
+bookmarks
+</dt>
+<dd>
+<p>
+        Bookmark options.
+</p>
+</dd>
+<dt>
+bookmarks.file_format &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        File format for bookmarks (affects both reading and saving):
+</p>
+<ul>
+<li>
+<p>
+0:    is the default native <em>ELinks</em> format
+</p>
+</li>
+<li>
+<p>
+1:    is XBEL universal XML bookmarks format (NO NATIONAL CHARS SUPPORT!)
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+bookmarks.folder_state [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        When saving bookmarks also store whether folders are
+        expanded or not, so the look of the bookmark dialog is
+        kept across <em>ELinks</em> sessions. If disabled all folders will
+        appear unexpanded next time <em>ELinks</em> is run.
+</p>
+</dd>
+<dt>
+config
+</dt>
+<dd>
+<p>
+        Configuration handling options.
+</p>
+</dd>
+<dt>
+config.comments &lt;num&gt; (default: 3)
+</dt>
+<dd>
+<p>
+        Amount of comments automatically written to the config file:
+</p>
+<ul>
+<li>
+<p>
+0:    is no comments are written
+</p>
+</li>
+<li>
+<p>
+1:    is only the "blurb" (name+type) is written
+</p>
+</li>
+<li>
+<p>
+2:    is only the description is written
+</p>
+</li>
+<li>
+<p>
+3:    is full comments are written
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+config.indentation &lt;num&gt; (default: 2)
+</dt>
+<dd>
+<p>
+        Shift width of one indentation level in the configuration
+        file. Zero means that no indentation is performed at all
+        when saving the configuration.
+</p>
+</dd>
+<dt>
+config.saving_style &lt;num&gt; (default: 3)
+</dt>
+<dd>
+<p>
+        Determines what happens when you tell <em>ELinks</em> to save options:
+</p>
+<ul>
+<li>
+<p>
+0:    is only values of current options are altered
+</p>
+</li>
+<li>
+<p>
+1:    is values of current options are altered and missing options
+        are added at the end of the file
+</p>
+</li>
+<li>
+<p>
+2:    is the configuration file is rewritten from scratch
+</p>
+</li>
+<li>
+<p>
+3:    is values of current options are altered and missing options
+        CHANGED during this <em>ELinks</em> session are added at the end of
+        the file
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+config.i18n [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        If set to 1, comments in the configuration file will be
+        translated to the language used by UI. Note that if you have
+        different language set in different terminals, the language
+        used in the configuration file MAY be the same as on the
+        terminal where you saved the file, but it should be generally
+        considered unpredictable.
+</p>
+</dd>
+<dt>
+config.saving_style_w [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        This is internal option used when displaying a warning about
+        obsolete config.saving_style. You shouldn't touch it.
+</p>
+</dd>
+<dt>
+config.show_template [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Show template options in autocreated trees in the options
+        manager and save them to the configuration file.
+</p>
+</dd>
+<dt>
+connection
+</dt>
+<dd>
+<p>
+        Connection options.
+</p>
+</dd>
+<dt>
+connection.ssl
+</dt>
+<dd>
+<p>
+        SSL options.
+</p>
+</dd>
+<dt>
+connection.ssl.client_cert
+</dt>
+<dd>
+<p>
+        X509 client certificate options.
+</p>
+</dd>
+<dt>
+connection.ssl.client_cert.enable [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Enable or not the sending of X509 client certificates
+        to servers which request them.
+</p>
+</dd>
+<dt>
+connection.ssl.client_cert.file &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        The location of a file containing the client certificate
+        and unencrypted private key in PEM format. If unset, the
+        file pointed to by the X509_CLIENT_CERT variable is used
+        instead.
+</p>
+</dd>
+<dt>
+connection.ssl.cert_verify [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Verify the peer's SSL certificate. Note that this
+        needs extensive configuration of OpenSSL by the user.
+</p>
+</dd>
+<dt>
+connection.async_dns [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Whether to use asynchronous DNS resolving.
+</p>
+</dd>
+<dt>
+connection.max_connections &lt;num&gt; (default: 10)
+</dt>
+<dd>
+<p>
+        Maximum number of concurrent connections.
+</p>
+</dd>
+<dt>
+connection.max_connections_to_host &lt;num&gt; (default: 2)
+</dt>
+<dd>
+<p>
+        Maximum number of concurrent connections to a given host.
+</p>
+</dd>
+<dt>
+connection.receive_timeout &lt;num&gt; (default: 120)
+</dt>
+<dd>
+<p>
+        Receive timeout (in seconds).
+</p>
+</dd>
+<dt>
+connection.retries &lt;num&gt; (default: 3)
+</dt>
+<dd>
+<p>
+        Number of tries to establish a connection.
+        Zero means try forever.
+</p>
+</dd>
+<dt>
+connection.try_ipv4 [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Whether to try to connect to a host over IPv4.
+        Note that if connection.try_ipv6 is enabled too,
+        it takes precedence. And better do not touch this
+        at all unless you are sure what are you doing.
+        Note that you can also force a given protocol
+        to be used on a per-connection basis by using a URL
+        in the style of e.g. http4://elinks.cz/.
+</p>
+</dd>
+<dt>
+connection.try_ipv6 [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Whether to try to connect to a host over IPv6.
+        Note that you can also force a given protocol
+        to be used on a per-connection basis by using a URL
+        in the style of e.g. http6://elinks.cz/.
+</p>
+</dd>
+<dt>
+connection.unrestartable_receive_timeout &lt;num&gt; (default: 600)
+</dt>
+<dd>
+<p>
+        Timeout for non-restartable connections (in seconds).
+</p>
+</dd>
+<dt>
+cookies
+</dt>
+<dd>
+<p>
+        Cookies options.
+</p>
+</dd>
+<dt>
+cookies.accept_policy &lt;num&gt; (default: 2)
+</dt>
+<dd>
+<p>
+        Cookies accepting policy:
+</p>
+<ul>
+<li>
+<p>
+0:    is accept no cookies
+</p>
+</li>
+<li>
+<p>
+1:    is ask for confirmation before accepting cookie
+</p>
+</li>
+<li>
+<p>
+2:    is accept all cookies
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+cookies.max_age &lt;num&gt; (default: -1)
+</dt>
+<dd>
+<p>
+        Cookie maximum age (in days):
+</p>
+<ul>
+<li>
+<p>
+-1:   is use cookie's expiration date if any
+</p>
+</li>
+<li>
+<p>
+0:    is force expiration at the end of session, ignoring cookie's
+        expiration date
+</p>
+</li>
+<li>
+<p>
+1:    + is use cookie's expiration date, but limit age to the given
+        number of days
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+cookies.paranoid_security [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        When enabled, we'll require three dots in cookies domain for all
+        non-international domains (instead of just two dots). Some countries
+        have generic second level domains (eg. .com.pl, .co.uk) and allowing
+        sites to set cookies for these generic domains could potentially be
+        very bad. Note, it is off by default as it breaks a lot of sites.
+</p>
+</dd>
+<dt>
+cookies.save [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Whether cookies should be loaded from and saved to disk.
+</p>
+</dd>
+<dt>
+cookies.resave [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Save cookies after each change in cookies list? No effect when
+        cookie saving (cookies.save) is off.
+</p>
+</dd>
+<dt>
+document
+</dt>
+<dd>
+<p>
+        Document options.
+</p>
+</dd>
+<dt>
+document.browse
+</dt>
+<dd>
+<p>
+        Document browsing options (mainly interactivity).
+</p>
+</dd>
+<dt>
+document.browse.accesskey
+</dt>
+<dd>
+<p>
+        Options for handling of link access keys.
+        An HTML document can use the ACCESSKEY attribute to assign
+        an access key to an element. When an access key is pressed,
+        the corresponding element will be given focus.
+</p>
+</dd>
+<dt>
+document.browse.accesskey.auto_follow [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Automatically follow a link or submit a form if appropriate
+        accesskey is pressed - this is the standard behaviour, but it's
+        considered dangerous.
+</p>
+</dd>
+<dt>
+document.browse.accesskey.display [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Display access key in link info.
+</p>
+</dd>
+<dt>
+document.browse.accesskey.priority &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        Priority of 'accesskey' HTML attribute:
+</p>
+<ul>
+<li>
+<p>
+0:    is first try all normal bindings; if it fails, check accesskey
+</p>
+</li>
+<li>
+<p>
+1:    is first try only frame bindings; if it fails, check accesskey
+</p>
+</li>
+<li>
+<p>
+2:    is first check accesskey (this can be dangerous)
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.browse.forms
+</dt>
+<dd>
+<p>
+        Options for handling of the forms interaction.
+</p>
+</dd>
+<dt>
+document.browse.forms.auto_submit [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Automagically submit a form when enter is pressed with a text
+        field selected.
+</p>
+</dd>
+<dt>
+document.browse.forms.confirm_submit [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Ask for confirmation when submitting a form.
+</p>
+</dd>
+<dt>
+document.browse.forms.input_size &lt;num&gt; (default: 20)
+</dt>
+<dd>
+<p>
+        Default form input size if none is specified.
+</p>
+</dd>
+<dt>
+document.browse.forms.insert_mode [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        The setting for this option affects how key presses are handled
+        when one selects a text-input form-field. When enabled, one must
+        explicitly 'enter' a selected text-field to edit it; this prevents
+        text fields from capturing key presses, such as presses of a scroll
+        key, when it is inadvertently selected. When disabled, key presses
+        are always inserted into a selected text field.
+</p>
+</dd>
+<dt>
+document.browse.forms.editor &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Path to the executable that <em>ELinks</em> should launch when the user
+        requests to edit a textarea with an external editor.
+        If this is blank, <em>ELinks</em> will use the value of the environmental
+        variable $EDITOR. If $EDITOR is empty or not set, <em>ELinks</em> will then
+        default to "vi".
+</p>
+</dd>
+<dt>
+document.browse.forms.show_formhist [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Ask if a login form should be saved to file or not.
+        This option only disables the dialog, already saved login
+        forms are unaffected.
+</p>
+</dd>
+<dt>
+document.browse.images
+</dt>
+<dd>
+<p>
+        Options for handling of images.
+</p>
+</dd>
+<dt>
+document.browse.images.display_style &lt;num&gt; (default: 2)
+</dt>
+<dd>
+<p>
+        Display style for image tags when displayed:
+</p>
+<ul>
+<li>
+<p>
+0:    means always display IMG
+</p>
+</li>
+<li>
+<p>
+1:    means always display filename
+</p>
+</li>
+<li>
+<p>
+2:    means display alt/title attribute if possible, IMG if not
+</p>
+</li>
+<li>
+<p>
+3:    means display alt/title attribute if possible, filename if not
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.browse.images.filename_maxlen &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        Maximum length of image filename when displayed:
+</p>
+<ul>
+<li>
+<p>
+0:    means always display full filename
+</p>
+</li>
+<li>
+<p>
+1-500:        means display filename with this maximal length;
+        if it is longer, the middle is substituted by an asterisk
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.browse.images.image_link_tagging &lt;num&gt; (default: 1)
+</dt>
+<dd>
+<p>
+        When to enclose image links:
+</p>
+<ul>
+<li>
+<p>
+0:    means never
+</p>
+</li>
+<li>
+<p>
+1:    means never if alt or title are provided (old behavior)
+</p>
+</li>
+<li>
+<p>
+2:    means always
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.browse.images.image_link_prefix &lt;str&gt; (default: "[")
+</dt>
+<dd>
+<p>
+        Prefix string to use to mark image links.
+</p>
+</dd>
+<dt>
+document.browse.images.image_link_suffix &lt;str&gt; (default: "]")
+</dt>
+<dd>
+<p>
+        Suffix string to use to mark image links.
+</p>
+</dd>
+<dt>
+document.browse.images.label_maxlen &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        Maximum length of image label (alt/title):
+</p>
+<ul>
+<li>
+<p>
+0:    means always display full label
+</p>
+</li>
+<li>
+<p>
+1-500:        means display label with this maximal length;
+        if it is longer, the middle is substituted by an asterisk
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.browse.images.show_as_links [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Display links to images without an alt attribute. If this option
+        is off, these images are completely invisible.
+</p>
+</dd>
+<dt>
+document.browse.images.show_any_as_links [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Display links to any images in the document, regardless of them
+        having an alt attribute or not. If this option is off, the alt
+        attribute contents is shown, but as normal text, not selectable
+        as a link.
+</p>
+</dd>
+<dt>
+document.browse.links
+</dt>
+<dd>
+<p>
+        Options for handling of links to other documents.
+</p>
+</dd>
+<dt>
+document.browse.links.active_link
+</dt>
+<dd>
+<p>
+        Options for the active link.
+</p>
+</dd>
+<dt>
+document.browse.links.active_link.colors
+</dt>
+<dd>
+<p>
+        Active link colors.
+</p>
+</dd>
+<dt>
+document.browse.links.active_link.colors.background &lt;color|#rrggbb&gt; (default: blue)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+document.browse.links.active_link.colors.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+document.browse.links.active_link.enable_color [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Enable use of the active link background and text color
+        settings instead of the link colors from the document.
+</p>
+</dd>
+<dt>
+document.browse.links.active_link.bold [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Make the active link text bold.
+</p>
+</dd>
+<dt>
+document.browse.links.active_link.invert [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Invert the fore- and background color so the link stands out.
+</p>
+</dd>
+<dt>
+document.browse.links.active_link.underline [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Underline the active link.
+</p>
+</dd>
+<dt>
+document.browse.links.color_dirs [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Highlight links to directories in FTP and local directory listing.
+</p>
+</dd>
+<dt>
+document.browse.links.numbering [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Display numbers next to the links.
+</p>
+</dd>
+<dt>
+document.browse.links.target_blank &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        Define how to handle links having target=_blank set:
+</p>
+<ul>
+<li>
+<p>
+0:    means open link in current tab
+</p>
+</li>
+<li>
+<p>
+1:    means open link in new tab in foreground
+</p>
+</li>
+<li>
+<p>
+2:    means open link in new tab in background
+</p>
+</li>
+<li>
+<p>
+3:    means open link in new window
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.browse.links.use_tabindex [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Whether to navigate links using tabindex specified ordering.
+        The TABINDEX attribute in HTML elements specifies the order
+        in which links should receive focus when using the keyboard
+        to navigate the document.
+</p>
+</dd>
+<dt>
+document.browse.links.missing_fragment [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Open a message box when document has no tag with given id.
+</p>
+</dd>
+<dt>
+document.browse.links.number_keys_select_link &lt;num&gt; (default: 1)
+</dt>
+<dd>
+<p>
+        Number keys select links rather than specify command prefixes. This
+        is a tristate:
+</p>
+<ul>
+<li>
+<p>
+0:    means never
+</p>
+</li>
+<li>
+<p>
+1:    means if document.browse.links.numbering = 1
+</p>
+</li>
+<li>
+<p>
+2:    means always
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.browse.links.warn_malicious [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        When following a link the user ID part of the URI is
+        checked and if a maliciously crafted URI is detected a
+        warning dialog will ask before following the link.
+</p>
+</dd>
+<dt>
+document.browse.links.wraparound [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        When pressing 'down' on the last link, jump to the first one, and
+        vice versa.
+</p>
+</dd>
+<dt>
+document.browse.scrolling
+</dt>
+<dd>
+<p>
+        Scrolling options.
+</p>
+</dd>
+<dt>
+document.browse.scrolling.horizontal_extended [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Whether to allow horizontal scrolling when the document
+        does not extend off the screen. Useful for copy/paste
+        operations.
+</p>
+</dd>
+<dt>
+document.browse.scrolling.horizontal_step &lt;num&gt; (default: 8)
+</dt>
+<dd>
+<p>
+        Number of columns to scroll when a key bound to scroll-left or scroll-
+        right is pressed and no prefix was given.
+</p>
+</dd>
+<dt>
+document.browse.scrolling.margin &lt;num&gt; (default: 3)
+</dt>
+<dd>
+<p>
+        Size of the virtual margin - when you click inside of that margin,
+        document scrolls in that direction.
+</p>
+</dd>
+<dt>
+document.browse.scrolling.vertical_step &lt;num&gt; (default: 2)
+</dt>
+<dd>
+<p>
+        Number of lines to scroll when a key bound to scroll-up or scroll-
+        down is pressed and no prefix was given.
+</p>
+</dd>
+<dt>
+document.browse.search
+</dt>
+<dd>
+<p>
+        Options for searching.
+</p>
+</dd>
+<dt>
+document.browse.search.case [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Whether the search should match the document text while maintaining
+        case sensitivity.
+</p>
+</dd>
+<dt>
+document.browse.search.regex &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        Enable searching with regular expressions:
+</p>
+<ul>
+<li>
+<p>
+0:    for plain text searching
+</p>
+</li>
+<li>
+<p>
+1:    for basic regular expression searches
+</p>
+</li>
+<li>
+<p>
+2:    for extended regular expression searches
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.browse.search.show_hit_top_bottom [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Whether to show a dialog when the search hits the top or bottom of the
+        document.
+</p>
+</dd>
+<dt>
+document.browse.search.wraparound [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Wrap around when searching. Currently only used for typeahead.
+</p>
+</dd>
+<dt>
+document.browse.search.show_not_found &lt;num&gt; (default: 2)
+</dt>
+<dd>
+<p>
+        How to inform the user when nothing is matched:
+</p>
+<ul>
+<li>
+<p>
+0:    means do nothing
+</p>
+</li>
+<li>
+<p>
+1:    means beep the terminal
+</p>
+</li>
+<li>
+<p>
+2:    means pop up message box
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.browse.search.typeahead &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        Start typeahead searching when an unbound key is pressed without
+        any modifiers. Note that most keys have default bindings, so this
+        feature will not be useful unless you unbind them.
+</p>
+</dd>
+<dt>
+when you (when you press a key bound to search-typeahead or similar)
+</dt>
+<dd>
+<p>
+        1 automatically starts typeahead searching thru link text
+        2 automatically starts typeahead searching thru all document text
+</p>
+</dd>
+<dt>
+document.browse.margin_width &lt;num&gt; (default: 3)
+</dt>
+<dd>
+<p>
+        Horizontal text margin.
+</p>
+</dd>
+<dt>
+document.browse.refresh [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Automatically follow document-specified refresh directives (<em>&lt;meta&gt;
+        refresh</em> tags). Web-page authors use these to instruct the browser
+        to reload a document at a given interval or to load another page.
+        Regardless of the value the refresh URI is accessible as a link.
+        Use the document.browse.minimum_refresh_time to control the minimum
+        number of seconds a refresh will wait.
+</p>
+</dd>
+<dt>
+document.browse.minimum_refresh_time &lt;num&gt; (default: 1000)
+</dt>
+<dd>
+<p>
+        The minimum number of milliseconds that should pass before
+        refreshing. If set to zero the document refresh time is used
+        unchanged. It can fix going back in history for some sites that
+        use refreshing with zero values.
+</p>
+</dd>
+<dt>
+document.browse.table_move_order [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Move by columns in table, instead of rows.
+</p>
+</dd>
+<dt>
+document.cache
+</dt>
+<dd>
+<p>
+        Cache options.
+</p>
+</dd>
+<dt>
+document.cache.format
+</dt>
+<dd>
+<p>
+        Format cache options.
+</p>
+</dd>
+<dt>
+document.cache.format.size &lt;num&gt; (default: 5)
+</dt>
+<dd>
+<p>
+        Number of cached formatted pages. Do not get too generous
+        here, 'formatted' means that all the accompanying structures
+        are kept in memory so that you get the cached document
+        immediatelly, but these structures may take a lot - 2x the
+        size of the HTML source is probably not unusual, but it can
+        be even more if the document consists of a lot of short lines
+        (padded right, if possible) and links and not much other markup.
+        So if you set this to 256 and then you don't like your <em>ELinks</em>
+        eating 90M, don't come complaining to us. ;-)
+        Also note that the format cache itself is not counted to the
+        memory cache size, but the HTML source of the formatted documents
+        is always cached, even if it is over the memory cache size
+        threshold. (Then of course no other documents can be cached.)
+</p>
+</dd>
+<dt>
+document.cache.memory
+</dt>
+<dd>
+<p>
+        Memory cache options.
+</p>
+</dd>
+<dt>
+document.cache.memory.size &lt;num&gt; (default: 1048576)
+</dt>
+<dd>
+<p>
+        Memory cache size (in bytes).
+</p>
+</dd>
+<dt>
+document.cache.cache_redirects [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Cache even redirects sent by server (usually thru HTTP by a 302
+        HTTP code and a Location header). This was the original behaviour
+        for quite some time, but it causes problems in a situation very
+        common to various web login systems - frequently, when accessing
+        a certain location, they will redirect you to a login page if they
+        don't receive an auth cookie, the login page then gives you the
+        cookie and redirects you back to the original page, but there you
+        have already cached redirect back to the login page! If this
+        option has value of 0, this malfunction is fixed, but occasionally
+        you may get superfluous (depends on how you take it ;-) requests to
+        the server. If this option has value of 1, experienced users can
+        still workaround it by clever combination of usage of reload,
+        jumping around in session history and hitting ctrl+enter.
+        Note that this option is checked when retrieving the information
+        from cache, not when saving it to cache - thus if you enable
+        it, even previous redirects will be taken from cache instead of
+        asking the server.
+</p>
+</dd>
+<dt>
+document.cache.ignore_cache_control [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Ignore Cache-Control and Pragma server headers.
+        When set, the document is cached even with 'Cache-Control: no-cache'.
+</p>
+</dd>
+<dt>
+document.codepage
+</dt>
+<dd>
+<p>
+        Charset options.
+</p>
+</dd>
+<dt>
+document.codepage.assume &lt;codepage&gt; (default: System)
+</dt>
+<dd>
+<p>
+        Default document codepage. 'System' stands for
+        a codepage determined by a selected locale.
+</p>
+</dd>
+<dt>
+document.codepage.force_assumed [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Ignore charset info sent by server.
+</p>
+</dd>
+<dt>
+document.colors
+</dt>
+<dd>
+<p>
+        Default document color settings.
+</p>
+</dd>
+<dt>
+document.colors.text &lt;color|#rrggbb&gt; (default: gray75)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+document.colors.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+document.colors.link &lt;color|#rrggbb&gt; (default: blue)
+</dt>
+<dd>
+<p>
+        Default link color.
+</p>
+</dd>
+<dt>
+document.colors.vlink &lt;color|#rrggbb&gt; (default: yellow)
+</dt>
+<dd>
+<p>
+        Default visited link color.
+</p>
+</dd>
+<dt>
+document.colors.image &lt;color|#rrggbb&gt; (default: darkolivegreen)
+</dt>
+<dd>
+<p>
+        Default image link color.
+</p>
+</dd>
+<dt>
+document.colors.bookmark &lt;color|#rrggbb&gt; (default: hotpink)
+</dt>
+<dd>
+<p>
+        Default bookmarked link color.
+</p>
+</dd>
+<dt>
+document.colors.dirs &lt;color|#rrggbb&gt; (default: yellow)
+</dt>
+<dd>
+<p>
+        Default directory color.
+        See document.browse.links.color_dirs option.
+</p>
+</dd>
+<dt>
+document.colors.increase_contrast [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Increase the contrast between the foreground and background colors
+        to ensure readability. For example it disallows dark colors on a
+        black background. Note, this is different from ensuring the contrast
+        with the ensure_contrast option.
+</p>
+</dd>
+<dt>
+document.colors.ensure_contrast [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Makes sure that the back- and foreground colors are never equal.
+</p>
+</dd>
+<dt>
+document.colors.use_document_colors &lt;num&gt; (default: 2)
+</dt>
+<dd>
+<p>
+        Use colors specified in document:
+</p>
+<ul>
+<li>
+<p>
+0:    is use always the default settings
+</p>
+</li>
+<li>
+<p>
+1:    is use document colors if available, except background
+</p>
+</li>
+<li>
+<p>
+2:    is use document colors, including background. This can
+        mostly look very impressive, but some sites will appear
+        really ugly. Note, that obviously if the background is
+        not black, it will break the behaviour of transparency.
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.css
+</dt>
+<dd>
+<p>
+        Options concerning how to use CSS for styling documents.
+</p>
+</dd>
+<dt>
+document.css.enable [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Enable adding of CSS style info to documents.
+</p>
+</dd>
+<dt>
+document.css.import [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        When enabled any external style sheets that are imported from
+        either CSS itself using the @import keyword or from the HTML using
+        &lt;link&gt; tags in the document header will also be downloaded.
+</p>
+</dd>
+<dt>
+document.css.stylesheet &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        The path to the file containing the default user defined
+        Cascading Style Sheet. It can be used to control the basic
+        layout of HTML documents. The path is assumed to be relative
+        to <em>ELinks</em>' home directory.
+        Leave as "" to use built-in document styling.
+</p>
+</dd>
+<dt>
+document.download
+</dt>
+<dd>
+<p>
+        Options regarding files downloading and handling.
+</p>
+</dd>
+<dt>
+document.download.directory &lt;str&gt; (default: "./")
+</dt>
+<dd>
+<p>
+        Default download directory.
+</p>
+</dd>
+<dt>
+document.download.set_original_time [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Set the timestamp of each downloaded file to the timestamp
+        stored on the server.
+</p>
+</dd>
+<dt>
+document.download.overwrite &lt;num&gt; (default: 2)
+</dt>
+<dd>
+<p>
+        Prevent overwriting the local files:
+</p>
+<ul>
+<li>
+<p>
+0:    is files will silently be overwritten
+</p>
+</li>
+<li>
+<p>
+1:    is add a suffix .{number} (for example '.1') to the name
+</p>
+</li>
+<li>
+<p>
+2:    is ask the user
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.download.notify_bell &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        Audio notification when download is completed:
+</p>
+<ul>
+<li>
+<p>
+0:    is never
+</p>
+</li>
+<li>
+<p>
+1:    is when background notification is active
+</p>
+</li>
+<li>
+<p>
+2:    is always
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.dump
+</dt>
+<dd>
+<p>
+        Dump output options.
+</p>
+</dd>
+<dt>
+document.dump.codepage &lt;codepage&gt; (default: System)
+</dt>
+<dd>
+<p>
+        Codepage used in dump output. 'System' stands for
+        a codepage determined by a selected locale.
+</p>
+</dd>
+<dt>
+document.dump.footer &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Footer string used in dumps. %u is substituted by URL.
+</p>
+</dd>
+<dt>
+document.dump.header &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Header string used in dumps. %u is substituted by URL.
+</p>
+</dd>
+<dt>
+document.dump.numbering [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Whether to print link numbers in dump output.
+</p>
+</dd>
+<dt>
+document.dump.references [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Whether to print references (URIs) of document links
+        in dump output.
+</p>
+</dd>
+<dt>
+document.dump.separator &lt;str&gt; (document.dump.separator &lt;str&gt; (default: ")
+</dt>
+<dt>
+document.dump.width &lt;num&gt; (default: 80)
+</dt>
+<dd>
+<p>
+        Width of screen in characters when dumping documents.
+</p>
+</dd>
+<dt>
+document.history
+</dt>
+<dd>
+<p>
+        History options.
+</p>
+</dd>
+<dt>
+document.history.global
+</dt>
+<dd>
+<p>
+        Global history options.
+</p>
+</dd>
+<dt>
+document.history.global.enable [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Enable global history ("history of all pages visited").
+</p>
+</dd>
+<dt>
+document.history.global.max_items &lt;num&gt; (default: 1024)
+</dt>
+<dd>
+<p>
+        Maximum number of entries in the global history.
+</p>
+</dd>
+<dt>
+document.history.global.display_type &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        What to display in global history dialog:
+</p>
+<ul>
+<li>
+<p>
+0:    is URLs
+</p>
+</li>
+<li>
+<p>
+1:    is page titles
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.history.keep_unhistory [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Keep unhistory ("forward history").
+</p>
+</dd>
+<dt>
+document.html
+</dt>
+<dd>
+<p>
+        Options concerning the display of HTML pages.
+</p>
+</dd>
+<dt>
+document.html.display_frames [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Display frames.
+</p>
+</dd>
+<dt>
+document.html.display_tables [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Display tables.
+</p>
+</dd>
+<dt>
+document.html.display_subs [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Display subscripts (as [thing]).
+</p>
+</dd>
+<dt>
+document.html.display_sups [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Display superscripts (as ^thing).
+</p>
+</dd>
+<dt>
+document.html.link_display &lt;num&gt; (default: 2)
+</dt>
+<dd>
+<p>
+        How to render &lt;link&gt; tags from the HTML header:
+</p>
+<ul>
+<li>
+<p>
+0:    is nothing
+</p>
+</li>
+<li>
+<p>
+1:    is title
+</p>
+</li>
+<li>
+<p>
+2:    is name in addition
+</p>
+</li>
+<li>
+<p>
+3:    is hreflang in addition
+</p>
+</li>
+<li>
+<p>
+4:    is type in addition
+</p>
+</li>
+<li>
+<p>
+5:    is everything
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+document.html.underline_links [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Underline links.
+</p>
+</dd>
+<dt>
+document.html.wrap_nbsp [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        If set do not honour non breaking space (the nbsp entity)
+        but allow to wrap the text. This can help keeping the width
+        of documents down so no horizontal scrolling is needed.
+</p>
+</dd>
+<dt>
+document.plain
+</dt>
+<dd>
+<p>
+        Options concerning the display of plain text pages.
+</p>
+</dd>
+<dt>
+document.plain.display_links [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Display URIs in the document as links.
+</p>
+</dd>
+<dt>
+document.plain.compress_empty_lines [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Compress successive empty lines to only one in displayed text.
+</p>
+</dd>
+<dt>
+document.uri_passing
+</dt>
+<dd>
+<p>
+        Rules for passing URIs to external commands. When one rule
+        is defined the link and tab menu will have a menu item that
+        makes it possible to pass the the link, frame or tab URI to
+        an external command. If several rules are defined the link and
+        tab menu will have a submenu of items for each rule. Note, this
+        is mostly useful for launching graphical viewers, since there
+        is no support for releasing the terminal while the command runs.
+        The action and submenus are also available by binding keys to
+        the frame-external-command, the link-external-command, and
+        the tab-external-command actions.
+</p>
+</dd>
+<dt>
+document.uri_passing._template_ &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        A rule for passing URI to an external command.
+        The format is:
+        %c in the string means the current URL
+        %% in the string means '%'
+        Do _not_ put single- or double-quotes around %c.
+</p>
+</dd>
+<dt>
+ecmascript
+</dt>
+<dd>
+<p>
+        ECMAScript options.
+</p>
+</dd>
+<dt>
+ecmascript.enable [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Whether to run those scripts inside of documents.
+</p>
+</dd>
+<dt>
+ecmascript.error_reporting [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Open a message box when a script reports an error.
+</p>
+</dd>
+<dt>
+ecmascript.ignore_noscript [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Whether to ignore content enclosed by the &lt;noscript&gt; tag
+        when ECMAScript is enabled.
+</p>
+</dd>
+<dt>
+ecmascript.max_exec_time &lt;num&gt; (default: 5)
+</dt>
+<dd>
+<p>
+        Maximum execution time in seconds for a script.
+</p>
+</dd>
+<dt>
+ecmascript.block_window_opening [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Whether to disallow scripts to open new windows or tabs.
+</p>
+</dd>
+<dt>
+infofiles
+</dt>
+<dd>
+<p>
+        Options for information files in <tt>~/.elinks</tt>.
+</p>
+</dd>
+<dt>
+infofiles.save_interval &lt;num&gt; (default: 300)
+</dt>
+<dd>
+<p>
+        Interval at which to trigger information files in <tt>~/.elinks</tt>
+        to be saved to disk if they have changed (seconds; 0 to disable)
+</p>
+</dd>
+<dt>
+infofiles.secure_save [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        First write data to unique temporary file, then rename this file
+        upon successfully finishing this. Note that this relates only to
+        config files, not downloaded files. You may want to disable
+        it if you are using some exotic permissions for concerned files.
+        Secure file saving is automagically disabled if file is symlink.
+        Warning: some systems (ie. OS/2, Win32) require that destination
+        file doesn't exist when rename(3) is called, breaking atomicity,
+        and reducing reliability of this feature.
+</p>
+</dd>
+<dt>
+infofiles.secure_save_fsync [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        When using secure file saving, call fsync(3), if the OS
+        supports it, to force the OS immediately to write the data
+        to permanent storage. This is optional for those who wish
+        to avoid excessive disk I/O.
+</p>
+</dd>
+<dt>
+mime
+</dt>
+<dd>
+<p>
+        MIME-related options (handlers of various MIME types).
+</p>
+</dd>
+<dt>
+mime.extension
+</dt>
+<dd>
+<p>
+        Extension &lt;-&gt; MIME type association.
+</p>
+</dd>
+<dt>
+mime.extension._template_ &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        MIME-type matching this file extension ('*' is used here in place
+        of '.').
+</p>
+</dd>
+<dt>
+mime.handler
+</dt>
+<dd>
+<p>
+        A file type handler is a set of information about how to use
+        an external program to view a file. It is possible to refer to it
+        for several MIME types &#8212; e.g., you can define an 'image' handler
+        to which mime.type.image.png, mime.type.image.jpeg, and so on will
+        refer; or one might define a handler for a more specific type of file
+        &#8212; e.g., PDF files.
+        Note you must define both a MIME handler and a MIME type association
+        for it to work.
+</p>
+</dd>
+<dt>
+mime.handler._template_
+</dt>
+<dd>
+<p>
+        Description of this handler.
+</p>
+</dd>
+<dt>
+mime.handler._template_._template_
+</dt>
+<dd>
+<p>
+        System-specific handler description (ie. unix, unix-xwin, &#8230;).
+</p>
+</dd>
+<dt>
+mime.handler._template_._template_.ask [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Ask before opening.
+</p>
+</dd>
+<dt>
+mime.handler._template_._template_.block [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Block the terminal when the handler is running.
+</p>
+</dd>
+<dt>
+mime.handler._template_._template_.program &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        External viewer for this file type. '%' in this string will be
+        substituted by a file name.
+</p>
+</dd>
+<dt>
+mime.mailcap
+</dt>
+<dd>
+<p>
+        Options for mailcap support.
+</p>
+</dd>
+<dt>
+mime.mailcap.enable [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Enable mailcap support.
+</p>
+</dd>
+<dt>
+mime.mailcap.path &lt;str&gt; (default: "~/.mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap:/usr/share/mailcap:/usr/share/misc/mailcap")
+</dt>
+<dd>
+<p>
+        Mailcap search path. Colon-separated list of files.
+        Leave as "" to use MAILCAP environment variable instead.
+</p>
+</dd>
+<dt>
+mime.mailcap.ask [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Ask before using the handlers defined by mailcap.
+</p>
+</dd>
+<dt>
+mime.mailcap.description &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        Type of description to show in "what to do with this file"
+        query dialog:
+</p>
+<ul>
+<li>
+<p>
+0:    is show "mailcap"
+</p>
+</li>
+<li>
+<p>
+1:    is show program to be run
+</p>
+</li>
+<li>
+<p>
+2:    is show mailcap description field if any; "mailcap" otherwise
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+mime.mailcap.prioritize [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Prioritize entries by the order of the files in the mailcap
+        path. This means that wildcard entries (like: image/*) will
+        also be checked before deciding the handler.
+</p>
+</dd>
+<dt>
+mime.mimetypes
+</dt>
+<dd>
+<p>
+        Options for the support of mime.types files. These files
+        can be used to find the content type of a URL by looking at
+        the extension of the file name.
+</p>
+</dd>
+<dt>
+mime.mimetypes.enable [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Enable mime.types support.
+</p>
+</dd>
+<dt>
+mime.mimetypes.path &lt;str&gt; (default: "~/.mime.types:/etc/mime.types:/usr/etc/mime.types:/usr/local/etc/mime.types:/usr/share/mime.types:/usr/share/misc/mime.types")
+</dt>
+<dd>
+<p>
+        The search path for mime.types files. Colon-separated list of files.
+</p>
+</dd>
+<dt>
+mime.type
+</dt>
+<dd>
+<p>
+        Handler &lt;-&gt; MIME type association. The first sub-tree is the MIME
+        class while the second sub-tree is the MIME type (ie. image/gif
+        handler will reside at mime.type.image.gif). Each MIME type option
+        should contain (case-sensitive) name of the MIME handler (its
+        properties are stored at mime.handler.&lt;name&gt;).
+</p>
+</dd>
+<dt>
+mime.type._template_
+</dt>
+<dd>
+<p>
+        Handler matching this MIME-type class ('*' is used here in place
+        of '.').
+</p>
+</dd>
+<dt>
+mime.type._template_._template_ &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Handler matching this MIME-type name ('*' is used here in place
+        of '.').
+</p>
+</dd>
+<dt>
+mime.default_type &lt;str&gt; (default: "application/octet-stream")
+</dt>
+<dd>
+<p>
+        Document MIME-type to assume by default (when we are unable to
+        guess it properly from known information about the document).
+</p>
+</dd>
+<dt>
+protocol
+</dt>
+<dd>
+<p>
+        Protocol specific options.
+</p>
+</dd>
+<dt>
+protocol.bittorrent
+</dt>
+<dd>
+<p>
+        BitTorrent specific options.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.ports
+</dt>
+<dd>
+<p>
+        Port range allowed to be used for listening on.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.ports.min &lt;num&gt; (default: 6881)
+</dt>
+<dd>
+<p>
+        The minimum port to try and listen on.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.ports.max &lt;num&gt; (default: 6999)
+</dt>
+<dd>
+<p>
+        The maximum port to try and listen on.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.tracker
+</dt>
+<dd>
+<p>
+        Tracker options.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.tracker.compact [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Whether to request that the tracker returns peer info
+        in compact format. Note, the compact format only supports
+        IPv4 addresses.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.tracker.interval &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        The number of seconds to wait between periodically contacting
+        the tracker for announcing progress and requesting more peers.
+        Set to zero to use the interval requested by the tracker.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.tracker.ip_address &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        What IP address to report to the tracker. If set to ""
+        no IP address will be sent and the tracker will automatically
+        determine an appropriate IP address.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.tracker.key &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        An additional identification that is not shared with any users.
+        It is intended to allow a client to prove their identity should
+        their IP address change. It is an optional parameter, but some
+        trackers require this parameter. If set to "" no user key will
+        be sent to the tracker.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.tracker.numwant &lt;num&gt; (default: 50)
+</dt>
+<dd>
+<p>
+        The maximum number of peers to request from the tracker.
+        Set to 0 to use the server default.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.tracker.min_skip_size &lt;num&gt; (default: 20)
+</dt>
+<dd>
+<p>
+        The minimum number of peers to have in the current peer info
+        pool before skipping requesting of more peers. I.e. setting
+        numwant to zero.
+        Set to 0 to not have any limit.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.peerwire
+</dt>
+<dd>
+<p>
+        Lowlevel peer-wire options.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.peerwire.connections &lt;num&gt; (default: 55)
+</dt>
+<dd>
+<p>
+        The maximum number of allowed connections to both active and
+        non-active peers. By increasing the number of allowed connections,
+        the chance of finding good peers to download from is increased.
+        However, too many connections can lead to TCP congestion. If the
+        maximum is reached all new incoming connections will be closed.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.peerwire.max_message_length &lt;num&gt; (default: 8388608)
+</dt>
+<dd>
+<p>
+        The maximum length of messages to accept over the wire.
+        Larger values will cause the connection to be dropped.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.peerwire.max_request_length &lt;num&gt; (default: 8388608)
+</dt>
+<dd>
+<p>
+        The maximum length to allow for incoming requests.
+        Larger requests will cause the connection to be dropped.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.peerwire.request_length &lt;num&gt; (default: 16384)
+</dt>
+<dd>
+<p>
+        How many bytes to query for per request. This is complementary
+        to the max_request_length option. If the configured length is
+        bigger than the piece length it will be truncated.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.peerwire.timeout &lt;num&gt; (default: 300)
+</dt>
+<dd>
+<p>
+        The number of seconds to wait before closing a socket on
+        which nothing has been received or sent.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.peerwire.pool_size &lt;num&gt; (default: 55)
+</dt>
+<dd>
+<p>
+        Maximum number of items in the peer pool. The peer pool
+        contains information used for establishing connections to
+        new peers.
+        Set to 0 to have unlimited size.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.piece_cache_size &lt;num&gt; (default: 1048576)
+</dt>
+<dd>
+<p>
+        The maximum amount of memory used to hold recently
+        downloaded pieces.
+        Set to 0 to have unlimited size.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.max_uploads &lt;num&gt; (default: 7)
+</dt>
+<dd>
+<p>
+        The maximum number of uploads to allow at once.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.min_uploads &lt;num&gt; (default: 2)
+</dt>
+<dd>
+<p>
+        The minimum number of uploads which should at least
+        be used for new connections.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.request_queue_size &lt;num&gt; (default: 5)
+</dt>
+<dd>
+<p>
+        How many piece requests to continuously keep in queue. Pipelining
+        of requests is essential to saturate connections and get a good
+        connection performance and thus a faster download. However, a
+        very big queue size can lead to wasting bandwidth near the end
+        of the connection since remaining piece blocks will be requested
+        from multiple peers.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.choke_interval &lt;num&gt; (default: 10)
+</dt>
+<dd>
+<p>
+        The number of seconds between updating the connection state
+        and most importantly choke and unchoke peer connections. The
+        choke period should be big enough for newly unchoked connections
+        to get started but small enough to not allow freeriders too much
+        room for stealing bandwidth.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.rarest_first_cutoff &lt;num&gt; (default: 4)
+</dt>
+<dd>
+<p>
+        The number of pieces to obtain before switching piece
+        selection strategy from random to rarest first.
+</p>
+</dd>
+<dt>
+protocol.bittorrent.allow_blacklist [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Allow blacklisting of buggy peers.
+</p>
+</dd>
+<dt>
+protocol.file
+</dt>
+<dd>
+<p>
+        Options specific to local browsing.
+</p>
+</dd>
+<dt>
+protocol.file.cgi
+</dt>
+<dd>
+<p>
+        Local CGI specific options.
+</p>
+</dd>
+<dt>
+protocol.file.cgi.path &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Colon separated list of directories, where CGI scripts are stored.
+</p>
+</dd>
+<dt>
+protocol.file.cgi.policy [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Whether to execute local CGI scripts.
+</p>
+</dd>
+<dt>
+protocol.file.allow_special_files [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Whether to allow reading from non-regular files.
+        Note this can be dangerous; reading /dev/urandom or
+        /dev/zero can ruin your day!
+</p>
+</dd>
+<dt>
+protocol.file.show_hidden_files [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        When set to false, files with name starting with a dot will be
+        hidden in local directory listings.
+</p>
+</dd>
+<dt>
+protocol.file.try_encoding_extensions [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        When set, if we can't open a file named 'filename', we'll try
+        to open 'filename' with some encoding extension appended
+        (ie. 'filename.gz'); it depends on the supported encodings.
+</p>
+</dd>
+<dt>
+protocol.fsp
+</dt>
+<dd>
+<p>
+        FSP specific options.
+</p>
+</dd>
+<dt>
+protocol.fsp.sort [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Whether to sort entries in directory listings.
+</p>
+</dd>
+<dt>
+protocol.ftp
+</dt>
+<dd>
+<p>
+        FTP specific options.
+</p>
+</dd>
+<dt>
+protocol.ftp.proxy
+</dt>
+<dd>
+<p>
+        FTP proxy configuration.
+</p>
+</dd>
+<dt>
+protocol.ftp.proxy.host &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Host and port-number (host:port) of the FTP proxy, or blank.
+        If it's blank, FTP_PROXY environment variable is checked as well.
+</p>
+</dd>
+<dt>
+protocol.ftp.anon_passwd &lt;str&gt; (default: "some@host.domain")
+</dt>
+<dd>
+<p>
+        FTP anonymous password to be sent.
+</p>
+</dd>
+<dt>
+protocol.ftp.use_pasv [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Use PASV instead of PORT (passive vs active mode, IPv4 only).
+</p>
+</dd>
+<dt>
+protocol.ftp.use_epsv [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Use EPSV instead of EPRT (passive vs active mode, IPv6 only).
+</p>
+</dd>
+<dt>
+protocol.http
+</dt>
+<dd>
+<p>
+        HTTP-specific options.
+</p>
+</dd>
+<dt>
+protocol.http.bugs
+</dt>
+<dd>
+<p>
+        Server-side HTTP bugs workarounds.
+</p>
+</dd>
+<dt>
+protocol.http.bugs.accept_charset [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        The Accept-Charset header is quite long and sending it can trigger
+        bugs in some rarely found servers.
+</p>
+</dd>
+<dt>
+protocol.http.bugs.allow_blacklist [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Allow blacklisting of buggy servers.
+</p>
+</dd>
+<dt>
+protocol.http.bugs.broken_302_redirect [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Broken 302 redirect (violates RFC but compatible with Netscape).
+        This is a problem for a lot of web discussion boards and the like.
+        If they will do strange things to you, try to play with this.
+</p>
+</dd>
+<dt>
+protocol.http.bugs.post_no_keepalive [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Disable keepalive connection after POST request.
+</p>
+</dd>
+<dt>
+protocol.http.bugs.http10 [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Use HTTP/1.0 protocol instead of HTTP/1.1.
+</p>
+</dd>
+<dt>
+protocol.http.proxy
+</dt>
+<dd>
+<p>
+        HTTP proxy configuration.
+</p>
+</dd>
+<dt>
+protocol.http.proxy.host &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Host and port-number (host:port) of the HTTP proxy, or blank.
+        If it's blank, HTTP_PROXY environment variable is checked as well.
+</p>
+</dd>
+<dt>
+protocol.http.proxy.user &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Proxy authentication username.
+</p>
+</dd>
+<dt>
+protocol.http.proxy.passwd &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Proxy authentication password.
+</p>
+</dd>
+<dt>
+protocol.http.referer
+</dt>
+<dd>
+<p>
+        HTTP referer sending options. HTTP referer is a special header
+        sent in the HTTP requests, which is supposed to contain the previous
+        page visited by the browser. This way, the server can know what link
+        did you follow when accessing that page. However, this behaviour
+        can unfortunately considerably affect privacy and can lead even to a
+        security problem on some badly designed web pages.
+</p>
+</dd>
+<dt>
+protocol.http.referer.policy &lt;num&gt; (default: 3)
+</dt>
+<dd>
+<p>
+        Mode of sending HTTP referer:
+</p>
+<ul>
+<li>
+<p>
+0:    is send no referer
+</p>
+</li>
+<li>
+<p>
+1:    is send current URL as referer
+</p>
+</li>
+<li>
+<p>
+2:    is send fixed fake referer
+</p>
+</li>
+<li>
+<p>
+3:    is send previous URL as referer (correct, but insecure)
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+protocol.http.referer.fake &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Fake referer to be sent when policy is 2.
+</p>
+</dd>
+<dt>
+protocol.http.accept_language &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Send Accept-Language header.
+</p>
+</dd>
+<dt>
+protocol.http.accept_ui_language [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Request localised versions of documents from web-servers (using the
+        Accept-Language header) using the language you have configured for
+        <em>ELinks</em>' user-interface (this also affects navigator.language ECMAScript
+        value available to scripts). Note that some see this as a potential
+        security risk because it tells web-masters and the FBI sniffers about
+        your language preference.
+</p>
+</dd>
+<dt>
+protocol.http.trace [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        If active, all HTTP requests are sent with TRACE as their method
+        rather than GET or POST. This is useful for debugging of both <em>ELinks</em>
+        and various server-side scripts --- the server only returns the client's
+        request back to the client verbatim. Note that this type of request may
+        not be enabled on all servers.
+</p>
+</dd>
+<dt>
+protocol.http.user_agent &lt;str&gt; (default: "ELinks/%v (textmode; %s; %t-%b)")
+</dt>
+<dd>
+<p>
+        Change the User Agent ID. That means identification string, which
+        is sent to HTTP server when a document is requested. The 'textmode'
+        token in the first field is our silent attempt to establish this as
+        a standard for new textmode user agents, so that the webmasters can
+        have just a single uniform test for these if they are e.g. pushing
+        some lite version to them automagically.
+        Use " " if you don't want any User-Agent header to be sent at all.
+        %v in the string means <em>ELinks</em> version,
+        %s in the string means system identification,
+        %t in the string means size of the terminal,
+        %b in the string means number of bars displayed by <em>ELinks</em>.
+</p>
+</dd>
+<dt>
+protocol.https
+</dt>
+<dd>
+<p>
+        HTTPS-specific options.
+</p>
+</dd>
+<dt>
+protocol.https.proxy
+</dt>
+<dd>
+<p>
+        HTTPS proxy configuration.
+</p>
+</dd>
+<dt>
+protocol.https.proxy.host &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Host and port-number (host:port) of the HTTPS CONNECT proxy, or blank.
+        If it's blank, HTTPS_PROXY environment variable is checked as well.
+</p>
+</dd>
+<dt>
+protocol.nntp
+</dt>
+<dd>
+<p>
+        NNTP and news specific options.
+</p>
+</dd>
+<dt>
+protocol.nntp.server &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Used when resolving news: URIs. If set to the empty string
+        the value of the NNTPSERVER environment variable will be used.
+</p>
+</dd>
+<dt>
+protocol.nntp.header_entries &lt;str&gt; (default: "Subject,From,Date,Message-ID,Newsgroups")
+</dt>
+<dd>
+<p>
+        Comma separated list of which entries in the article header
+        to show. E.g. 'Subject' and <em>From</em>.
+        All header entries can be read in the header info dialog.
+</p>
+</dd>
+<dt>
+protocol.rewrite
+</dt>
+<dd>
+<p>
+        Rules for rewriting URIs entered in the goto dialog.
+        It makes it possible to define a set of prefixes that will
+        be expanded if they match a string entered in the goto dialog.
+        The prefixes can be dumb, meaning that they work only like
+        URI abbreviations, or smart ones, making it possible to pass
+        arguments to them like search engine keywords.
+</p>
+</dd>
+<dt>
+protocol.rewrite.dumb
+</dt>
+<dd>
+<p>
+        Dumb prefixes, see enable-dumb description for details.
+</p>
+</dd>
+<dt>
+protocol.rewrite.dumb._template_ &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Replacement URI for this dumbprefix:
+        %c in the string means the current URL
+        %% in the string means '%'
+</p>
+</dd>
+<dt>
+protocol.rewrite.smart
+</dt>
+<dd>
+<p>
+        Smart prefixes, see enable-smart description for details.
+</p>
+</dd>
+<dt>
+protocol.rewrite.smart._template_ &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Replacement URI for this smartprefix:
+        %c in the string means the current URL
+        %s in the string means the whole argument to smartprefix
+        %0,%1,&#8230;,%9 means argument 0, 1, &#8230;, 9
+        %% in the string means '%'
+</p>
+</dd>
+<dt>
+protocol.rewrite.default_template &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Default URI template used when the string entered in
+        the goto dialog does not appear to be a URI or a filename
+        (i.e. contains no '.', <em>:</em> or <em>/</em> characters), and does
+        not match any defined prefixes. Set the value to "" to
+        disable use of the default template rewrite rule.
+        %c in the template means the current URL,
+        %s in the template means the whole string from the goto dialog,
+        %0,%1,&#8230;,%9 mean the 1st,2nd,&#8230;,10th space-delimited part of %s,
+        %% in the template means '%'.
+</p>
+</dd>
+<dt>
+protocol.rewrite.enable-dumb [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Enable dumb prefixes - simple URI abbreviations which can
+        be written to the Goto URL dialog instead of actual URIs - i.e.
+        if you write 'elinks' there, you are directed to
+        http://elinks.cz/.
+</p>
+</dd>
+<dt>
+protocol.rewrite.enable-smart [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Enable smart prefixes - URI templates triggered by writing
+        given abbreviation to the Goto URL dialog followed by a list
+        of arguments from which the actual URI is composed - i.e.
+        'gg:search keywords' or <em>gn search keywords for news</em>.
+</p>
+</dd>
+<dt>
+protocol.user
+</dt>
+<dd>
+<p>
+        User protocols. Options in this tree specify external
+        handlers for the appropriate protocols. Ie.
+        protocol.user.mailto.unix.
+</p>
+</dd>
+<dt>
+protocol.user._template_
+</dt>
+<dd>
+<p>
+        Handler (external program) for this protocol. Name the
+        options in this tree after your system (ie. unix, unix-xwin).
+</p>
+</dd>
+<dt>
+protocol.user._template_._template_ &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Handler (external program) for this protocol and system.
+        %f in the string means file name to include form data from
+        %h in the string means hostname (or email address)
+        %p in the string means port
+        %d in the string means path (everything after the port)
+        %s in the string means subject (?subject=&lt;this&gt;)
+        %u in the string means the whole URL
+</p>
+</dd>
+<dt>
+protocol.no_proxy &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Comma separated list of domains for which the proxy (HTTP/FTP)
+        should be disabled. Optionally, a port can be specified for some
+        domains as well. If it's blank, NO_PROXY environment variable is
+        checked as well.
+</p>
+</dd>
+<dt>
+terminal
+</dt>
+<dd>
+<p>
+        Terminal options.
+</p>
+</dd>
+<dt>
+terminal._template_
+</dt>
+<dd>
+<p>
+        Options specific to this terminal type (according to $TERM value).
+</p>
+</dd>
+<dt>
+terminal._template_.type &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        Terminal type; matters mostly only when drawing frames and
+        dialog box borders:
+</p>
+<ul>
+<li>
+<p>
+0:    is dumb terminal type, ASCII art
+</p>
+</li>
+<li>
+<p>
+1:    is VT100, simple but portable
+</p>
+</li>
+<li>
+<p>
+2:    is Linux, you get double frames and other goodies
+</p>
+</li>
+<li>
+<p>
+3:    is KOI-8
+</p>
+</li>
+<li>
+<p>
+4:    is FreeBSD
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+terminal._template_.m11_hack [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Switch fonts when drawing lines, enabling both local characters
+        and lines working at the same time. Makes sense only with linux
+        terminal.
+</p>
+</dd>
+<dt>
+terminal._template_.utf_8_io [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Enable I/O in UTF8 for Unicode terminals. Note that currently,
+        only the subset of UTF8 according to terminal codepage is used.
+</p>
+</dd>
+<dt>
+terminal._template_.restrict_852 [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Restrict the characters used when drawing lines. Makes sense
+        only with linux terminals using the cp850/852 character sets.
+</p>
+</dd>
+<dt>
+terminal._template_.block_cursor [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Move cursor to bottom right corner when done drawing.
+        This is particularly useful when we have a block cursor,
+        so that inversed text is displayed correctly.
+</p>
+</dd>
+<dt>
+terminal._template_.colors &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        The color mode controls what colors are used and how they are
+        output to the terminal. The color modes are:
+</p>
+<ul>
+<li>
+<p>
+0:    is mono mode, only 2 colors are used
+</p>
+</li>
+<li>
+<p>
+1:    is 16 color mode, uses the common ANSI colors
+</p>
+</li>
+<li>
+<p>
+2:    is 256 color mode, uses XTerm RGB codes
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+terminal._template_.transparency [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        If we should not set the background to black. This is particularly
+        useful when we have a terminal (typically in some windowing
+        environment) with a background image or a transparent background -
+        it will be visible in <em>ELinks</em> as well. Note that this option makes
+        sense only when colors are enabled.
+</p>
+</dd>
+<dt>
+terminal._template_.underline [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        If we should use underline or enhance the color instead.
+</p>
+</dd>
+<dt>
+terminal._template_.charset &lt;codepage&gt; (default: System)
+</dt>
+<dd>
+<p>
+        Codepage of charset used for displaying content on terminal.
+        'System' stands for a codepage determined by a selected locale.
+</p>
+</dd>
+<dt>
+ui
+</dt>
+<dd>
+<p>
+        User interface options.
+</p>
+</dd>
+<dt>
+ui.clock
+</dt>
+<dd>
+<p>
+        Digital clock in the status bar.
+</p>
+</dd>
+<dt>
+ui.clock.enable [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Whether to display a digital clock in the status bar.
+</p>
+</dd>
+<dt>
+ui.clock.format &lt;str&gt; (default: "[%H:%M]")
+</dt>
+<dd>
+<p>
+        Format string for the digital clock. See the strftime(3)
+        manpage for details.
+</p>
+</dd>
+<dt>
+ui.colors
+</dt>
+<dd>
+<p>
+        Default user interface color settings.
+</p>
+</dd>
+<dt>
+ui.colors.color
+</dt>
+<dd>
+<p>
+        Color settings for color terminal.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu
+</dt>
+<dd>
+<p>
+        Main menu bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.normal
+</dt>
+<dd>
+<p>
+        Unselected main menu bar item colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.normal.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.normal.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.selected
+</dt>
+<dd>
+<p>
+        Selected main menu bar item colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.selected.text &lt;color|#rrggbb&gt; (default: green)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.selected.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.hotkey
+</dt>
+<dd>
+<p>
+        Main menu hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.hotkey.normal
+</dt>
+<dd>
+<p>
+        Main menu unselected hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.hotkey.normal.text &lt;color|#rrggbb&gt; (default: darkred)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.hotkey.normal.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.hotkey.selected
+</dt>
+<dd>
+<p>
+        Main menu selected hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.hotkey.selected.text &lt;color|#rrggbb&gt; (default: darkred)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.mainmenu.hotkey.selected.background &lt;color|#rrggbb&gt; (default: green)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu
+</dt>
+<dd>
+<p>
+        Menu bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.normal
+</dt>
+<dd>
+<p>
+        Unselected menu item colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.normal.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.normal.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.selected
+</dt>
+<dd>
+<p>
+        Selected menu item colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.selected.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.selected.background &lt;color|#rrggbb&gt; (default: green)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.marked
+</dt>
+<dd>
+<p>
+        Marked menu item colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.marked.text &lt;color|#rrggbb&gt; (default: red)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.marked.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.hotkey
+</dt>
+<dd>
+<p>
+        Menu item hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.hotkey.normal
+</dt>
+<dd>
+<p>
+        Menu item unselected hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.hotkey.normal.text &lt;color|#rrggbb&gt; (default: darkred)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.hotkey.normal.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.hotkey.selected
+</dt>
+<dd>
+<p>
+        Menu item selected hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.hotkey.selected.text &lt;color|#rrggbb&gt; (default: darkred)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.hotkey.selected.background &lt;color|#rrggbb&gt; (default: green)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.frame
+</dt>
+<dd>
+<p>
+        Menu frame colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.frame.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.menu.frame.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog
+</dt>
+<dd>
+<p>
+        Dialog colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.generic
+</dt>
+<dd>
+<p>
+        Generic dialog colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.generic.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.generic.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.frame
+</dt>
+<dd>
+<p>
+        Dialog frame colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.frame.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.frame.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.scrollbar
+</dt>
+<dd>
+<p>
+        Scrollbar colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.scrollbar.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.scrollbar.background &lt;color|#rrggbb&gt; (default: blue)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.scrollbar-selected
+</dt>
+<dd>
+<p>
+        Scrollbar selected colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.scrollbar-selected.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.scrollbar-selected.background &lt;color|#rrggbb&gt; (default: green)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.title
+</dt>
+<dd>
+<p>
+        Dialog title colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.title.text &lt;color|#rrggbb&gt; (default: darkred)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.title.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.text
+</dt>
+<dd>
+<p>
+        Dialog text colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.text.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.text.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.checkbox
+</dt>
+<dd>
+<p>
+        Dialog checkbox colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.checkbox.text &lt;color|#rrggbb&gt; (default: darkred)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.checkbox.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.checkbox-selected
+</dt>
+<dd>
+<p>
+        Dialog selected checkbox colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.checkbox-selected.text &lt;color|#rrggbb&gt; (default: yellow)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.checkbox-selected.background &lt;color|#rrggbb&gt; (default: green)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.checkbox-label
+</dt>
+<dd>
+<p>
+        Dialog checkbox label colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.checkbox-label.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.checkbox-label.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button
+</dt>
+<dd>
+<p>
+        Dialog button colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button.text &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button.background &lt;color|#rrggbb&gt; (default: blue)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button-selected
+</dt>
+<dd>
+<p>
+        Dialog selected button colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button-selected.text &lt;color|#rrggbb&gt; (default: yellow)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button-selected.background &lt;color|#rrggbb&gt; (default: green)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button-shortcut
+</dt>
+<dd>
+<p>
+        Dialog button colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button-shortcut.text &lt;color|#rrggbb&gt; (default: yellow)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button-shortcut.background &lt;color|#rrggbb&gt; (default: blue)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button-shortcut-selected
+</dt>
+<dd>
+<p>
+        Dialog selected button colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button-shortcut-selected.text &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.button-shortcut-selected.background &lt;color|#rrggbb&gt; (default: blue)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.field
+</dt>
+<dd>
+<p>
+        Dialog text field colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.field.text &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.field.background &lt;color|#rrggbb&gt; (default: blue)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.field-text
+</dt>
+<dd>
+<p>
+        Dialog field text colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.field-text.text &lt;color|#rrggbb&gt; (default: yellow)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.field-text.background &lt;color|#rrggbb&gt; (default: blue)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.meter
+</dt>
+<dd>
+<p>
+        Dialog meter colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.meter.text &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.meter.background &lt;color|#rrggbb&gt; (default: blue)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.shadow
+</dt>
+<dd>
+<p>
+        Dialog shadow colors (see ui.shadows option).
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.shadow.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.dialog.shadow.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.title
+</dt>
+<dd>
+<p>
+        Title bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.title.title-bar
+</dt>
+<dd>
+<p>
+        Generic title bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.title.title-bar.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.title.title-bar.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.title.title-text
+</dt>
+<dd>
+<p>
+        Title bar text colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.title.title-text.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.title.title-text.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.status
+</dt>
+<dd>
+<p>
+        Status bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.status.status-bar
+</dt>
+<dd>
+<p>
+        Generic status bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.status.status-bar.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.status.status-bar.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.status.status-text
+</dt>
+<dd>
+<p>
+        Status bar text colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.status.status-text.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.status.status-text.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs
+</dt>
+<dd>
+<p>
+        Tabs bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.unvisited
+</dt>
+<dd>
+<p>
+        Tab colors for tabs that have not been
+        selected since they completed loading.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.unvisited.text &lt;color|#rrggbb&gt; (default: darkblue)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.unvisited.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.normal
+</dt>
+<dd>
+<p>
+        Unselected tab colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.normal.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.normal.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.loading
+</dt>
+<dd>
+<p>
+        Tab colors for tabs that are loading in the background.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.loading.text &lt;color|#rrggbb&gt; (default: darkred)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.loading.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.selected
+</dt>
+<dd>
+<p>
+        Selected tab colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.selected.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.selected.background &lt;color|#rrggbb&gt; (default: green)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.separator
+</dt>
+<dd>
+<p>
+        Tab separator colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.separator.text &lt;color|#rrggbb&gt; (default: brown)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.tabs.separator.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.color.searched
+</dt>
+<dd>
+<p>
+        Searched string highlight colors.
+</p>
+</dd>
+<dt>
+ui.colors.color.searched.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.color.searched.background &lt;color|#rrggbb&gt; (default: lime)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono
+</dt>
+<dd>
+<p>
+        Color settings for non-color terminal.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu
+</dt>
+<dd>
+<p>
+        Main menu bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.normal
+</dt>
+<dd>
+<p>
+        Unselected main menu bar item colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.normal.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.normal.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.selected
+</dt>
+<dd>
+<p>
+        Selected main menu bar item colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.selected.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.selected.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.hotkey
+</dt>
+<dd>
+<p>
+        Main menu hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.hotkey.normal
+</dt>
+<dd>
+<p>
+        Main menu unselected hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.hotkey.normal.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.hotkey.normal.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.hotkey.selected
+</dt>
+<dd>
+<p>
+        Main menu selected hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.hotkey.selected.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.mainmenu.hotkey.selected.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu
+</dt>
+<dd>
+<p>
+        Menu bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.normal
+</dt>
+<dd>
+<p>
+        Unselected menu item colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.normal.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.normal.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.selected
+</dt>
+<dd>
+<p>
+        Selected menu item colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.selected.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.selected.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.marked
+</dt>
+<dd>
+<p>
+        Marked menu item colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.marked.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.marked.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.hotkey
+</dt>
+<dd>
+<p>
+        Menu item hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.hotkey.normal
+</dt>
+<dd>
+<p>
+        Menu item unselected hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.hotkey.normal.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.hotkey.normal.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.hotkey.selected
+</dt>
+<dd>
+<p>
+        Menu item selected hotkey colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.hotkey.selected.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.hotkey.selected.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.frame
+</dt>
+<dd>
+<p>
+        Menu frame colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.frame.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.menu.frame.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog
+</dt>
+<dd>
+<p>
+        Dialog colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.generic
+</dt>
+<dd>
+<p>
+        Generic dialog colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.generic.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.generic.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.frame
+</dt>
+<dd>
+<p>
+        Dialog frame colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.frame.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.frame.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.scrollbar
+</dt>
+<dd>
+<p>
+        Scrollbar colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.scrollbar.text &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.scrollbar.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.scrollbar-selected
+</dt>
+<dd>
+<p>
+        Scrollbar selected colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.scrollbar-selected.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.scrollbar-selected.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.title
+</dt>
+<dd>
+<p>
+        Dialog title colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.title.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.title.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.text
+</dt>
+<dd>
+<p>
+        Dialog text colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.text.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.text.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.checkbox
+</dt>
+<dd>
+<p>
+        Dialog checkbox colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.checkbox.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.checkbox.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.checkbox-selected
+</dt>
+<dd>
+<p>
+        Dialog selected checkbox colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.checkbox-selected.text &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.checkbox-selected.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.checkbox-label
+</dt>
+<dd>
+<p>
+        Dialog checkbox label colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.checkbox-label.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.checkbox-label.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button
+</dt>
+<dd>
+<p>
+        Dialog button colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button-selected
+</dt>
+<dd>
+<p>
+        Dialog selected button colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button-selected.text &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button-selected.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button-shortcut
+</dt>
+<dd>
+<p>
+        Dialog button colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button-shortcut.text &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button-shortcut.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button-shortcut-selected
+</dt>
+<dd>
+<p>
+        Dialog selected button colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button-shortcut-selected.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.button-shortcut-selected.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.field
+</dt>
+<dd>
+<p>
+        Dialog text field colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.field.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.field.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.field-text
+</dt>
+<dd>
+<p>
+        Dialog field text colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.field-text.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.field-text.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.meter
+</dt>
+<dd>
+<p>
+        Dialog meter colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.meter.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.meter.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.shadow
+</dt>
+<dd>
+<p>
+        Dialog shadow colors (see ui.shadows option).
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.shadow.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.dialog.shadow.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.title
+</dt>
+<dd>
+<p>
+        Title bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.title.title-bar
+</dt>
+<dd>
+<p>
+        Generic title bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.title.title-bar.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.title.title-bar.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.title.title-text
+</dt>
+<dd>
+<p>
+        Title bar text colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.title.title-text.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.title.title-text.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.status
+</dt>
+<dd>
+<p>
+        Status bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.status.status-bar
+</dt>
+<dd>
+<p>
+        Generic status bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.status.status-bar.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.status.status-bar.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.status.status-text
+</dt>
+<dd>
+<p>
+        Status bar text colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.status.status-text.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.status.status-text.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs
+</dt>
+<dd>
+<p>
+        Tabs bar colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.unvisited
+</dt>
+<dd>
+<p>
+        Tab colors for tabs that have not been
+        selected since they completed loading.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.unvisited.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.unvisited.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.normal
+</dt>
+<dd>
+<p>
+        Unselected tab colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.normal.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.normal.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.loading
+</dt>
+<dd>
+<p>
+        Tab colors for tabs that are loading in the background.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.loading.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.loading.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.selected
+</dt>
+<dd>
+<p>
+        Selected tab colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.selected.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.selected.background &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.separator
+</dt>
+<dd>
+<p>
+        Tab separator colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.separator.text &lt;color|#rrggbb&gt; (default: gray)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.tabs.separator.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.searched
+</dt>
+<dd>
+<p>
+        Searched string highlight colors.
+</p>
+</dd>
+<dt>
+ui.colors.mono.searched.text &lt;color|#rrggbb&gt; (default: black)
+</dt>
+<dd>
+<p>
+        Default text color.
+</p>
+</dd>
+<dt>
+ui.colors.mono.searched.background &lt;color|#rrggbb&gt; (default: white)
+</dt>
+<dd>
+<p>
+        Default background color.
+</p>
+</dd>
+<dt>
+ui.dialogs
+</dt>
+<dd>
+<p>
+        Dialogs-specific appearance and behaviour settings.
+</p>
+</dd>
+<dt>
+ui.dialogs.listbox_min_height &lt;num&gt; (default: 10)
+</dt>
+<dd>
+<p>
+        Minimal height of the listbox widget (used e.g. for bookmarks
+        or global history).
+</p>
+</dd>
+<dt>
+ui.dialogs.shadows [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Make dialogs drop shadows (the shadows are solid, you can
+        adjust their color by ui.colors.*.dialog.shadow). You may
+        also want to eliminate the wide borders by adjusting setup.h.
+</p>
+</dd>
+<dt>
+ui.dialogs.underline_hotkeys [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Whether to underline hotkeys in menus to make them more
+        visible. Requires that underlining is enabled for the terminal.
+</p>
+</dd>
+<dt>
+ui.dialogs.underline_button_shortcuts [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Whether to underline button shortcuts to make them more
+        visible. Requires that underlining is enabled for the terminal.
+</p>
+</dd>
+<dt>
+ui.leds
+</dt>
+<dd>
+<p>
+        LEDs (visual indicators) options.
+</p>
+</dd>
+<dt>
+ui.leds.enable [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Enable LEDs.
+        These visual indicators will inform you about various states.
+</p>
+</dd>
+<dt>
+ui.sessions
+</dt>
+<dd>
+<p>
+        Sessions settings.
+</p>
+</dd>
+<dt>
+ui.sessions.auto_restore [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Automatically restore the session at start.
+        This feature requires bookmark support.
+</p>
+</dd>
+<dt>
+ui.sessions.auto_save [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Automatically save the session when quitting.
+        This feature requires bookmark support.
+</p>
+</dd>
+<dt>
+ui.sessions.auto_save_foldername &lt;str&gt; (default: "Auto saved session")
+</dt>
+<dd>
+<p>
+        Name of the bookmarks folder used for auto saving and restoring session.
+        The name has to be unique. Any folders with the same name will be deleted.
+        This only makes sense with bookmark support.
+</p>
+</dd>
+<dt>
+ui.sessions.homepage &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        The URI to load either at startup time when no URI was given
+        on the command line or when requested by the goto-url-home action.
+        Set to "" if the environment variable WWW_'HOME' should be used
+        as homepage URI instead.
+</p>
+</dd>
+<dt>
+ui.sessions.keep_session_active [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Keep the session active even if the last terminal exits.
+</p>
+</dd>
+<dt>
+ui.sessions.snapshot [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        Automatically save a snapshot of all tabs periodically.
+        This will periodically bookmark the tabs of each terminal in a separate folder
+        for recovery after a crash.
+</p>
+</dd>
+<dt>
+ui.tabs
+</dt>
+<dd>
+<p>
+        Window tabs settings.
+</p>
+</dd>
+<dt>
+ui.tabs.show_bar &lt;num&gt; (default: 1)
+</dt>
+<dd>
+<p>
+        Show tabs bar on the screen:
+</p>
+<ul>
+<li>
+<p>
+0:    means never
+</p>
+</li>
+<li>
+<p>
+1:    means only if two or more tabs are open
+</p>
+</li>
+<li>
+<p>
+2:    means always
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+ui.tabs.wraparound [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        When moving right from the last tab, jump to the first one, and
+        vice versa.
+</p>
+</dd>
+<dt>
+ui.tabs.confirm_close [0|1] (default: 0)
+</dt>
+<dd>
+<p>
+        When closing a tab show confirmation dialog.
+</p>
+</dd>
+<dt>
+ui.timer
+</dt>
+<dd>
+<p>
+        Timed action after certain interval of user inactivity. Someone can
+        even find this useful, although you may not believe that.
+</p>
+</dd>
+<dt>
+ui.timer.enable &lt;num&gt; (default: 0)
+</dt>
+<dd>
+<p>
+        Whether to enable the timer or not:
+</p>
+<ul>
+<li>
+<p>
+0:    is don't count down anything
+</p>
+</li>
+<li>
+<p>
+1:    is count down, but don't show the timer
+</p>
+</li>
+<li>
+<p>
+2:    is count down and show the timer near LEDs
+</p>
+</li>
+</ul>
+</dd>
+<dt>
+ui.timer.duration &lt;num&gt; (default: 86400)
+</dt>
+<dd>
+<p>
+        Inactivity timeout in seconds. The maximum of one day
+        should be enough for just everyone &#8482;.
+</p>
+</dd>
+<dt>
+ui.timer.action &lt;str&gt; (default: "")
+</dt>
+<dd>
+<p>
+        Keybinding action to be triggered when timer reaches zero.
+</p>
+</dd>
+<dt>
+ui.date_format &lt;str&gt; (default: "%b %e %H:%M")
+</dt>
+<dd>
+<p>
+        Date format to use in dialogs. See strftime(3).
+</p>
+</dd>
+<dt>
+ui.language &lt;language&gt; (default: "System")
+</dt>
+<dd>
+<p>
+        Language of user interface. 'System' means that the language will
+        be extracted from the environment dynamically.
+</p>
+</dd>
+<dt>
+ui.show_status_bar [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Show status bar on the screen.
+</p>
+</dd>
+<dt>
+ui.show_title_bar [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Show title bar on the screen.
+</p>
+</dd>
+<dt>
+ui.startup_goto_dialog [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Pop up goto dialog in newly created tabs when there's no homepage
+        set. This means also showing goto dialog on startup.
+</p>
+</dd>
+<dt>
+ui.success_msgbox [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        When you pressed a [ Save ] button in some manager, this option
+        will make sure that a box confirming success of the operation will
+        pop up.
+</p>
+</dd>
+<dt>
+ui.window_title [0|1] (default: 1)
+</dt>
+<dd>
+<p>
+        Set the window title when running in a windowing environment
+        in an xterm-like terminal. This way the document's title is
+        shown on the window titlebar.
+</p>
+</dd>
+</dl>
+<p>Generated using output from ELinks version 0.11.7.</p>
+</div>
+<h2>SEE ALSO</h2>
+<div class="sectionbody">
+<p><a href="elinks.1.html">elinks(1)</a>, <a href="elinkskeys.5.html">elinkskeys(5)</a></p>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 22-Aug-2009 14:32:04 EEST
+</div>
+</div>
+</body>
+</html>

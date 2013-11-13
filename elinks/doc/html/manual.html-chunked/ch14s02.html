@@ -1,0 +1,24 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Installing</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="ch14.html" title="Chapter 14. Scripting ELinks with Lua"><link rel="prev" href="ch14.html" title="Chapter 14. Scripting ELinks with Lua"><link rel="next" href="ch14s03.html" title="Using ELinks with Lua"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Installing</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch14.html">Prev</a> </td><th width="60%" align="center">Chapter 14. Scripting ELinks with Lua</th><td width="20%" align="right"> <a accesskey="n" href="ch14s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2604285"></a>Installing</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2604291"></a>Installing Lua</h3></div></div></div><p>Before you can compile ELinks with Lua support, you must compile and install
+Lua.  The following instructions are for a Linux system.  People on other
+systems should try to enable <code class="literal">popen</code> support, but this is not necessary
+(you will lose a bit of functionality though).</p><div class="orderedlist"><ol type="1"><li>
+Download and unpack the Lua <code class="literal">tar.gz</code> or <code class="literal">zip</code> somewhere.
+</li><li>
+<code class="literal">cd</code> into the <code class="literal">lua</code> directory.
+</li><li>
+Open <code class="literal">config</code> in a text editor and uncomment the <code class="literal">POPEN</code> line.
+</li><li>
+Optionally, change the `INSTALL_ROOT line.
+</li><li>
+Run <code class="literal">make; make so; make sobin; make install</code>.
+</li></ol></div><p>On systems without shared object support, simply run <code class="literal">make; make install</code>
+instead.</p><p>Since ELinks 0.11.0, only version 5.0 of Lua is supported.
+Future versions of ELinks will probably support Lua 5.1 too;
+see <a class="ulink" href="http://bugzilla.elinks.cz/show_bug.cgi?id=742" target="_top">bug 742</a>.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2604416"></a>Installing ELinks</h3></div></div></div><p>Follow the instructions for building ELinks (it is the standard
+<code class="literal">./configure; make; make install</code> procedure).  During the configure
+step make sure that Lua has been detected on your system.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2604437"></a>Running ELinks with Lua</h3></div></div></div><p>Simply start ELinks as you normally would.  To check you have Lua support
+compiled in, open up the "Help | About" dialog box.  It should list
+"Scripting (Lua)" under "Features".
+If not, make sure you do not have other copies of ELinks
+running, or start ELinks again with the "-no-connect" option on the
+command-line.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch14.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch14.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch14s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 14. Scripting ELinks with Lua </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Using ELinks with Lua</td></tr></table></div></body></html>

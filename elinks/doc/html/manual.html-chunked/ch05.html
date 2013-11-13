@@ -1,0 +1,40 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Chapter 5. The Wonders of Tabbed Browsing</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="index.html" title="The ELinks Manual"><link rel="prev" href="ch04s04.html" title="File formats"><link rel="next" href="ch05s02.html" title="Advanced topics involving tabs"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 5. The Wonders of Tabbed Browsing</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04s04.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch05s02.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="id2601111"></a>Chapter 5. The Wonders of Tabbed Browsing</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="ch05.html#id2601167">Introduction to the basic actions involving tabs</a></span></dt><dd><dl><dt><span class="section"><a href="ch05.html#id2601173">The tab bar and the tab menu</a></span></dt><dt><span class="section"><a href="ch05.html#id2601208">Creating new tabs</a></span></dt><dt><span class="section"><a href="ch05.html#id2601251">Switching between tabs</a></span></dt><dt><span class="section"><a href="ch05.html#id2601277">Closing tabs</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s02.html">Advanced topics involving tabs</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s02.html#id2601315">Moving tabs</a></span></dt><dt><span class="section"><a href="ch05s02.html#id2601337">Saving and restoring tabs</a></span></dt></dl></dd></dl></div><p>In this information age with our stream of consciousness constantly being
+dispersed by links to different resources on the Net, it is a challenge to keep
+track of where you are going.  The need for being able to access several pages
+in parallel arises.  Tabbed browsing gives you an easy way to browse multiple
+sites in parallel.</p><p>If you are not already familiar with the concept of tabbed browsing you can
+think of a tab as a separate browsing context with its own history and various
+other browsing state information, such as search word and document loading.
+Whenever you stumble upon a link to a document that you want to follow without
+leaving the current document, you can open it in a new tab.  This makes it
+possible to more easily jump between pages on the Net and removes the need for
+running more than one ELinks for that purpose.</p><p>Options related to tabs are located under “User Interface -&gt; Window Tabs” in
+the option manager.  In the configuration file the naming prefix is “ui.tabs”.</p><p>Tabbed browsing has been supported since version 0.9.0 and is fairly complete.
+The documentation on tabs is therefore divided into two chapters: a general
+introduction and an introduction to advanced topics.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2601167"></a>Introduction to the basic actions involving tabs</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2601173"></a>The tab bar and the tab menu</h3></div></div></div><p>The current state of all opened tabs are displayed in the tab bar.  The tab bar
+will, by default, become visible when more than one tab is open, but this is
+configurable.  For each open tab, the document title will be shown, possibly
+truncated.  The current tab is highlighted.  The tab bar will also display
+a load meter for tabs that are loading documents.  Finally, any tab that has not
+been selected since its document was loaded will be marked as “fresh” by using
+a different coloring scheme.</p><p>The tab menu gives access to tab specific actions along with some other useful
+document specific actions.  So even if you haven't configured keybindings for
+all actions, chances are you will find it in the tab menu.  By default, it is
+opened by pressing <span class="emphasis"><em>e</em></span>.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2601208"></a>Creating new tabs</h3></div></div></div><p>When creating new tabs, it is possible to specify whether to create the tab and
+make it the current active tab or if the tab is to be created “in the
+background” — that is, without it taking over the focus.</p><p>Tabs can be created either with or without specifying a desired first document
+to load.  That is, you can open links or submitted forms in a new tab or just
+open a new tab.  Depending on your configuration, the latter will load the
+configured homepage in the newly created tab or simply leave the tab blank with
+no loaded document.</p><p>By default, <span class="emphasis"><em>t</em></span> will open a new tab and <span class="emphasis"><em>T</em></span> will open the current link in a new
+backgrounded tab.  You can configure keybindings for opening a new tab in the
+background and opening the current link as the active tab.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2601251"></a>Switching between tabs</h3></div></div></div><p>By default, it is possible to switch between tabs by using <span class="emphasis"><em>&lt;</em></span> and <span class="emphasis"><em>&gt;</em></span> to select
+the previous and next tab, respectively.  When positioned at the leftmost tab,
+and switching to the previous tab, the tab switching will perform a wrap-around
+so that the rightmost tab will be selected.  The wrap-around behaviour is
+configurable.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2601277"></a>Closing tabs</h3></div></div></div><p>Tabs can by default be closed by pressing <span class="emphasis"><em>c</em></span>.  It is possible to optionally
+have a confirmation dialog pop up when closing a tab to avoid accidental
+closing.  To complement closing of the current tab, it is also possible to close
+all tabs but the current one.  No key is by default configured for this; the tab
+menu, however, provides this ability.</p><p>Note: downloads initiated from a tab are in no way tied to that tab, so tabs can
+be closed and the download will not be affected.</p></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04s04.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch05s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">File formats </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Advanced topics involving tabs</td></tr></table></div></body></html>

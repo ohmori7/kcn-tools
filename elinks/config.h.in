@@ -1,0 +1,782 @@
+/* config.h.in.  Generated from configure.in by autoheader.  */
+
+/* Directory containing default config */
+#undef CONFDIR
+
+/* Define if you want: 256 colors support */
+#undef CONFIG_256_COLORS
+
+/* Define if you want: 88 colors support */
+#undef CONFIG_88_COLORS
+
+/* Define if you want: AsciiDoc support */
+#undef CONFIG_ASCIIDOC
+
+/* Define if you want: Backtrace support */
+#undef CONFIG_BACKTRACE
+
+/* Define if you want: BEOS support */
+#undef CONFIG_BEOS
+
+/* Define if you want: BitTorrent protocol support */
+#undef CONFIG_BITTORRENT
+
+/* Define if you want: Bookmarks support */
+#undef CONFIG_BOOKMARKS
+
+/* Define if you want: bzlib support */
+#undef CONFIG_BZIP2
+
+/* Define if you want: Local CGI support */
+#undef CONFIG_CGI
+
+/* Define if you want: Cookies support */
+#undef CONFIG_COOKIES
+
+/* Define if you want: Cascading Style Sheets support */
+#undef CONFIG_CSS
+
+/* Define if you want: Data protocol support */
+#undef CONFIG_DATA
+
+/* Define if you want: Debug mode support */
+#undef CONFIG_DEBUG
+
+/* Define if you want: Documentation Tools support */
+#undef CONFIG_DOC
+
+/* Define if you want: DOM engine support */
+#undef CONFIG_DOM
+
+/* Define if you want: ECMAScript (JavaScript) support */
+#undef CONFIG_ECMASCRIPT
+
+/* Define if you want: Exmode interface support */
+#undef CONFIG_EXMODE
+
+/* Define if you want: Fast mode support */
+#undef CONFIG_FASTMEM
+
+/* Define if you want: Finger protocol support */
+#undef CONFIG_FINGER
+
+/* Define if you want: Form history support */
+#undef CONFIG_FORMHIST
+
+/* Define if you want: FSP protocol support */
+#undef CONFIG_FSP
+
+/* Define if you want: FTP protocol support */
+#undef CONFIG_FTP
+
+/* Define if you want: Global history support */
+#undef CONFIG_GLOBHIST
+
+/* Define if you want: GNUTLS support */
+#undef CONFIG_GNUTLS
+
+/* Define if you want: Gopher protocol support */
+#undef CONFIG_GOPHER
+
+/* Define if you want: gpm support */
+#undef CONFIG_GPM
+
+/* Define if you want: Guile support */
+#undef CONFIG_GUILE
+
+/* Define if you want: zlib support */
+#undef CONFIG_GZIP
+
+/* Define if you want: HTML highlighting support */
+#undef CONFIG_HTML_HIGHLIGHT
+
+/* Define if you want: idn support */
+#undef CONFIG_IDN
+
+/* Define if you want: interlinking support */
+#undef CONFIG_INTERLINK
+
+/* Define if you want: IPv6 support */
+#undef CONFIG_IPV6
+
+/* Define if you want: JadeWrapper support */
+#undef CONFIG_JW
+
+/* Define if you want: LEDs support */
+#undef CONFIG_LEDS
+
+/* Define if you want: Lua support */
+#undef CONFIG_LUA
+
+/* Define if you want: Mailcap support */
+#undef CONFIG_MAILCAP
+
+/* Define if you want: Man Page Formats support */
+#undef CONFIG_MANPAGE
+
+/* Define if you want: Manual Formats support */
+#undef CONFIG_MANUAL
+
+/* Define if you want: Marks support */
+#undef CONFIG_MARKS
+
+/* Define if you want: Built-in MD5 support */
+#undef CONFIG_MD5
+
+/* Define if you want: Mimetypes files support */
+#undef CONFIG_MIMETYPES
+
+/* Define if you want: Mouse handling support */
+#undef CONFIG_MOUSE
+
+/* Define to 1 if translation of program messages to the user's native
+   language is requested. */
+#undef CONFIG_NLS
+
+/* Define if you want: NNTP protocol support */
+#undef CONFIG_NNTP
+
+/* Define if you want: No root exec support */
+#undef CONFIG_NO_ROOT_EXEC
+
+/* Define if you want: OpenSSL support */
+#undef CONFIG_OPENSSL
+
+/* Define if you want: EMX support */
+#undef CONFIG_OS2
+
+/* Define if you want: Own libc stubs support */
+#undef CONFIG_OWN_LIBC
+
+/* Define if you want: Perl support */
+#undef CONFIG_PERL
+
+/* Define if using Perl 5.8.8 or later, where the "POPpx" macro no longer
+   needs an "n_a" variable like it did in 5.8.7 */
+#undef CONFIG_PERL_POPPX_WITHOUT_N_A
+
+/* Define if you want: Pod2HTML support */
+#undef CONFIG_POD2HTML
+
+/* Define if you want: Python support */
+#undef CONFIG_PYTHON
+
+/* Define if you want: RISCOS support */
+#undef CONFIG_RISCOS
+
+/* Define if you want: Ruby support */
+#undef CONFIG_RUBY
+
+/* Define if you want: Built-in scanner support */
+#undef CONFIG_SCANNER
+
+/* Define if you want: Browser scripting support */
+#undef CONFIG_SCRIPTING
+
+/* Define if you want: Built-in SHA1 support */
+#undef CONFIG_SHA1
+
+/* Define if you want: Small binary support */
+#undef CONFIG_SMALL
+
+/* Define if you want: SMB protocol support */
+#undef CONFIG_SMB
+
+/* Define if you want: SpiderMonkey support */
+#undef CONFIG_SM_SCRIPTING
+
+/* Define if you want: SpiderMonkey support */
+#undef CONFIG_SPIDERMONKEY
+
+/* Define if you want: SSL support */
+#undef CONFIG_SSL
+
+/* Define if you want: BSD sysmouse support */
+#undef CONFIG_SYSMOUSE
+
+/* Define if you want: UNIX support */
+#undef CONFIG_UNIX
+
+/* Define if you want: URI rewriting support */
+#undef CONFIG_URI_REWRITE
+
+/* Define if you want: WIN32 support */
+#undef CONFIG_WIN32
+
+/* Define if you want: XBEL bookmarks support */
+#undef CONFIG_XBEL_BOOKMARKS
+
+/* Define if you want: XmlTo support */
+#undef CONFIG_XMLTO
+
+/* Define to one of `_getb67', `GETB67', `getb67' for Cray-2 and Cray-YMP
+   systems. This function is required for `alloca.c' support on those systems.
+   */
+#undef CRAY_STACKSEG_END
+
+/* Define to 1 if using `alloca.c'. */
+#undef C_ALLOCA
+
+/* Define to 1 if you have the `access' function. */
+#undef HAVE_ACCESS
+
+/* Define if you have struct addrinfo */
+#undef HAVE_ADDRINFO
+
+/* Define to 1 if you have the `alarm' function. */
+#undef HAVE_ALARM
+
+/* Define to 1 if you have `alloca', as a function or macro. */
+#undef HAVE_ALLOCA
+
+/* Define to 1 if you have <alloca.h> and it should be used (not on Ultrix).
+   */
+#undef HAVE_ALLOCA_H
+
+/* Define to 1 if you have the <argz.h> header file. */
+#undef HAVE_ARGZ_H
+
+/* Define to 1 if you have the <arpa/inet.h> header file. */
+#undef HAVE_ARPA_INET_H
+
+/* Define to 1 if you have the `asprintf' function. */
+#undef HAVE_ASPRINTF
+
+/* Define to 1 if you have the `bcopy' function. */
+#undef HAVE_BCOPY
+
+/* Define if you have _beginthread() */
+#undef HAVE_BEGINTHREAD
+
+/* Define to 1 if you have the <bzlib.h> header file. */
+#undef HAVE_BZLIB_H
+
+/* Define if you have C99 compliant vsnprintf() */
+#undef HAVE_C99_VSNPRINTF
+
+/* Define to 1 if you have the `chmod' function. */
+#undef HAVE_CHMOD
+
+/* Define to 1 if you have the `clock_gettime' function. */
+#undef HAVE_CLOCK_GETTIME
+
+/* Define to 1 if you have the `cygwin_conv_to_full_win32_path' function. */
+#undef HAVE_CYGWIN_CONV_TO_FULL_WIN32_PATH
+
+/* Define to 1 if you have the <dirent.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_DIRENT_H
+
+/* Define to 1 if you have the <execinfo.h> header file. */
+#undef HAVE_EXECINFO_H
+
+/* Define to 1 if you have the <expat.h> header file. */
+#undef HAVE_EXPAT_H
+
+/* Define to 1 if you have the <fcntl.h> header file. */
+#undef HAVE_FCNTL_H
+
+/* Define to 1 if you have the `feof_unlocked' function. */
+#undef HAVE_FEOF_UNLOCKED
+
+/* Define to 1 if you have the `fflush' function. */
+#undef HAVE_FFLUSH
+
+/* Define to 1 if you have the `fgets_unlocked' function. */
+#undef HAVE_FGETS_UNLOCKED
+
+/* Define to 1 if you have the `fseeko' function. */
+#undef HAVE_FSEEKO
+
+/* Define to 1 if you have the <fsplib.h> header file. */
+#undef HAVE_FSPLIB_H
+
+/* Define to 1 if you have the `fsync' function. */
+#undef HAVE_FSYNC
+
+/* Define to 1 if you have the `ftello' function. */
+#undef HAVE_FTELLO
+
+/* Define to 1 if you have the `getcwd' function. */
+#undef HAVE_GETCWD
+
+/* Define to 1 if you have the `getegid' function. */
+#undef HAVE_GETEGID
+
+/* Define to 1 if you have the `geteuid' function. */
+#undef HAVE_GETEUID
+
+/* Define to 1 if you have the `getgid' function. */
+#undef HAVE_GETGID
+
+/* Define to 1 if you have the `gethostbyaddr' function. */
+#undef HAVE_GETHOSTBYADDR
+
+/* Define to 1 if you have the `getifaddrs' function. */
+#undef HAVE_GETIFADDRS
+
+/* Define to 1 if you have the `getpagesize' function. */
+#undef HAVE_GETPAGESIZE
+
+/* Define to 1 if you have the `getpgid' function. */
+#undef HAVE_GETPGID
+
+/* Define to 1 if you have the `getpgrp' function. */
+#undef HAVE_GETPGRP
+
+/* Define to 1 if you have the `getpid' function. */
+#undef HAVE_GETPID
+
+/* Define to 1 if you have the `getpwnam' function. */
+#undef HAVE_GETPWNAM
+
+/* Define to 1 if you have the `gettimeofday' function. */
+#undef HAVE_GETTIMEOFDAY
+
+/* Define to 1 if you have the `getuid' function. */
+#undef HAVE_GETUID
+
+/* Define to 1 if you have the <gpm.h> header file. */
+#undef HAVE_GPM_H
+
+/* Define to 1 if you have the `herror' function. */
+#undef HAVE_HERROR
+
+/* Define if you have the iconv() function. */
+#undef HAVE_ICONV
+
+/* Define to 1 if you have the <idna.h> header file. */
+#undef HAVE_IDNA_H
+
+/* Define to 1 if you have the <ifaddrs.h> header file. */
+#undef HAVE_IFADDRS_H
+
+/* Define to 1 if you have the `index' function. */
+#undef HAVE_INDEX
+
+/* Define to 1 if you have the `inet_ntop' function. */
+#undef HAVE_INET_NTOP
+
+/* Define to 1 if you have the `inet_pton' function. */
+#undef HAVE_INET_PTON
+
+/* Define if you have int32_t */
+#undef HAVE_INT32_T
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the <io.h> header file. */
+#undef HAVE_IO_H
+
+/* Define to 1 if you have the `isdigit' function. */
+#undef HAVE_ISDIGIT
+
+/* Define to 1 if you have the `kill' function. */
+#undef HAVE_KILL
+
+/* Define if you have <langinfo.h> and nl_langinfo(CODESET). */
+#undef HAVE_LANGINFO_CODESET
+
+/* Define to 1 if you have the <lauxlib.h> header file. */
+#undef HAVE_LAUXLIB_H
+
+/* Define if your <locale.h> file defines LC_MESSAGES. */
+#undef HAVE_LC_MESSAGES
+
+/* Define to 1 if you have the `dl' library (-ldl). */
+#undef HAVE_LIBDL
+
+/* Define to 1 if you have the `nsl' library (-lnsl). */
+#undef HAVE_LIBNSL
+
+/* Define to 1 if you have the `socket' library (-lsocket). */
+#undef HAVE_LIBSOCKET
+
+/* Define to 1 if you have the <limits.h> header file. */
+#undef HAVE_LIMITS_H
+
+/* Define to 1 if you have the <locale.h> header file. */
+#undef HAVE_LOCALE_H
+
+/* Define if you have long long */
+#undef HAVE_LONG_LONG
+
+/* Define to 1 if you have the <machine/console.h> header file. */
+#undef HAVE_MACHINE_CONSOLE_H
+
+/* Define to 1 if you have the <malloc.h> header file. */
+#undef HAVE_MALLOC_H
+
+/* Define to 1 if you have the `memmove' function. */
+#undef HAVE_MEMMOVE
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the `mempcpy' function. */
+#undef HAVE_MEMPCPY
+
+/* Define to 1 if you have the `memrchr' function. */
+#undef HAVE_MEMRCHR
+
+/* Define to 1 if you have a working `mmap' system call. */
+#undef HAVE_MMAP
+
+/* Define if you have MouOpen() */
+#undef HAVE_MOUOPEN
+
+/* Define to 1 if you have the `mremap' function. */
+#undef HAVE_MREMAP
+
+/* Define to 1 if you have the `munmap' function. */
+#undef HAVE_MUNMAP
+
+/* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
+#undef HAVE_NDIR_H
+
+/* Define to 1 if you have the <netdb.h> header file. */
+#undef HAVE_NETDB_H
+
+/* Define to 1 if you have the <netinet/in6_var.h> header file. */
+#undef HAVE_NETINET_IN6_VAR_H
+
+/* Define to 1 if you have the <netinet/in.h> header file. */
+#undef HAVE_NETINET_IN_H
+
+/* Define to 1 if you have the <netinet/in_system.h> header file. */
+#undef HAVE_NETINET_IN_SYSTEM_H
+
+/* Define to 1 if you have the <netinet/in_systm.h> header file. */
+#undef HAVE_NETINET_IN_SYSTM_H
+
+/* Define to 1 if you have the <netinet/ip.h> header file. */
+#undef HAVE_NETINET_IP_H
+
+/* Define to 1 if you have the <net/if.h> header file. */
+#undef HAVE_NET_IF_H
+
+/* Define to 1 if you have the <nl_types.h> header file. */
+#undef HAVE_NL_TYPES_H
+
+/* Define if you have off_t */
+#undef HAVE_OFF_T
+
+/* Define to 1 if you have the `popen' function. */
+#undef HAVE_POPEN
+
+/* Define to 1 if you have the `putenv' function. */
+#undef HAVE_PUTENV
+
+/* Define to 1 if you have the <pwd.h> header file. */
+#undef HAVE_PWD_H
+
+/* Define to 1 if you have the `raise' function. */
+#undef HAVE_RAISE
+
+/* Define if you have _read_kbd() */
+#undef HAVE_READ_KBD
+
+/* Define if you have regex_t */
+#undef HAVE_REGEX_H
+
+/* Define if you have struct sockaddr_in6 */
+#undef HAVE_SA_IN6
+
+/* Define if you have struct sockaddr_storage */
+#undef HAVE_SA_STORAGE
+
+/* Define if you have _SC_PAGE_SIZE */
+#undef HAVE_SC_PAGE_SIZE
+
+/* Define to 1 if you have the `setenv' function. */
+#undef HAVE_SETENV
+
+/* Define to 1 if you have the `setlocale' function. */
+#undef HAVE_SETLOCALE
+
+/* Define to 1 if you have the `setpgid' function. */
+#undef HAVE_SETPGID
+
+/* Define to 1 if you have the `setpgrp' function. */
+#undef HAVE_SETPGRP
+
+/* Define to 1 if you have the `sigaction' function. */
+#undef HAVE_SIGACTION
+
+/* Define to 1 if you have the <sigaction.h> header file. */
+#undef HAVE_SIGACTION_H
+
+/* Define to 1 if you have the `snprintf' function. */
+#undef HAVE_SNPRINTF
+
+/* Define to 1 if you have the <stddef.h> header file. */
+#undef HAVE_STDDEF_H
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the `stpcpy' function. */
+#undef HAVE_STPCPY
+
+/* Define to 1 if you have the `strcasecmp' function. */
+#undef HAVE_STRCASECMP
+
+/* Define to 1 if you have the `strcasestr' function. */
+#undef HAVE_STRCASESTR
+
+/* Define to 1 if you have the `strchr' function. */
+#undef HAVE_STRCHR
+
+/* Define to 1 if you have the `strdup' function. */
+#undef HAVE_STRDUP
+
+/* Define to 1 if you have the `strerror' function. */
+#undef HAVE_STRERROR
+
+/* Define to 1 if you have the `strftime' function. */
+#undef HAVE_STRFTIME
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the `strncasecmp' function. */
+#undef HAVE_STRNCASECMP
+
+/* Define to 1 if you have the `strrchr' function. */
+#undef HAVE_STRRCHR
+
+/* Define to 1 if you have the `strstr' function. */
+#undef HAVE_STRSTR
+
+/* Define to 1 if you have the `strtoul' function. */
+#undef HAVE_STRTOUL
+
+/* Define to 1 if you have the <sys/consio.h> header file. */
+#undef HAVE_SYS_CONSIO_H
+
+/* Define to 1 if you have the <sys/cygwin.h> header file. */
+#undef HAVE_SYS_CYGWIN_H
+
+/* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_SYS_DIR_H
+
+/* Define to 1 if you have the <sys/fmutex.h> header file. */
+#undef HAVE_SYS_FMUTEX_H
+
+/* Define to 1 if you have the <sys/ioctl.h> header file. */
+#undef HAVE_SYS_IOCTL_H
+
+/* Define to 1 if you have the <sys/ndir.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_SYS_NDIR_H
+
+/* Define to 1 if you have the <sys/param.h> header file. */
+#undef HAVE_SYS_PARAM_H
+
+/* Define to 1 if you have the <sys/resource.h> header file. */
+#undef HAVE_SYS_RESOURCE_H
+
+/* Define to 1 if you have the <sys/select.h> header file. */
+#undef HAVE_SYS_SELECT_H
+
+/* Define to 1 if you have the <sys/signal.h> header file. */
+#undef HAVE_SYS_SIGNAL_H
+
+/* Define to 1 if you have the <sys/socket.h> header file. */
+#undef HAVE_SYS_SOCKET_H
+
+/* Define to 1 if you have the <sys/sockio.h> header file. */
+#undef HAVE_SYS_SOCKIO_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/time.h> header file. */
+#undef HAVE_SYS_TIME_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <sys/un.h> header file. */
+#undef HAVE_SYS_UN_H
+
+/* Define to 1 if you have the <sys/utsname.h> header file. */
+#undef HAVE_SYS_UTSNAME_H
+
+/* Define to 1 if you have <sys/wait.h> that is POSIX.1 compatible. */
+#undef HAVE_SYS_WAIT_H
+
+/* Define to 1 if you have the <termios.h> header file. */
+#undef HAVE_TERMIOS_H
+
+/* Define to 1 if you have the `timegm' function. */
+#undef HAVE_TIMEGM
+
+/* Define to 1 if you have the <time.h> header file. */
+#undef HAVE_TIME_H
+
+/* Define to 1 if you have the `tsearch' function. */
+#undef HAVE_TSEARCH
+
+/* Define if you have typeof */
+#undef HAVE_TYPEOF
+
+/* Define if you have uint16_t */
+#undef HAVE_UINT16_T
+
+/* Define if you have uint32_t */
+#undef HAVE_UINT32_T
+
+/* Define to 1 if you have the `uname' function. */
+#undef HAVE_UNAME
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define if you have variadic macros */
+#undef HAVE_VARIADIC_MACROS
+
+/* Define to 1 if you have the `vasprintf' function. */
+#undef HAVE_VASPRINTF
+
+/* Define if you have __va_copy */
+#undef HAVE_VA_COPY
+
+/* Define to 1 if you have the `vsnprintf' function. */
+#undef HAVE_VSNPRINTF
+
+/* Define to 1 if you have the <windows.h> header file. */
+#undef HAVE_WINDOWS_H
+
+/* Define if you have X11 for restoring window titles */
+#undef HAVE_X11
+
+/* Define to 1 if you have the <zlib.h> header file. */
+#undef HAVE_ZLIB_H
+
+/* Define to 1 if you have the `__argz_count' function. */
+#undef HAVE___ARGZ_COUNT
+
+/* Define to 1 if you have the `__argz_next' function. */
+#undef HAVE___ARGZ_NEXT
+
+/* Define to 1 if you have the `__argz_stringify' function. */
+#undef HAVE___ARGZ_STRINGIFY
+
+/* Define as const if the declaration of iconv() needs const. */
+#undef ICONV_CONST
+
+/* Directory containing libraries */
+#undef LIBDIR
+
+/* Directory containing locales */
+#undef LOCALEDIR
+
+/* Define if you want: HTML (one file) support */
+#undef MANUAL_ASCIIDOC
+
+/* Define if you want: PDF support */
+#undef MANUAL_JW
+
+/* Define if you want: HTML (multiple files) support */
+#undef MANUAL_XMLTO
+
+/* Define if you want: HTML support */
+#undef MAN_ASCIIDOC
+
+/* Define if you want: man (groff) support */
+#undef MAN_XMLTO
+
+/* Package version */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* The size of `char', as computed by sizeof. */
+#undef SIZEOF_CHAR
+
+/* The size of `int', as computed by sizeof. */
+#undef SIZEOF_INT
+
+/* The size of `long', as computed by sizeof. */
+#undef SIZEOF_LONG
+
+/* The size of `long long', as computed by sizeof. */
+#undef SIZEOF_LONG_LONG
+
+/* The size of `off_t', as computed by sizeof. */
+#undef SIZEOF_OFF_T
+
+/* The size of `short', as computed by sizeof. */
+#undef SIZEOF_SHORT
+
+/* If using the C implementation of alloca, define if you know the
+   direction of stack growth for your system; otherwise it will be
+   automatically deduced at runtime.
+	STACK_DIRECTION > 0 => grows toward higher addresses
+	STACK_DIRECTION < 0 => grows toward lower addresses
+	STACK_DIRECTION = 0 => direction of growth unknown */
+#undef STACK_DIRECTION
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Define to 1 if you can safely include both <sys/time.h> and <time.h>. */
+#undef TIME_WITH_SYS_TIME
+
+/* Define to 1 if your <sys/time.h> declares `struct tm'. */
+#undef TM_IN_SYS_TIME
+
+/* Package version */
+#undef VERSION
+
+/* Define if you have XFree under OS/2 */
+#undef X2
+
+/* How to invoke XTerm */
+#undef XTERM
+
+/* Number of bits in a file offset, on hosts where this is settable. */
+#undef _FILE_OFFSET_BITS
+
+/* Define for large files, on AIX-style hosts. */
+#undef _LARGE_FILES
+
+/* Define to empty if `const' does not conform to ANSI C. */
+#undef const
+
+/* Define to `__inline__' or `__inline' if that's what the C compiler
+   calls it, or to nothing if 'inline' is not supported under any name.  */
+#ifndef __cplusplus
+#undef inline
+#endif
+
+/* Define to `long int' if <sys/types.h> does not define. */
+#undef off_t
+
+/* Define to `unsigned int' if <sys/types.h> does not define. */
+#undef size_t
+
+/* Define to int if <sys/types.h> doesn't define. */
+#undef ssize_t

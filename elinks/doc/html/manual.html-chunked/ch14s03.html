@@ -1,0 +1,183 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Using ELinks with Lua</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="ch14.html" title="Chapter 14. Scripting ELinks with Lua"><link rel="prev" href="ch14s02.html" title="Installing"><link rel="next" href="ch14s04.html" title="Example recipes"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Using ELinks with Lua</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch14s02.html">Prev</a> </td><th width="60%" align="center">Chapter 14. Scripting ELinks with Lua</th><td width="20%" align="right"> <a accesskey="n" href="ch14s04.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2604459"></a>Using ELinks with Lua</h2></div></div></div><p>Out of the box, ELinks with Lua will do nothing different from regular ELinks.
+You need to write some scripts.</p><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2604472"></a>ELinks Lua additions</h3></div></div></div><p>The Lua support is based on the idea of <span class="strong"><strong>hooks</strong></span>.  A hook is a function that
+gets called at a particular point during the execution of ELinks.  To make
+ELinks do what you want, you can add and edit such hooks.</p><p>The Lua support also adds an extra dialog box, which you can open while in
+ELinks with the comma (<code class="literal">,</code>) key.  Here you can enter Lua expressions for
+evaluation, or override it to do something different.</p><p>And finally, you can bind keystrokes to Lua functions.  These keystrokes
+won't let you do any more than is possible with the Lua Console, but
+they're more convenient.</p><p>Note that this document assumes you have some knowledge of programming in Lua.
+For that, you should refer to the Lua reference manual
+(<a class="ulink" href="http://www.lua.org/docs.html" target="_top">http://www.lua.org/docs.html</a>). In fact, the language is relatively
+trivial, though. You could already do wonders with simply refactoring the
+example scripts.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2604532"></a>Config file</h3></div></div></div><p>On startup, ELinks reads in two Lua scripts.  Firstly, a system-wide
+configuration file called <code class="literal">/etc/elinks/hooks.lua</code>, then a file in your home
+directory called <code class="literal">~/.elinks/hooks.lua</code>.  From these files, you can include
+other Lua files with <code class="literal">dofile</code>, if necessary.</p><p>To see what kind of things you should put in here, look at
+<code class="literal">contrib/lua/hooks.lua</code>.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2604575"></a>Hooks</h3></div></div></div><p>The following hooks are available.</p><div class="variablelist"><dl><dt><span class="term">
+goto_url_hook (url, current_url)
+</span></dt><dd>
+        This hook is called when the user enters a string into the "Go to URL"
+        dialog box.  It is given the string entered, and the current URL
+        (which may be <code class="literal">nil</code>).  It should return a string, which is the URL
+        that ELinks should follow, or <code class="literal">nil</code> to cancel the operation.
+</dd><dt><span class="term">
+follow_url_hook (url)
+</span></dt><dd>
+        This hook is passed the URL that ELinks is about to follow.  It should
+        return a string (the URL modified or unmodified), or <code class="literal">nil</code> to stop
+        ELinks following the URL
+</dd><dt><span class="term">
+pre_format_html_hook (url, html)
+</span></dt><dd>
+        This hook gets called just before the final time an HTML document is
+        formatted, i.e. it only gets called once, after the entire document is
+        downloaded.  It will be passed the URL and HTML text as strings, and
+        should return the modified HTML text, or <code class="literal">nil</code> if there were no
+        modifications.
+</dd><dt><span class="term">
+proxy_for_hook (url)
+</span></dt><dd>
+        This hook is called when ELinks is about to load a resource
+        from a URL.  It should return "PROXY:PORT" (e.g. "localhost:8080")
+        to use the specified proxy, "" to contact the origin server
+        directly, or <code class="literal">nil</code> to use the default proxy of the protocol.
+</dd><dt><span class="term">
+lua_console_hook (string)
+</span></dt><dd><p>
+        This hook is passed the string that the user entered into the "Lua
+        Console" dialog box.  It should return two values: the type of action
+        to take (<code class="literal">run</code>, <code class="literal">eval</code>, <code class="literal">goto-url</code> or <code class="literal">nil</code>), and
+        a second argument, which is the shell command to run or the Lua
+        expression to evaluate. Examples:
+</p><div class="itemizedlist"><ul type="disc"><li>
+<code class="literal">return "run", "someprogram"</code> will attempt to run the program
+           <code class="literal">someprogram</code>.
+</li><li>
+<code class="literal">return "eval", "somefunction(1+2)"</code> will attempt to call the Lua
+           function <code class="literal">somefunction</code> with an argument, 3.
+</li><li>
+<code class="literal">return "goto_url", "http://www.bogus.com"</code> will ask ELinks to visit
+           the URL "http://www.bogus.com".
+</li><li>
+<code class="literal">return nil</code> will do nothing.
+</li></ul></div></dd><dt><span class="term">
+quit_hook ()
+</span></dt><dd>
+        This hook is run just before ELinks quits.  It is useful for cleaning
+        up things, such as temporary files you have created.
+</dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2604831"></a>Functions</h3></div></div></div><p>As well as providing hooks, ELinks provides some functions in addition to the
+standard Lua functions.</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>The standard Lua function <code class="literal">os.setlocale</code> affects ELinks' idea of
+the system locale, which ELinks uses for the "System" charset, for the
+"System" language, and for formatting dates.  This may however have to
+be changed in a future version of ELinks, in order to properly support
+terminal-specific system locales.</p></div><div class="variablelist"><dl><dt><span class="term">
+current_url ()
+</span></dt><dd>
+        Returns the URL of the current page being shown (in the ELinks session
+        that invoked the function).
+</dd><dt><span class="term">
+current_link ()
+</span></dt><dd>
+        Returns the URL of the currently selected link, or <code class="literal">nil</code> if none is
+        selected.
+</dd><dt><span class="term">
+current_title ()
+</span></dt><dd>
+        Returns the title of the current page, or <code class="literal">nil</code> if none.
+</dd><dt><span class="term">
+current_document ()
+</span></dt><dd>
+        Returns the current document as a string, unformatted.
+</dd><dt><span class="term">
+current_document_formatted ([width])
+</span></dt><dd>
+        Returns the current document, formatted for the specified screen
+        width.  If the width is not specified, then the document is formatted
+        for the current screen width (i.e. what you see on screen).  Note that
+        this function does <span class="strong"><strong>not</strong></span> guarantee all lines will be shorter than
+        <code class="literal">width</code>, just as some lines may be wider than the screen when
+        viewing documents online.
+</dd><dt><span class="term">
+pipe_read (command)
+</span></dt><dd>
+        Executes <code class="literal">command</code> and reads in all the data from stdout, until there
+        is no more.  This is a hack, because for some reason the standard Lua
+        function <code class="literal">file:read</code> seems to crash ELinks when used in pipe-reading
+        mode.
+</dd><dt><span class="term">
+execute (string)
+</span></dt><dd>
+        Executes shell commands <code class="literal">string</code> without waiting for it to exit.  Beware
+        that you must not read or write to stdin and stdout.  And unlike the
+        standard Lua function <code class="literal">os.execute</code>, the return value is meaningless.
+</dd><dt><span class="term">
+tmpname ()
+</span></dt><dd><p>
+        Returns a unique name for a temporary file, or <code class="literal">nil</code> if no
+        such name is available.  The returned string includes the
+        directory name.  Unlike the standard Lua function
+        <code class="literal">os.tmpname</code>, this one generates ELinks-related names
+        (currently with "elinks" at the beginning of the name).
+</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>The <code class="literal">tmpname</code> function does not create the file and does not
+        guarantee exclusive access to it: the caller must handle the
+        possibility that another process creates the file and begins
+        using it while this function is returning.  Failing to do this
+        may expose you to symlink attacks by other users.  To avoid
+        the risk, use <code class="literal">io.tmpfile</code> instead; unfortunately, it does not
+        tell you the name of the file.</p></div></dd><dt><span class="term">
+bind_key (keymap, keystroke, function)
+</span></dt><dd>
+        Currently, <code class="literal">keymap</code> must be the string <code class="literal">"main"</code>.  Keystroke is a
+        keystroke as you would write it in the ELinks config file
+        <code class="literal">~/.elinks/elinks.conf</code>.  The function <code class="literal">function</code> should take no
+        arguments, and should return the same values as <code class="literal">lua_console_hook</code>.
+</dd><dt><span class="term">
+edit_bookmark_dialog (cat, name, url, function)
+</span></dt><dd>
+        Displays a dialog for editing a bookmark, and returns without
+        waiting for the user to close the dialog.  The return value is
+        <code class="literal">1</code> if successful, <code class="literal">nil</code> if arguments are invalid, or nothing
+        at all if out of memory.  The first three arguments
+        must be strings, and the user can then edit them in input
+        fields.  There are also <span class="emphasis"><em>OK</em></span> and <span class="emphasis"><em>Cancel</em></span> buttons in the
+        dialog.  If the user presses <span class="emphasis"><em>OK</em></span>, ELinks calls <code class="literal">function</code>
+        with the three edited strings as arguments, and it should
+        return similar values as in <code class="literal">lua_console_hook</code>.
+</dd><dt><span class="term">
+xdialog (string [, more strings…], function)
+</span></dt><dd>
+        Displays a generic dialog for editing multiple strings, and
+        returns without waiting for the user to close the dialog.
+        The return value is <code class="literal">1</code> if successful, <code class="literal">nil</code> if arguments are
+        invalid, or nothing at all if out of memory.  All arguments
+        except the last one must be strings, and ELinks places them
+        in input fields in the dialog.  There can be at most 5 such
+        strings.  There are also <span class="emphasis"><em>OK</em></span> and <span class="emphasis"><em>Cancel</em></span> buttons in the
+        dialog.  If the user presses <span class="emphasis"><em>OK</em></span>, ELinks calls <code class="literal">function</code>
+        with the edited strings as arguments, and it should return
+        similar values as in <code class="literal">lua_console_hook</code>.
+</dd><dt><span class="term">
+set_option (option, value)
+</span></dt><dd>
+        Sets an ELinks option.  The first argument <code class="literal">option</code> must be
+        the name of the option as a string.  ELinks then tries to
+        convert the second argument <code class="literal">value</code> to match the type of the
+        option.  If successful, <code class="literal">set_option</code> returns <code class="literal">value</code>, else
+        <code class="literal">nil</code>.
+</dd><dt><span class="term">
+get_option (option)
+</span></dt><dd>
+        Returns the value of an ELinks option.  The argument <code class="literal">option</code>
+        must be the name of the option as a string.  If the option
+        does not exist, <code class="literal">get_option</code> returns <code class="literal">nil</code>.
+</dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2605344"></a>Variables</h3></div></div></div><div class="variablelist"><dl><dt><span class="term">
+elinks_home
+</span></dt><dd>
+        The name of the ELinks home directory, as a string.  Typically
+        this is the .elinks subdirectory of the user's home directory.
+</dd></dl></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2605371"></a>User protocol</h3></div></div></div><p>There is one more little thing which Links-Lua adds, which will not be
+described in detail here.  It is the fake "user:" protocol, which can be used
+when writing your own addons.  It allows you to generate web pages containing
+links to "user://blahblah", which can be intercepted by the <code class="literal">follow_url_hook</code>
+(among other things) to perform unusual actions.  For a concrete example, see
+the bookmark addon.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch14s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch14.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch14s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Installing </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Example recipes</td></tr></table></div></body></html>

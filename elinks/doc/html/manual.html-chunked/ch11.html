@@ -1,0 +1,24 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Chapter 11. Managing remote ELinks instances</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="index.html" title="The ELinks Manual"><link rel="prev" href="ch10s06.html" title="Some Sample Mailcap Entries"><link rel="next" href="ch11s02.html" title="Remote Actions"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 11. Managing remote ELinks instances</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch10s06.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch11s02.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="id2603243"></a>Chapter 11. Managing remote ELinks instances</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="ch11.html#id2603305">Limitations and outstanding issues</a></span></dt><dt><span class="section"><a href="ch11s02.html">Remote Actions</a></span></dt></dl></div><p>Some programs provide the ability to pass URIs to external programs.  When
+stumbling upon a reference to a page you want to see, it is sometimes a kludge
+to copy and paste it into ELinks.  This is where -remote can be a nifty
+solution.</p><p>When invoking ELinks with the -remote argument, it does not start a new
+instance, but instead connects to an already running ELinks, making it
+possible to control that ELinks instance. The -remote command line switch
+takes a command consisting of the action to invoke and any parameters to the
+action. Commands must begin with a nonempty sequence of ASCII alphabetic
+characters followed by optional whitespace and an opening parenthesis. They
+must end with a closing parenthesis optionally followed by whitespace. Here is
+an example for opening freshmeat.net in a new tab:</p><pre class="literallayout">$ elinks -remote "openURL(http://freshmeat.net/, new-tab)"</pre><p>When running this command in a terminal, you will see a small delay before
+ELinks returns. If no running instance was found, it will return with the
+error message:</p><pre class="literallayout">ELinks: No remote session to connect to.</pre><p>All URLs passed to the openURL() commands can be URL prefixes, so the command
+above could have simply used “openURL(fm, new-tab)”.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2603305"></a>Limitations and outstanding issues</h2></div></div></div><p>Remote control is implemented using the intercommunication socket created in
+~/.elinks/, so the command has to be run on the same machine as the instance
+you want to control; or put differently: the two ELinkses need to share a file
+system that supports socket files, which rules out usage of -remote over NFS.
+This also implies that the ELinks instance you want to control should be
+started without passing -no-home nor -no-connect.</p><p>The built-in -remote support is to some degree compatible with the one Mozilla
+provides (http://www.mozilla.org/unix/remote.html), but with some homebrew
+extensions added and few unsupported features. All the supported actions are
+documented below.</p><p>Under some circumstances, use of the -remote control can cause ELinks to
+become unresponsive. This is cause by the current key press and mouse focus
+being redirected to new tabs or dialogs opened by the -remote action.</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch10s06.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch11s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Some Sample Mailcap Entries </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Remote Actions</td></tr></table></div></body></html>

@@ -1,0 +1,217 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Feature configuration file (features.conf)</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><link rel="start" href="index.html" title="The ELinks Manual"><link rel="up" href="ch01.html" title="Chapter 1. Getting ELinks up and running"><link rel="prev" href="ch01s06.html" title="ECMAScript support?!"><link rel="next" href="ch02.html" title="Chapter 2. Frequently Asked Questions"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Feature configuration file (<code class="literal">features.conf</code>)</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch01s06.html">Prev</a> </td><th width="60%" align="center">Chapter 1. Getting ELinks up and running</th><td width="20%" align="right"> <a accesskey="n" href="ch02.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id2596724"></a>Feature configuration file (<code class="literal">features.conf</code>)</h2></div></div></div><p>This file contains various compile-time configuration settings, which you can
+adjust below. You can fine-tune the ELinks binary to include really only what
+you want it to. It acts as a front-end to the configure script in the sense
+that it is possible to control any features in this file by passing arguments
+to the configure script. In fact any arguments given to the script will
+overrule the values set in this file.</p><p>There are still some things which are to be adjusted only directly through the
+configure script arguments though, so check ./configure —help out as well!</p><p>All dependency checking is done by the configure script so even though a
+feature is enabled here it is possible that it will be disabled at compile
+time if the dependencies are not met. Check the features.log file generated
+by the configure script to make sure.</p><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2596766"></a>Notes for users</h3></div></div></div><p>All features that can be controlled using this file are already set to their
+default values. The syntax used is hopefully familiar to most people.</p><p><span class="emphasis"><em>#</em></span> chars start a comment that runs until the end of the line.</p><p>The features are controlled by setting the various CONFIG_&lt;FEATURE&gt; variables
+to either <span class="emphasis"><em>yes</em></span> or <span class="emphasis"><em>no</em></span> depending on whether it should be enabled or disabled.
+So in order to disable bookmark support a line in this file should say:</p><pre class="literallayout">CONFIG_BOOKMARKS=no</pre><p>It is also possible to simply comment out the line in order to disable it.
+Therefore, if the default doesn't suit you, you can either comment it out or
+set it to the value you desire.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-BOOKMARKS"></a>Bookmarks (<code class="literal">CONFIG_BOOKMARKS</code>)</h3></div></div></div><p>ELinks has built-in hierarchic bookmarks support. Open the bookmarks manager
+by pressing <span class="emphasis"><em>s</em></span>. When bookmarks are enabled, also support for the internal
+ELinks bookmarks format is always compiled in.</p><p>This is a favourite target for disabling in various embedded applications.
+It all depends on your requirements.</p><p>Also read the “The Ultimate Bookmarks Guide” in doc/bookmarks.txt</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-XBEL-BOOKMARKS"></a>XBEL Bookmarks (<code class="literal">CONFIG_XBEL_BOOKMARKS</code>)</h3></div></div></div><p>ELinks also supports universal XML bookmarks format called XBEL, also
+supported by e.g. Galeon, various "always-have-my-bookmarks" websites and
+number of universal bookmark converters.</p><p>Frequently, you know you will not need it, then you can of course happily
+forcibly remove support for it and save few bytes.</p><p><span class="strong"><strong>Default:</strong></span>  enabled if libexpat is found and bookmarks are enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-COOKIES"></a>Cookies (<code class="literal">CONFIG_COOKIES</code>)</h3></div></div></div><p>Support for HTTP cookies --- a data token which the server sends the client
+once and then the client sends it back along each request to the server.  This
+mechanism is crucial e.g. for keeping HTTP sessions (you "log in" to a site,
+and from then on the site recognizes you usually because of the cookie), but
+also for various banner systems, remembering values filled to various forms,
+and so on. You can further tune the ELinks behaviour at runtime (whether to
+accept/send cookies, ask for confirmation when accepting a cookie etc).</p><p>This functionality is usually quite important and you should not disable it
+unless you really know what are you doing.</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-FORMHIST"></a>Form History (<code class="literal">CONFIG_FORMHIST</code>)</h3></div></div></div><p>The famous Competing Browser has that annoying thing which pops up when you
+submit a form, offering to remember it and pre-fill it the next time. And yes,
+ELinks can do that too! You will still need to also enable this manually at
+document.browse.forms.show_formhist.</p><p>Many people find it extremely annoying (including pasky), however some others
+consider it extremely handy and will sacrifice almost anything to get it. It
+will not do any harm to have this compiled-in as long as you will leave it
+turned off (which is also the default configuration).</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-GLOBHIST"></a>Global History (<code class="literal">CONFIG_GLOBHIST</code>)</h3></div></div></div><p>This device records each and every page you visit (to a configurable limit).
+You can browse through this history in the history manager (press <span class="emphasis"><em>h</em></span>).  Do
+not confuse this with the "session history", recording history of your
+browsing in the frame of one session (session history is the thing you move
+through when pressing <span class="emphasis"><em>back</em></span> and <span class="emphasis"><em>unback</em></span> or which you see in the
+File::History menu).</p><p>Global history does not care about the order you visited the pages in, it just
+records that you visited it, when did you do that and the title of the page.
+Then, you can see when did you visit a link last time (and what was the title
+of the target document at that time), links can be coloured as visited etc.</p><p>If you disable this feature, you will not lose any crucial functionality, just
+some relatively minor convenience features, which can nevertheless prove
+sometimes very practical.</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id2597049"></a>MIME</h3></div></div></div><p>ELinks uses a MIME system for determining the content type of documents and
+configuring programs for external handling. By default the option system can
+be used to configure how media types are handled. More info about how to set
+up the MIME handling using the option system can be found in the doc/mime.html
+file.</p><p>Below are listed some additional ways to do it.</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-MAILCAP"></a>Mailcap (<code class="literal">CONFIG_MAILCAP</code>)</h3></div></div></div><p>Mailcap files describe what program - on the local system - can be used to
+handle a media type. The file format is defined in RFC 1524 and more info
+including examples can be found in the doc/mailcap.html file.</p><p>This is very useful especially for clean interoperability with other
+MIME-aware applications and fitting nicely into the UNIX system, where this is
+the standard way of specifying MIME handlers. If you are not interested in
+that, you can still use the internal MIME associations system, though.</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-MIMETYPES"></a>Mimetypes File (<code class="literal">CONFIG_MIMETYPES</code>)</h3></div></div></div><p>Mimetypes file can be used to specify the relation between media types and
+file extensions.</p><p>Basically same thing applies here as for the mailcap support.</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-IPV6"></a>IPv6 Protocol Support (<code class="literal">CONFIG_IPV6</code>)</h3></div></div></div><p>You know this thing that was designed to obsolete IPv4 but only pasky,
+weirdos and projects supported with big funds really use. ;-)</p><p><span class="strong"><strong>Default:</strong></span>  enabled if the system supports it</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-URI-REWRITE"></a>URI Rewriting (<code class="literal">CONFIG_URI_REWRITE</code>)</h3></div></div></div><p>The goto dialog through which new URIs can be entered is an essential part of
+browsing in ELinks. This feature makes the dialog more powerful by making it
+possible to extend how entered text is handled through a set of rewrite rules
+(see protocol.rewrite options).</p><p>There are two types of rules: simple and smart ones.</p><p>Simple rewriting rules are basically URI abbreviations, making it possible to
+map a word to the full URI. They can also be used for hierarchic navigation to
+ease moving from some nested directory to the parent directory or doing other
+stuff with the current URI. For example, when you type <span class="emphasis"><em>gg</em></span> into the goto
+dialog, you will be materialized at Google's homepage.</p><p>Smart rules can take arguments and therefore enable more advanced rewriting.
+The arguments could be search words to google for or a lookup query for a
+dictionary. Eg. type <span class="emphasis"><em>gg:Petr Baudis king of ELinks cvs</em></span>.</p><p>This feature is also available in a more powerful form in the Lua and Guile
+extensions, so if you plan to or already use those, you won't miss anything by
+disabling this feature (besides easier and better integrated configuration).</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-BITTORRENT"></a>BitTorrent Protocol Support (<code class="literal">CONFIG_BITTORRENT</code>)</h3></div></div></div><p>The BitTorrent protocol is a protocol for distributing files in a peer-to-peer
+(P2P) manner. It uses the HTTP protocol for communicating with a central
+server and a peer-to-peer (P2P) protocol for exchanging file pieces betweens
+peer downloaders. The integrity of file pieces downloaded from peers are
+checked using cryptographic hashing (SHA1).</p><p>Downloads using BitTorrent are started by first downloading a .torrent file
+with the MIME type "application/x-bittorrent". The file contains information
+which enables ELinks to ask a central server, called a tracker, for
+information about other downloading peers and start downloading from and
+uploading to them.</p><p>At any time, an external handler can always be defined to take precedence of
+the internal BitTorrent client and the internal client can always be forced
+by prefixing the URI of the .torrent file with "bittorrent:"</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>The BitTorrent support is still experimental.</p></div><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-CGI"></a>Local CGI Support (<code class="literal">CONFIG_CGI</code>)</h3></div></div></div><p>ELinks can (like w3m or lynx) execute certain executable files stored on the
+local disks as CGIs, when you target it on them (through a URI of the <span class="emphasis"><em>file</em></span>
+scheme). ELinks emulates the complete CGI environment, like the program would
+be executed by a web server. See the protocol.file.cgi options tree for
+detailed runtime configuration.</p><p>Some people just write their bookmark management application as Perl CGI
+script and then access it from the web browser using this feature, not needing
+any web server or so. Therefore, this is a great possible way to extended the
+browser capabilities.</p><p>Even when you compile this in, you need to enable this yet in the
+configuration, and even then only CGI files passing certain user-defined
+filters (path-based) will be allowed to be executed (and there are certain
+other security barriers in place).</p><p><span class="strong"><strong>Default:</strong></span>  disabled, available if setenv() or putenv() is found</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-DATA"></a>Data URI protocol (<code class="literal">CONFIG_DATA</code>)</h3></div></div></div><p>The data URI protocol is defined in RFC 2397 and allows inclusion of small
+data items as "immediate" data, as if it had been included externally.</p><p>A data URL might be used for arbitrary types of data. The URI</p><pre class="literallayout">data:,A%20brief%20note</pre><p>encodes the text/plain string "A brief note", which might be useful in a
+footnote link.</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-FINGER"></a>Finger User Information Protocol Support (<code class="literal">CONFIG_FINGER</code>)</h3></div></div></div><p>The finger protocol is a simple protocol defined in RFC 1288. The server
+return a friendly, human-oriented status report on either the system at the
+moment or a particular person in depth such as whether a user is currently
+logged-on, e-mail address, full name etc. As well as standard user
+information, it displays the contents of ".plan" file in the user's home
+directory. Often this file (maintained by the user) contained either useful
+information about the user's current activities, or alternatively all manner
+of humor.</p><p>It is most often implemented on Unix or Unix-like systems however due to
+security and privacy reasons it is usually disabled or only allowed locally on
+the system.</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-FSP"></a>File Service Protocol (<code class="literal">CONFIG_FSP</code>)</h3></div></div></div><p>File Service Protocol (FSP) is a very lightweight UDP based protocol for
+transferring files. FSP has many benefits over FTP, mainly for running
+anonymous archives. FSP protocol is valuable in all kinds of environments
+because it is one of the only TCP/IP protocols that is not aggressive about
+bandwidth, while still being sufficiently fault tolerant.</p><p>FSP is what anonymous FTP <span class="strong"><strong>should</strong></span> be!</p><p>See http://fsp.sourceforge.net/ for more info.</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-FTP"></a>File Transfer Protocol Support (<code class="literal">CONFIG_FTP</code>)</h3></div></div></div><p>The File Transfer Protocol (FTP) is a software standard for transferring
+computer files between machines with widely different operating systems.</p><p>Many sites that run FTP servers enable so-called "anonymous ftp". Under
+this arrangement, users do not need an account on the server. By default,
+the account name for the anonymous access is <span class="emphasis"><em>anonymous</em></span>. This account
+does not need a password, but users are commonly asked to send their email
+addresses as their passwords for authentication (protocol.ftp.anon_passwd),
+but there is no verification.</p><p>See also http://en.wikipedia.org/wiki/Ftp .</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-GOPHER"></a>Gopher Protocol Support (<code class="literal">CONFIG_GOPHER</code>)</h3></div></div></div><p>Gopher is a distributed document search and retrieval network protocol
+designed for the Internet in RFC 1436. The need for gopher arose in in the
+early days of the hypertext Internet where the number of documents that were
+being published in campus and research environments could not easily be
+distributed using known protocols like FTP because these documents were stored
+not in one place, but in many computers connected to the Internet.</p><p>The support works much like local file browsing with directories (aka. menus)
+and various file types that can be downloaded and viewed.</p><p>It is still very experimental and the CSO phone-book protocol is not
+implemented.</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-NNTP"></a>NNTP Protocol Support (<code class="literal">CONFIG_NNTP</code>)</h3></div></div></div><p>Network news transport protocol support makes it possible to access nntp
+and news servers and read postings. It is still very experimental and is
+far from being considered a “news reader”.</p><p>It is possible to list news groups on a server, articles in a news group
+and retrieve articles by their number or message-id.</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-SMB"></a>SMB Protocol Support (<code class="literal">CONFIG_SMB</code>)</h3></div></div></div><p>ELinks supports browsing over the SMB protocol (URI <span class="emphasis"><em>smb</em></span> scheme), using the
+smbclient program as back-end. Therefore, in order to have this enabled, you
+will need to install Samba (or at least just the smbclient part, if you can
+install it separately).</p><p>Unfortunately, ELinks doesn't yet properly validate the file name passed to
+smbclient, and this caused vulnerability CVE-2006-5925 (bug 841).  To close
+the vulnerability, configure.in now disables the SMB protocol regardless
+of what you specify here.  If you want to use SMB, please wait for ELinks
+0.12.0 or see bug 844.</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-CSS"></a>Cascading Style Sheets (<code class="literal">CONFIG_CSS</code>)</h3></div></div></div><p>Simplistic CSS support. It is still very much in it's infancy so don't expect
+too much. If you have use of background colors enabled more pages will have
+the intended background color. Also quite a few additional text attributes are
+applied. One example is highlighting of search words on Google's cached pages.</p><p>There are options to disable both imported style sheets to minimize network
+traffic and whether to use CSS at all. Also a default style sheet can be
+defined to control the basic layout in the HTML renderer.</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-HTML-HIGHLIGHT"></a>HTML Highlighting (<code class="literal">CONFIG_HTML_HIGHLIGHT</code>)</h3></div></div></div><p>Makes it possible to view HTML source with the markup highlighted in colors
+configurable using CSS. It also makes values of referencing attributes
+accessible like the href="&lt;uri&gt;" attribute in &lt;a&gt; elements.</p><p>The HTML highlighting uses components of an experimental DOM implementation
+still in progress so enabling this feature will add a considerable amount of
+code to the compiled binary. On the other hand it will help to debug what will
+hopefully evolve into the next generation document renderer.</p><p><span class="strong"><strong>Default:</strong></span>  disabled, requires that CSS is enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-SM-SCRIPTING"></a>ECMAScript (JavaScript) Browser Scripting (<code class="literal">CONFIG_SM_SCRIPTING</code>)</h3></div></div></div><p>By enabling this feature, certain parts of ELinks, such as the goto URL
+dialog, may be extended using ECMAScript (aka. JavaScript) scripts. This can
+be useful to optimise your usage of ELinks.</p><p>For example you can define shortcuts (or abbreviations) for URLs of sites you
+often visit by having a goto URL hook expand them. This can also be achieved
+with the URI rewrite feature (CONFIG_URI_REWRITE), however it is not as
+powerful as doing it with scripting.</p><p><span class="strong"><strong>Default:</strong></span>  enabled if Spidermonkey is found</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-MOUSE"></a>Mouse Support (<code class="literal">CONFIG_MOUSE</code>)</h3></div></div></div><p>ELinks may be controlled not only by keyboard, but also by mouse to quite some
+extent. You can select links, menu items, scroll document, click at buttons
+etc, and it should hopefully work. ELinks supports mouse control by GPM, xterm
+mouse reporting and TWAIN's twterm mouse reporting.</p><p>It is generally nice convenience and doesn't cost too much. However, you can
+do everything with keyboard as you can with mouse. Also note that the xterm
+mouse reporting takes control over the terminal so that copy and pasting text
+from and to ELinks has to be done by holding down the Shift key.</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-88-COLORS"></a>88 Colors in Terminals (<code class="literal">CONFIG_88_COLORS</code>)</h3></div></div></div><p>Define to add support for using 88 colors in terminals. Note that this
+requires a capable terminal emulator, such as:</p><div class="itemizedlist"><ul type="disc"><li>
+Thomas Dickey's XTerm, version 111 or later (check which version you have
+with xterm -version) compiled with —enable-88-color.
+</li><li>
+Rxvt, version 2.7.9 or later compiled with —enable-88-color.
+</li></ul></div><p>You will still need to enable this at runtime for a given terminal in terminal
+options, or set your $TERM variable to xterm-88color - then, ELinks will
+automatically configure itself to make use of all the available terminal
+features, while still acting sensibly when you happen to run it in an xterm
+w/o the 88 colors support.</p><p>When enabled, the memory usage is somewhat increased even when running in mono
+and 16 colors mode (the memory consumption can be especially remarkable when
+rendering very large documents and/or using very large terminals).  However,
+when you actually run it in the suitable terminal, it looks really impressive,
+I'd say marvelous!</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-256-COLORS"></a>256 Colors in Terminals (<code class="literal">CONFIG_256_COLORS</code>)</h3></div></div></div><p>Define to add support for using 256 colors in terminals. Note that this
+requires a capable terminal emulator, such as:</p><div class="itemizedlist"><ul type="disc"><li>
+Thomas Dickey's XTerm, version 111 or later (check which version you have
+with xterm -version) compiled with —enable-256-color.
+</li><li>
+Rxvt, version 2.7.9 or later compiled with —enable-256-color.
+</li><li>
+Recent versions of PuTTY also have some support for 256 colors.
+</li></ul></div><p>You will still need to enable this at runtime for a given terminal in terminal
+options, or set your $TERM variable to xterm-256color - then, ELinks will
+automatically configure itself to make use of all the available terminal
+features, while still acting sensibly when you happen to run it in an xterm
+w/o the 256 colors support.</p><p>When enabled, the memory usage is somewhat increased even when running in mono
+and 16 colors mode (the memory consumption can be especially remarkable when
+rendering very large documents and/or using very large terminals).  However,
+when you actually run it in the suitable terminal, it looks really impressive,
+I'd say marvelous!</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-EXMODE"></a>Ex-mode Interface (<code class="literal">CONFIG_EXMODE</code>)</h3></div></div></div><p>The ex-mode interface makes a prompt available when pressing <span class="emphasis"><em>:</em></span>. The prompt
+can be used for entering actions like <span class="emphasis"><em>:goto-url</em></span> and configuration file
+commands.</p><p>The code is still very experimental and lacks much work such as tab
+completion.</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-LEDS"></a>LEDs (<code class="literal">CONFIG_LEDS</code>)</h3></div></div></div><p>These are the tiny LED-like indicators, shown at the bottom-right of the
+screen as [-----]. They are used for indication of various states, e.g.
+whether you are currently talking through a SSL-secured connection,
+what is the current input mode (normal or insert), JavaScript errors etc.</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-MARKS"></a>Document Marks (<code class="literal">CONFIG_MARKS</code>)</h3></div></div></div><p>Makes it possible to set marks in a document and then later jump to them kind
+of like how fragments in URIs work. It is currently only possible to jump to
+marks set in the current document.</p><p><span class="strong"><strong>Default:</strong></span>  enabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-DEBUG"></a>Debug mode (<code class="literal">CONFIG_DEBUG</code>)</h3></div></div></div><p>Assertions are evaluated and will core dump on failure. Some extra sanity
+checks are done, and some errors will cause core dump instead of just a
+message. Internal memory leak detection is activated (memory usage will grow),
+and every allocation/reallocation/free operations will be slower due to extra
+tests. Lists sanity checks are enabled, so list operations are slower. Hot-key
+debugging is enabled, it highlights redundant hot-keys in a menu.</p><p>This option should be _always_ used by beta testers and developers, it helps
+to detect many issues. Binary packages maintainers should not use this option
+in normal situation.</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-FASTMEM"></a>Fast mode (<code class="literal">CONFIG_FASTMEM</code>)</h3></div></div></div><p>This option provides a way to generate a faster and smaller binary of a
+_stable_ version of ELinks. Please do not use it with unstable releases
+(unless memory footprint, performance and/or binary size are major issues for
+you).</p><p>It disables all assertion tests and sanity checks effectively reducing safety.
+It disables internal memory allocation routines, directly calling libc
+functions (so it's much faster, but memory allocation issues and memory leaks
+will be not detected). It defines fmem_alloc(), and fmem_free() to be in fact
+alloca() and nothing, providing much faster allocations in routines where they
+are used</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-OWN-LIBC"></a>Own C library functions (<code class="literal">CONFIG_OWN_LIBC</code>)</h3></div></div></div><p>Enable this to use the various C library stub functions that is part of the
+portability layer instead of those available in the C library on the system.</p><p>It will make the binary slightly bigger and should only be used for testing
+the portability layer.</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-SMALL"></a>Small binary (<code class="literal">CONFIG_SMALL</code>)</h3></div></div></div><p>Reduces the size of the binary but also disables a few memory consuming
+optimizations to make the program much lighter when running.</p><p>Part of the size reduction is due to various help text not being compiled in
+which will affect usability. Also the disabled optimization will make ELinks
+run slower.</p><p>See doc/small.txt for more information about how to reduce the size of ELinks.</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-BACKTRACE"></a>Back-trace Printing (<code class="literal">CONFIG_BACKTRACE</code>)</h3></div></div></div><p>Once upon a time, a disaster happens and ELinks crashes. That is a very sad
+event and it would be very nice to have some means how to diagnose it. In the
+crash handler, ELinks prints out various helpful things, however the truly
+important information is _where_ did it crash. Usually, users do not have gdb
+installed and can't provide a back-trace. However, ELinks can print a
+back-trace on its own, if the system supports it (currently, it is implemented
+only for glibc). It is not always accurate, it is useless when the ELinks
+binary is stripped and it still misses a lot of important information, but it
+can be sometimes still an indispensable help for the developers.</p><p>You should keep this, unless you will strip your ELinks binary anyway, you
+know you are not going to report back any failures and you care about each
+single wasted bit.</p><p><span class="strong"><strong>Default:</strong></span>  enabled if the libc supports it (only glibc)</p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="CONFIG-NO-ROOT-EXEC"></a>Disable Root User (<code class="literal">CONFIG_NO_ROOT_EXEC</code>)</h3></div></div></div><p>Browsers are scary monsters used for traveling around in an even more scary
+world where people indifferently throw garbage files at you and threaten your
+perfect world. Altho' ELinks is a small monster compared to most browsers, it
+can still bite your head off and some might consider running it as the root
+user extremely dangerous. To prevent such usage simply enable this feature.</p><p><span class="strong"><strong>Default:</strong></span>  disabled</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s06.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch01.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">ECMAScript support?! </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 2. Frequently Asked Questions</td></tr></table></div></body></html>
