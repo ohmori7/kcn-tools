@@ -1,3 +1,6 @@
+.deps
+*.o
+*~
 Makefile.config
 autom4te.cache/
 config.h
@@ -9,3 +12,5 @@ doc/man/man1/elinks.1
 features.log
 src/intl/gettext/ref-add.sed
 src/intl/gettext/ref-del.sed
+src/elinks
+stamp-h
