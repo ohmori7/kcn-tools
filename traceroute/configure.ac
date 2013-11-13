@@ -41,7 +41,10 @@ AC_CHECK_HEADERS([netinet/ip_var.h netinet/udp_var.h], [], [], [
 	])
 
 #
-AC_CHECK_TYPES([struct ipovly, struct udpiphdr])
+AC_CHECK_TYPES([struct ipovly, struct udpiphdr],[],[],[
+	#include <netinet/in.h>
+	#include <netinet/ip_var.h>
+	])
 
 #
 AC_CHECK_MEMBERS([struct sockaddr_in.sin_len],[],[],[#include <netinet/in.h>])
