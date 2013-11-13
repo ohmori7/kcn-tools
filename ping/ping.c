@@ -299,9 +299,15 @@ main(int argc, char *argv[])
 #define IPSECOPT	"AE"
 #endif /*IPSEC_POLICY_IPSEC*/
 #endif
+#ifdef HAVE_KCN
+#define KCNOPT	"k"
+#else /* HAVE_KCN */
+#define KCNOPT
+#endif /* ! HAVE_KCN */
 	while ((c = getopt(argc, argv,
-			   "ac:CdDfg:h:i:I:kl:Lnop:PqQrRs:t:T:vw:" IPSECOPT)) != -1) {
+			   "ac:CdDfg:h:i:I:l:Lnop:PqQrRs:t:T:vw:" IPSECOPT KCNOPT)) != -1) {
 #undef IPSECOPT
+#undef KCNOPT
 		switch (c) {
 		case 'a':
 			pingflags |= F_AUDIBLE;
