@@ -266,7 +266,10 @@ __RCSID("$NetBSD: traceroute.c,v 1.81 2012/08/16 00:40:28 zafer Exp $");
 #include "prog_ops.h"
 
 #ifdef HAVE_KCN
+#include <stdbool.h>
 #include "kcn.h"
+#include "kcn_info.h"
+#include "kcn_search.h"
 #endif /* HAVE_KCN */
 
 /* Maximum number of gateways (include room for one noop) */
@@ -505,6 +508,9 @@ main(int argc, char **argv)
 	int seq = 0;
 	int tos = 0, settos = 0, ttl_flag = 0;
 	int lsrr = 0;
+#ifdef HAVE_KCN
+	int kcn = 0;
+#endif /* HAVE_KCN */
 	u_int16_t off = 0;
 	struct ifaddrlist *al, *al2;
 	char errbuf[132];
@@ -545,7 +551,12 @@ main(int argc, char **argv)
 	    NULL, 0);
 
 	opterr = 0;
-	while ((op = getopt(argc, argv, "aA:dDFPIMnlrvxf:g:i:m:p:q:s:t:w:z:")) != -1)
+#ifdef HAVE_KCN
+#define KCNOPT	"k"
+#else /* HAVE_KCN */
+#define KCNOPT
+#endif /* ! HAVE_KCN */
+	while ((op = getopt(argc, argv, "aA:dDFPIMnlrvxf:g:i:m:p:q:s:t:w:z:" KCNOPT)) != -1)
 		switch (op) {
 
 		case 'a':
@@ -652,6 +663,12 @@ main(int argc, char **argv)
 			mtudisc = 1;
 			break;
 
+#ifdef HAVE_KCN
+		case 'k':
+			kcn = 1;
+			break;
+#endif /* HAVE_KCN */
+
 		default:
 			usage();
 		}
@@ -685,6 +702,23 @@ main(int argc, char **argv)
 
 	case 1:
 		hostname = argv[optind];
+#ifdef HAVE_KCN
+		if (kcn) {
+			struct kcn_info *ki;
+
+			ki = kcn_info_new(KCN_TYPE_GOOGLE,
+			    KCN_LOC_TYPE_DOMAINNAME, 1, NULL, NULL);
+			if (ki == NULL)
+				err(1, "Out of memory for KCN information");
+			if (! kcn_search(ki, hostname))
+				err(1, "Cannot resolve FQDN on KCN");
+			hostname = strdup(kcn_info_loc(ki, 0));
+			if (hostname == NULL)
+				err(1, "Out of memory for KCN information");
+			kcn_info_destroy(ki);
+			/* be lazy here not to free hostname :-P */
+		}
+#endif /* HAVE_KCN */
 		hi = gethostinfo(hostname);
 		setsin(to, hi->addrs[0]);
 		if (hi->n > 1)
