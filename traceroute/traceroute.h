@@ -17,3 +17,8 @@
 #endif /* ! __GNUC__ */
 
 #define __FAVOR_BSD
+
+#ifndef IPCTL_DEFTTL
+#define IPCTL_DEFTTL	255
+#endif /* ! IPCTL_DEFTTL */
+
