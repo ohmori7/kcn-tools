@@ -68,7 +68,7 @@ AC_SUBST(KCN_CFLAGS)
 AC_SUBST(KCN_LIBS)
 
 #
-CFLAGS="$CFLAGS -W -Wall -Werror -Wmissing-declarations"
+CFLAGS="$CFLAGS -W -Wall -Werror -Wmissing-declarations -fstrict-aliasing -Wstrict-aliasing=0"
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

@@ -7032,7 +7032,7 @@ _ACEOF
 
 
 #
-CFLAGS="$CFLAGS -W -Wall -Werror -Wmissing-declarations"
+CFLAGS="$CFLAGS -W -Wall -Werror -Wmissing-declarations -fstrict-aliasing -Wstrict-aliasing=0"
 
 ac_config_files="$ac_config_files Makefile"
 
