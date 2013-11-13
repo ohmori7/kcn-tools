@@ -1,0 +1,11 @@
+Makefile.config
+autom4te.cache/
+config.h
+config.log
+config.status
+contrib/conv/w3m2links.awk
+contrib/lua/hooks.lua
+doc/man/man1/elinks.1
+features.log
+src/intl/gettext/ref-add.sed
+src/intl/gettext/ref-del.sed
