@@ -32,6 +32,8 @@
 __RCSID("$NetBSD: traceroute_rumpops.c,v 1.1 2010/12/15 00:09:42 pooka Exp $");
 #endif /* !lint */
 
+#ifdef HAVE_RUMP
+
 #include <sys/types.h>
 #include <sys/socket.h>
 
@@ -58,3 +60,4 @@ const struct prog_ops prog_ops = {
 	.op_getsockname=rump_sys_getsockname,
 	.op_sysctl =	rump_sys___sysctl,
 };
+#endif /* HAVE_RUMP */
