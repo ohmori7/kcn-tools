@@ -51,8 +51,14 @@
 /* Define to 1 if `icmp_nextmtu' is member of `struct icmp'. */
 #undef HAVE_STRUCT_ICMP_ICMP_NEXTMTU
 
+/* Define to 1 if the system has the type `struct ipovly'. */
+#undef HAVE_STRUCT_IPOVLY
+
 /* Define to 1 if `sin_len' is member of `struct sockaddr_in'. */
 #undef HAVE_STRUCT_SOCKADDR_IN_SIN_LEN
+
+/* Define to 1 if the system has the type `struct udpiphdr'. */
+#undef HAVE_STRUCT_UDPIPHDR
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
 #undef HAVE_SYS_STAT_H

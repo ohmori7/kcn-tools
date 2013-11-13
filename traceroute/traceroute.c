@@ -265,6 +265,10 @@ __RCSID("$NetBSD: traceroute.c,v 1.81 2012/08/16 00:40:28 zafer Exp $");
 #include "as.h"
 #include "prog_ops.h"
 
+#ifdef HAVE_KCN
+#include "kcn.h"
+#endif /* HAVE_KCN */
+
 /* Maximum number of gateways (include room for one noop) */
 #define NGATEWAYS ((int)((MAX_IPOPTLEN - IPOPT_MINOFF - 1) / sizeof(u_int32_t)))
 
@@ -347,6 +351,27 @@ struct my_pmtu {
 	u_short ipm_nextmtu;
 };
 #endif
+
+#ifndef HAVE_STRUCT_IPOVLY
+struct ipovly {
+	uint8_t ih_x1[9];
+	uint8_t ih_pr;
+	uint16_t ih_len;
+	struct in_addr ih_src;
+	struct in_addr ih_dst;
+} __packed;
+#endif /* ! HAVE_STRUCT_IPOVLY */
+
+#ifndef HAVE_STRUCT_UDPIPHDR
+struct udpiphdr {
+	struct ipovly ui_i;
+	struct udphdr ui_u;
+} __packed;
+#define ui_pr	ui_i.ih_pr
+#define ui_len	ui_i.ih_len
+#define ui_src	ui_i.ih_src
+#define ui_dst	ui_i.ih_dst
+#endif /* ! HAVE_STRUCT_UDPIPHDR */
 
 static u_char	packet[512];		/* last inbound (icmp) packet */
 
