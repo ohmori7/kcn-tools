@@ -468,7 +468,6 @@ main(int argc, char *argv[])
 
 #ifdef HAVE_KCN
 	if (pingflags & F_KCN) {
-		char *keys;
 		struct kcn_info *ki;
 
 		if (hostind != 0)
@@ -476,16 +475,12 @@ main(int argc, char *argv[])
 		if (optind >= argc)
 			usage();
 		hostind = optind;
-		keys = kcn_key_concat(argc - optind, argv + optind);
-		if (keys == NULL)
-			err(1, "Out of memory for KCN keywords");
 		ki = kcn_info_new(KCN_TYPE_GOOGLE, KCN_LOC_TYPE_DOMAINNAME, 1,
 		    NULL, NULL);
 		if (ki == NULL)
 			err(1, "Out of memory for KCN information");
-		if (! kcn_search(ki, keys))
+		if (! kcn_searchv(ki, argc - optind, argv + optind))
 			err(1, "Cannot resolve FQDN on KCN");
-		free(keys);
 		argv[hostind] = strdup(kcn_info_loc(ki, 0));
 		if (argv[hostind] == NULL)
 			err(1, "Out of memory for KCN information");
