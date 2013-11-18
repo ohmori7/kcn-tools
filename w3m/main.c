@@ -583,7 +583,7 @@ main(int argc, char **argv, char **envp)
 
 		if (++i >= argc || kcn_url != NULL)
 			usage();
-		ki = kcn_info_new(KCN_TYPE_GOOGLE, KCN_LOC_TYPE_URI, 1);
+		ki = kcn_info_new(KCN_LOC_TYPE_URI, 1);
 		if (ki == NULL) {
 		    fprintf(stderr, "cannot allocate memory for KCN.\n");
 		    exit(0);

@@ -475,7 +475,7 @@ main(int argc, char *argv[])
 		if (optind >= argc)
 			usage();
 		hostind = optind;
-		ki = kcn_info_new(KCN_TYPE_GOOGLE, KCN_LOC_TYPE_DOMAINNAME, 1);
+		ki = kcn_info_new(KCN_LOC_TYPE_DOMAINNAME, 1);
 		if (ki == NULL)
 			err(1, "Out of memory for KCN information");
 		if (! kcn_searchv(ki, argc - optind, argv + optind))
