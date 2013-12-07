@@ -269,7 +269,6 @@ __RCSID("$NetBSD: traceroute.c,v 1.81 2012/08/16 00:40:28 zafer Exp $");
 #include <stdbool.h>
 #include "kcn.h"
 #include "kcn_info.h"
-#include "kcn_search.h"
 #endif /* HAVE_KCN */
 
 /* Maximum number of gateways (include room for one noop) */
