@@ -102,7 +102,6 @@ __RCSID("$NetBSD: ping.c,v 1.106 2013/03/06 11:33:08 yamt Exp $");
 #endif /* HAVE_STDBOOL_H */
 #include "kcn.h"
 #include "kcn_info.h"
-#include "kcn_search.h"
 #endif /* HAVE_KCN */
 
 #include "prog_ops.h"
