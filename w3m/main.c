@@ -86,8 +86,8 @@ _JBTYPE IntReturn[_JBLEN];
 #ifdef USE_KCN
 #include <assert.h>
 #include <stdbool.h>
+#include "kcn.h"
 #include "kcn_info.h"
-#include "kcn_search.h"
 #endif /* USE_KCN */
 
 static void delBuffer(Buffer *buf);
