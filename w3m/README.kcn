@@ -1,2 +1,7 @@
-KCN enabled w3m requires:
-	gc
+Required libraries or packages for KCN enabled w3m
+================================================================================
+NetBSD current:
+	gc: /usr/pkgsrc/devel/boehm-gc
+
+CentOS 6.4 or later:
+	gc-devel
