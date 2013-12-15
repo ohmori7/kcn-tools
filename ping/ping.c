@@ -1429,9 +1429,10 @@ summary(int header)
  */
 /* ARGSUSED */
 static void
-prtsig(int dummy __unused)
+prtsig(int dummy)
 {
 
+	(void)dummy;
 	summary(0);
 #ifndef SIGINFO
 	(void)signal(SIGQUIT, prtsig);
@@ -1460,8 +1461,10 @@ prefinish(int dummy)
  */
 /* ARGSUSED */
 static void
-finish(int dummy __unused)
+finish(int dummy)
 {
+
+	(void)dummy;
 #ifdef SIGINFO
 	(void)signal(SIGINFO, SIG_DFL);
 #else
