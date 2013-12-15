@@ -851,9 +851,9 @@ enable_sslverify
 enable_digest_auth
 with_termlib
 with_gc
-with_kcn
 with_curl
 with_jansson
+with_kcn
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1548,9 +1548,9 @@ Optional Packages:
 				LIBS is space separated list of:
 				  terminfo mytinfo termcap ncurses curses
   --with-gc=PREFIX	  	libgc PREFIX
-  --with-kcn=PREFIX		support KCN
   --with-curl=PREFIX	curl library
   --with-jansson=PREFIX	jansson library
+  --with-kcn=PREFIX		support KCN
 
 Some influential environment variables:
   CXX         C++ compiler command
@@ -9395,116 +9395,6 @@ $as_echo "$as_me: error: libgc not found" >&2;}
    { (exit 1); exit 1; }; }
     fi
  fi
-{ $as_echo "$as_me:$LINENO: checking for KCN library" >&5
-$as_echo_n "checking for KCN library... " >&6; }
-
-# Check whether --with-kcn was given.
-if test "${with_kcn+set}" = set; then
-  withval=$with_kcn;
-else
-  with_kcn="yes"
-fi
-
-{ $as_echo "$as_me:$LINENO: result: $with_kcn" >&5
-$as_echo "$with_kcn" >&6; }
-
-if test x"$with_kcn" != xno; then
-
-  if test x"$with_kcn" = xyes; then
-    with_kcn='/usr/local /usr/pkg /usr'
-  fi
-  kcndir=''
-  ldflags="$LDFLAGS"
-  for dir in $with_kcn
-  do
-    LDFLAGS="$LDFLAGS -L$dir/lib"
-    unset ac_cv_lib_kcn_kcn_info_new
-    { $as_echo "$as_me:$LINENO: checking for kcn_info_new in -lkcn" >&5
-$as_echo_n "checking for kcn_info_new in -lkcn... " >&6; }
-if test "${ac_cv_lib_kcn_kcn_info_new+set}" = set; then
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lkcn  $LIBS"
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char kcn_info_new ();
-int
-main ()
-{
-return kcn_info_new ();
-  ;
-  return 0;
-}
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (ac_try="$ac_link"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
-$as_echo "$ac_try_echo") >&5
-  (eval "$ac_link") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } && {
-	 test -z "$ac_c_werror_flag" ||
-	 test ! -s conftest.err
-       } && test -s conftest$ac_exeext && {
-	 test "$cross_compiling" = yes ||
-	 $as_test_x conftest$ac_exeext
-       }; then
-  ac_cv_lib_kcn_kcn_info_new=yes
-else
-  $as_echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	ac_cv_lib_kcn_kcn_info_new=no
-fi
-
-rm -rf conftest.dSYM
-rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
-      conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:$LINENO: result: $ac_cv_lib_kcn_kcn_info_new" >&5
-$as_echo "$ac_cv_lib_kcn_kcn_info_new" >&6; }
-if test "x$ac_cv_lib_kcn_kcn_info_new" = x""yes; then
-  kcndir="$dir/lib"; break
-fi
-
-  done
-  LDFLAGS="$ldflags"
-  if test x"$kcndir" = x; then
-    { { $as_echo "$as_me:$LINENO: error: KCN directory not found." >&5
-$as_echo "$as_me: error: KCN directory not found." >&2;}
-   { (exit 1); exit 1; }; }
-  fi
-  if test $kcndir != '/usr'; then
-    CPPFLAGS="$CPPFLAGS -I$kcndir/include"
-    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$kcndir/lib -L$kcndir/lib"
-  fi
-  W3M_LIBS="$W3M_LIBS -lkcn"
-  cat >>confdefs.h <<\_ACEOF
-#define USE_KCN 1
-_ACEOF
-
-fi
 if test x"$with_kcn" != xno; then
   { $as_echo "$as_me:$LINENO: checking for curl library" >&5
 $as_echo_n "checking for curl library... " >&6; }
@@ -9595,7 +9485,7 @@ fi
 { $as_echo "$as_me:$LINENO: result: $ac_cv_lib_curl_curl_easy_init" >&5
 $as_echo "$ac_cv_lib_curl_curl_easy_init" >&6; }
 if test "x$ac_cv_lib_curl_curl_easy_init" = x""yes; then
-  curldir="$dir/lib"; break
+  curldir="$dir"; break
 fi
 
   done
@@ -9605,10 +9495,12 @@ fi
 $as_echo "$as_me: error: curl library not found." >&2;}
    { (exit 1); exit 1; }; }
   fi
+  CURL_LIBS=
   if test $curldir != '/usr'; then
-    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$curldir/lib -L$curldir/lib"
+    CURL_LIBS=" -Wl,-rpath=$curldir/lib -L$curldir/lib"
   fi
-  W3M_LIBS="$W3M_LIBS -lcurl"
+  CURL_LIBS="$CURL_LIBS -lcurl"
+  W3M_LIBS="$W3M_LIBS$CURL_LIBS"
 fi
   { $as_echo "$as_me:$LINENO: checking for jansson library" >&5
 $as_echo_n "checking for jansson library... " >&6; }
@@ -9699,7 +9591,7 @@ fi
 { $as_echo "$as_me:$LINENO: result: $ac_cv_lib_jansson_json_object" >&5
 $as_echo "$ac_cv_lib_jansson_json_object" >&6; }
 if test "x$ac_cv_lib_jansson_json_object" = x""yes; then
-  janssondir="$dir/lib"; break
+  janssondir="$dir"; break
 fi
 
   done
@@ -9709,10 +9601,122 @@ fi
 $as_echo "$as_me: error: jansson library not found." >&2;}
    { (exit 1); exit 1; }; }
   fi
+  JANSSON_LIBS=
   if test $janssondir != '/usr'; then
-    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$janssondir/lib -L$janssondir/lib"
+    JANSSON_LIBS=" -Wl,-rpath=$janssondir/lib -L$janssondir/lib"
   fi
-  W3M_LIBS="$W3M_LIBS -ljansson"
+  JANSSON_LIBS="${JANSSON_LIBS} -ljansson"
+  W3M_LIBS="$W3M_LIBS$JANSSON_LIBS"
+fi
+  { $as_echo "$as_me:$LINENO: checking for KCN library" >&5
+$as_echo_n "checking for KCN library... " >&6; }
+
+# Check whether --with-kcn was given.
+if test "${with_kcn+set}" = set; then
+  withval=$with_kcn;
+else
+  with_kcn="yes"
+fi
+
+{ $as_echo "$as_me:$LINENO: result: $with_kcn" >&5
+$as_echo "$with_kcn" >&6; }
+
+if test x"$with_kcn" != xno; then
+
+  if test x"$with_kcn" = xyes; then
+    with_kcn='/usr/local /usr/pkg /usr'
+  fi
+  kcndir=''
+  ldflags="$LDFLAGS"
+  for dir in $with_kcn
+  do
+    LDFLAGS="$LDFLAGS -L$dir/lib $CURL_LIBS $JANSSON_LIBS"
+    unset ac_cv_lib_kcn_kcn_info_new
+    { $as_echo "$as_me:$LINENO: checking for kcn_info_new in -lkcn" >&5
+$as_echo_n "checking for kcn_info_new in -lkcn... " >&6; }
+if test "${ac_cv_lib_kcn_kcn_info_new+set}" = set; then
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lkcn  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char kcn_info_new ();
+int
+main ()
+{
+return kcn_info_new ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
+$as_echo "$ac_try_echo") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext && {
+	 test "$cross_compiling" = yes ||
+	 $as_test_x conftest$ac_exeext
+       }; then
+  ac_cv_lib_kcn_kcn_info_new=yes
+else
+  $as_echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_kcn_kcn_info_new=no
+fi
+
+rm -rf conftest.dSYM
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:$LINENO: result: $ac_cv_lib_kcn_kcn_info_new" >&5
+$as_echo "$ac_cv_lib_kcn_kcn_info_new" >&6; }
+if test "x$ac_cv_lib_kcn_kcn_info_new" = x""yes; then
+  kcndir="$dir"; break
+fi
+
+  done
+  LDFLAGS="$ldflags"
+  if test x"$kcndir" = x; then
+    { { $as_echo "$as_me:$LINENO: error: KCN directory not found." >&5
+$as_echo "$as_me: error: KCN directory not found." >&2;}
+   { (exit 1); exit 1; }; }
+  fi
+  if test $kcndir != '/usr'; then
+    CPPFLAGS="$CPPFLAGS -I$kcndir/include"
+    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$kcndir/lib -L$kcndir/lib"
+  fi
+  W3M_LIBS="$W3M_LIBS -lkcn"
+  cat >>confdefs.h <<\_ACEOF
+#define USE_KCN 1
+_ACEOF
+
 fi
 fi
 { $as_echo "$as_me:$LINENO: checking for zError in -lz" >&5

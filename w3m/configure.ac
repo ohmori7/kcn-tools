@@ -105,10 +105,10 @@ fi
 AC_SUBST(AUXBIN_TARGETS)
 AC_W3M_TERMLIB
 AC_W3M_GC
-AC_W3M_KCN
 if test x"$with_kcn" != xno; then
   AC_W3M_CURL
   AC_W3M_JANSSON
+  AC_W3M_KCN
 fi
 AC_CHECK_LIB(z, zError, [AUXBIN_TARGETS="$AUXBIN_TARGETS inflate\$(EXT)"])
 

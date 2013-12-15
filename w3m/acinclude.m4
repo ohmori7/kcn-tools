@@ -918,9 +918,9 @@ if test x"$with_kcn" != xno; then
   ldflags="$LDFLAGS"
   for dir in $with_kcn
   do
-    LDFLAGS="$LDFLAGS -L$dir/lib"
+    LDFLAGS="$LDFLAGS -L$dir/lib $CURL_LIBS $JANSSON_LIBS"
     unset ac_cv_lib_kcn_kcn_info_new
-    AC_CHECK_LIB(kcn, kcn_info_new, [kcndir="$dir/lib"; break])
+    AC_CHECK_LIB(kcn, kcn_info_new, [kcndir="$dir"; break])
   done
   LDFLAGS="$ldflags"
   if test x"$kcndir" = x; then
@@ -954,16 +954,18 @@ if test x"$with_curl" != xno; then
   do
     LDFLAGS="$LDFLAGS -L$dir/lib"
     unset ac_cv_lib_curl_curl_easy_init
-    AC_CHECK_LIB(curl, curl_easy_init, [curldir="$dir/lib"; break])
+    AC_CHECK_LIB(curl, curl_easy_init, [curldir="$dir"; break])
   done
   LDFLAGS="$ldflags"
   if test x"$curldir" = x; then
     AC_MSG_ERROR([curl library not found.])
   fi
+  CURL_LIBS=
   if test $curldir != '/usr'; then
-    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$curldir/lib -L$curldir/lib"
+    CURL_LIBS=" -Wl,-rpath=$curldir/lib -L$curldir/lib"
   fi
-  W3M_LIBS="$W3M_LIBS -lcurl"
+  CURL_LIBS="$CURL_LIBS -lcurl"
+  W3M_LIBS="$W3M_LIBS$CURL_LIBS"
 fi])
 #
 # ----------------------------------------------------------------
@@ -986,14 +988,16 @@ if test x"$with_jansson" != xno; then
   do
     LDFLAGS="$LDFLAGS -L$dir/lib"
     unset ac_cv_lib_jansson_json_object
-    AC_CHECK_LIB(jansson, json_object, [janssondir="$dir/lib"; break])
+    AC_CHECK_LIB(jansson, json_object, [janssondir="$dir"; break])
   done
   LDFLAGS="$ldflags"
   if test x"$janssondir" = x; then
     AC_MSG_ERROR([jansson library not found.])
   fi
+  JANSSON_LIBS=
   if test $janssondir != '/usr'; then
-    W3M_LIBS="$W3M_LIBS -Wl,-rpath=$janssondir/lib -L$janssondir/lib"
+    JANSSON_LIBS=" -Wl,-rpath=$janssondir/lib -L$janssondir/lib"
   fi
-  W3M_LIBS="$W3M_LIBS -ljansson"
+  JANSSON_LIBS="${JANSSON_LIBS} -ljansson"
+  W3M_LIBS="$W3M_LIBS$JANSSON_LIBS"
 fi])
