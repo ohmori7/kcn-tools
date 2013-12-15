@@ -19,8 +19,7 @@ AC_DEFUN([AC_CHECK_KCN],
 		for dir in $with_kcn; do
 			LDFLAGS="$LDFLAGS -L$dir/lib $CURL_LIBS $JANSSON_LIBS"
 			unset ac_cv_lib_kcn_kcn_info_new
-			AC_CHECK_LIB(kcn, kcn_info_new,
-			    [kcndir="$dir"; break])
+			AC_CHECK_LIB(kcn, kcn_info_new, [kcndir="$dir"; break])
 		done
 		if test x"$kcndir" = x; then
 			AC_MSG_ERROR([KCN library not found.])
