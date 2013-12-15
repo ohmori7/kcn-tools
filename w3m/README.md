@@ -29,5 +29,6 @@ CentOS
 
     % sudo yum install libgc-devel (CentOS 5.x)
     % sudo yum install gc-devel (CentOS 6.x)
-    % sudo yum install libtermcap-devel
+    % sudo yum install libtermcap-devel (CentOS 6.4 or before)
+    % sudo yum install ncurses-devel (CentOS 6.5 or later)
     % sudo yum install gettext
